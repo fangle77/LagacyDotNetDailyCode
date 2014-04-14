@@ -1,0 +1,4 @@
+自定义的DataGridView；
+只允许输入数字的TextBox；
+带Email验证的Textbox
+带多选的Combobox；

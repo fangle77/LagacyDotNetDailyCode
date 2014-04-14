@@ -1,0 +1,96 @@
+
+--(\s{1}[a-zA-Z0-9_.-]+)(\s*=\s*\(DESCRIPTION\s*=\s*)(\(\s*ADDRESS_LIST\s*=\s*){0,1} (\(\s*ADDRESS\s*=\s*\(PROTOCOL\s*=\s*)([a-zA-Z]+)\s*\)(\s*\(\s*HOST\s*=\s*)([a-zA-Z0-9-_.]+)(\s*\)\s*\(\s*PORT\s*=\s*)([0-9]+)(\s*\)\s*\)\s*)(\s*\)\s*){0,1} (\(\s*CONNECT_DATA\s*=\s*)((\([A-Za-z_]+\s*=\s*[A-Za-z0-9_:/.]+\s*\)\s*){1,3})(\s*\)\s*\))
+
+
+([a-zA-Z0-9]+)(\s*=\s*\(DESCRIPTION\s*=\s*\(\s*ADDRESS\s*=\s*\(PROTOCOL\s*=\s*)([a-zA-Z]+)\s*\)(\s*\(\s*HOST\s*=\s*)([a-zA-Z0-9.]+)(\s*\)\s*\(\s*PORT\s*=\s*)([0-9]+)(\s*\)\s*\)\s*\(CONNECT_DATA\s*=\s*)((\([A-Za-z_]+\s*=\s*[A-Za-z0-9_]+\s*\)\s*){1,3})(\s*\)\s*\)\s*)
+
+
+V[0]:	BIGBOBO =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = BIGBOBO)
+    )
+  )
+
+
+G[0]:	BIGBOBO =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = BIGBOBO)
+    )
+  )
+
+
+G[1]:	BIGBOBO
+G[2]:	 =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = 
+G[3]:	TCP
+G[4]:	(HOST = 
+G[5]:	localhost
+G[6]:	)(PORT = 
+G[7]:	1521
+G[8]:	))
+    (CONNECT_DATA =
+      
+G[9]:	(SERVER = DEDICATED)
+      (SERVICE_NAME = BIGBOBO)
+    
+G[10]:	(SERVICE_NAME = BIGBOBO)
+    
+G[11]:	)
+  )
+
+
+//¶þ¡¢
+
+([a-zA-Z0-9_.-]+)(\s*=\s*\(DESCRIPTION\s*=\s*)(\(\s*ADDRESS_LIST\s*=\s*){0,1} (\(\s*ADDRESS\s*=\s*\(PROTOCOL\s*=\s*)([a-zA-Z]+)\s*\)(\s*\(\s*HOST\s*=\s*)([a-zA-Z0-9-_.]+)(\s*\)\s*\(\s*PORT\s*=\s*)([0-9]+)(\s*\)\s*\)\s*)(\s*\)\s*){0,1} (\(\s*CONNECT_DATA\s*=\s*)((\([A-Za-z_]+\s*=\s*[A-Za-z0-9_:/.]+\s*\)\s*){1,3})(\s*\)\s*\)\s*)
+
+V[0]:	USER_BASK_SYS =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.0.161)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVICE_NAME = zwb)
+    )
+  )
+G[0]:	USER_BASK_SYS =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.0.161)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVICE_NAME = zwb)
+    )
+  )
+G[1]:	USER_BASK_SYS
+G[2]:	 =
+  (DESCRIPTION =
+    
+G[3]:	(ADDRESS_LIST =
+     
+G[4]:	(ADDRESS = (PROTOCOL = 
+G[5]:	TCP
+G[6]:	(HOST = 
+G[7]:	192.168.0.161
+G[8]:	)(PORT = 
+G[9]:	1521
+G[10]:	))
+    
+G[11]:	)
+   
+G[12]:	(CONNECT_DATA =
+      
+G[13]:	(SERVICE_NAME = zwb)
+    
+G[14]:	(SERVICE_NAME = zwb)
+    
+G[15]:	)
+  )
+
+

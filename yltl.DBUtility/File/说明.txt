@@ -1,0 +1,38 @@
+﻿
+1、直接调用Create方法创建
+yltl.DBUtility.IDBOperator dbo = yltl.DBUtility.DBFactory.Create(dbType, connectionstring);
+
+2、
+根据配置调用
+配置文件采用默认的App.config，或Web.config 配置文件
+---------------------------示例配置--------------------------------------------
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <!--声明DBConnections配置节，type必须如下-->
+    <section name="DBConnections" type="yltl.DBUtility.DBConnectionSection,yltl.DBUtility" />
+  </configSections>
+
+  <!--DBConnections配置节-->
+  <DBConnections>
+    <!--节点-->
+    <!--
+      DBType: 必须属性，数据库类型，不区分大小写：为Oracle，SqlServer，Access，Sybase，MySql，DB2 值之一
+      Name:   可选属性连接名称，用于区分同一种数据库类型下的不同连接，区分大小写
+      ConnectionString:必须属性，连接字符串
+      IsEncrypt: 必须属性true/false，不区分大小写，连接字符串是否加密，如果有加密则设为True
+    -->
+    <DBConnection  DBType="Oracle" Name="C1"  ConnectionString="HJbKoMaLbFTKjMpMrJfMeLzAhNaLjN7InAuAyFANZKrI9MqI8CKJJLBKsJoLdIvN2N8JhJ8MAV3MuNlNlMBMUKaLpKqJuJlKuM8MyBuLrIdIrJ6JaLjLcIyL3MpKiKlM" IsEncrypt="True"/>
+    <DBConnection  DBType="Oracle" Name="C2"  ConnectionString="Data Source=lan_189;User ID=user_ahdy_sheng;Password=user_ahdy_sheng" IsEncrypt="FALSE"/>
+    <DBConnection  DBType="SqlServer" Name="C1" ConnectionString="server=192.168.0.161;database=voltagedb_c;uid=sa;pwd=111111" IsEncrypt="false"/>
+    <DBConnection  DBType="ACCESS"  ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=voltagedb_c.mdb;jet OleDB:Database Password=123456" IsEncrypt="false"/>
+  </DBConnections>
+</configuration>
+
+--------------------------------------------------------------------------
+
+----------------------------------调用方法-------------------------------
+yltl.DBUtility.IDBOperator dbo = yltl.DBUtility.DBFactory.CreateByConfig(eDBType.Access);
+yltl.DBUtility.IDBOperator dbo = yltl.DBUtility.DBFactory.CreateByConfig("C2");
+yltl.DBUtility.IDBOperator dbo = yltl.DBUtility.DBFactory.CreateByConfig(eDBType.Oracle, "C1");
+--------------------------------------------------------------------------
