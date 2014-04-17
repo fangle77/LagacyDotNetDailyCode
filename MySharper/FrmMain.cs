@@ -72,10 +72,10 @@ namespace MySharper
             Indexer.StartInitial(Solutions);
 
 #if DEBUG
-            if (string.IsNullOrEmpty(Solution))
+            if (Solutions == null || Solutions.Count == 0)
             {
                 //Indexer.StartInitial(@"E:\Code\WWW\DEV\Diapers\DiapersWebSite.sln");
-                Indexer.StartInitial(@"E:\Code\Intranet\DEV\1800DiapersIntranet2010.sln");
+                Indexer.StartInitial(new List<string> { @"E:\Code\Intranet\DEV\1800DiapersIntranet2010.sln" });
             }
 #endif
 

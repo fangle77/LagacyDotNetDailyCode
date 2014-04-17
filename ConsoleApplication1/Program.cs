@@ -21,10 +21,8 @@ namespace ConsoleApplication1
             //Console.WriteLine(@"E:\Code\WWW\DEV\Soap\WebSite\AJAX\AddressAjax.aspx");
             RepeatRun(() =>
             {
-                List<int> list = new List<int> { 1, 2, 3, 4, 5 };
-                list.Sort((l1, l2) => l1.CompareTo(l2));
-                list.ForEach(Console.WriteLine);
-
+                string content = File.ReadAllText("html.txt");
+                HtmlTagValidatorTest.RunTest(content);
             });
         }
 

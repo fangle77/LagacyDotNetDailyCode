@@ -19,6 +19,8 @@ namespace WebServerManager
             InitializeComponent();
         }
 
+        private string BuildResults = string.Empty;
+
         private Site _site;
 
         public Site WebSite
@@ -132,11 +134,12 @@ namespace WebServerManager
         {
             if (btnStop.Enabled) StopServer();
             UpdateMessage("sln building...");
-
+            BuildResults = string.Empty;
             if (DevenvCommand.MSBuildFileFullPath.LastIndexOf("devenv", StringComparison.OrdinalIgnoreCase) >= 0)
             {
                 DevenvCommand cmd = new DevenvCommand();
                 string results = cmd.BuildSolution(WebSite.Solution);
+                BuildResults = results;
                 Regex reg = new Regex(@"====([ \w,-:]+)====");
                 string final = (from Match m in reg.Matches(results) where m.Success where m.Groups.Count > 1 select m.Groups[1].Value).FirstOrDefault();
                 UpdateMessage(final ?? "sln build finish!");
@@ -145,6 +148,7 @@ namespace WebServerManager
             {
                 MSBuildCommand cmd = new MSBuildCommand();
                 string results = cmd.BuildSolution(WebSite.Solution);
+                BuildResults = results;
                 string suc = "Build succeeded.";
                 Regex timeElapseReg = new Regex("Time Elapsed [0-9:.]+");
                 string time = timeElapseReg.Match(results).Value;
@@ -241,6 +245,42 @@ namespace WebServerManager
             {
                 MessageBox.Show("The file doesn't exist:" + sln);
             }
+        }
+
+        #region messageBox
+
+        private Form _MessageForm;
+        private Form MessageForm
+        {
+            get
+            {
+                if (_MessageForm == null)
+                {
+                    _MessageForm = new Form();
+                    _MessageForm.Text = string.Format("MSBuild Message: {0}", WebSite.Solution);
+                    _MessageForm.Deactivate += (o, e) => _MessageForm.Hide();
+                    _MessageForm.FormClosing += (o, e) => { _MessageForm.Hide(); e.Cancel = true; };
+                    _MessageForm.StartPosition = FormStartPosition.CenterScreen;
+                    _MessageForm.FormBorderStyle = FormBorderStyle.SizableToolWindow;
+                    _MessageForm.Size = new Size((int)(Screen.PrimaryScreen.WorkingArea.Width * 0.8), (int)(Screen.PrimaryScreen.WorkingArea.Height * 0.7));
+                    var rtxt = new RichTextBox() { ReadOnly = true, Dock = DockStyle.Fill, BorderStyle = BorderStyle.None, Font = new Font(FontFamily.GenericMonospace, 12) };
+                    _MessageForm.Controls.Add(rtxt);
+                }
+                return _MessageForm;
+            }
+        }
+
+        private void ShowMessage(string message)
+        {
+            MessageForm.Controls[0].Text = message;
+            MessageForm.Show();
+        }
+
+        #endregion
+
+        private void lblState_Click(object sender, EventArgs e)
+        {
+            ShowMessage(BuildResults);
         }
     }
 }

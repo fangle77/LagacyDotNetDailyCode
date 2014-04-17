@@ -16,8 +16,10 @@ namespace LoveYourEye
         private Timer _CountDownTimer;
         private DateTime _LastInvokeTime = DateTime.Now;
 
+        private List<int> _WorkHour = new List<int> { 9, 13 };
+
         int _InvokeSecond = 60 * 60;
-        int _ContinueSecond = 30;
+        int _ContinueSecond = 60;
 
         public FrmMain()
         {
@@ -45,7 +47,7 @@ namespace LoveYourEye
         private void InitTimer()
         {
             _GlobalTimer = new Timer();
-            _GlobalTimer.Interval = 3000;
+            _GlobalTimer.Interval = 10000;
             _GlobalTimer.Tick += _GlobalTimer_Tick;
             _GlobalTimer.Enabled = true;
 
@@ -58,10 +60,16 @@ namespace LoveYourEye
         {
             _GlobalTimer.Enabled = false;
 
-            if (DateTime.Now.Subtract(_LastInvokeTime).TotalSeconds >= _InvokeSecond)
+            var time = DateTime.Now;
+            if (_WorkHour.Contains(time.Hour))
+            {
+                _LastInvokeTime = time.Date.AddHours(time.Hour).AddSeconds(-20);
+            }
+
+            if (time.Subtract(_LastInvokeTime).TotalSeconds >= _InvokeSecond)
             {
                 this.Show();
-                _LastInvokeTime = DateTime.Now;
+                _LastInvokeTime = time;
                 _CountDownTimer.Enabled = true;
             }
             else

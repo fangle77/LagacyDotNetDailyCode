@@ -253,20 +253,20 @@ G[3]:
             return totalErrorTag() == 0;
         }
 
-        private static string BuildMessage(List<HtmlTag> redundantSpaceTags, List<HtmlTag> missingStartTags, List<HtmlTag> missingEndTags, List<HtmlTag[]> invalidNestedTags,List<HtmlTag> notAllowTags)
+        private static string BuildMessage(List<HtmlTag> redundantSpaceTags, List<HtmlTag> missingStartTags, List<HtmlTag> missingEndTags, List<HtmlTag[]> invalidNestedTags, List<HtmlTag> notAllowTags)
         {
             StringBuilder messageBuilder = new StringBuilder();
             string error_MissingStartTag = "element({1}):{0},missing start tag; ";
             string error_MissingEndTag = "element({1}):{0},missing end tag; ";
             string error_RedundantSpace = "element({1}):{0},redundant space after < ; ";
             string warn_invalidNestedTag = "element({2}):{1},can not nested in {0}; ";
-            string error_notAllowTag = "element({1}):{0},not an allow tag name; ";;
+            string error_notAllowTag = "element({1}):{0},not an allow tag name; "; ;
 
-            missingStartTags.ForEach(t => { messageBuilder.AppendFormat(error_MissingStartTag, t.FullTag, t.Position); });
-            missingEndTags.ForEach(t => { messageBuilder.AppendFormat(error_MissingEndTag, t.FullTag, t.Position); });
-            redundantSpaceTags.ForEach(t => { messageBuilder.AppendFormat(error_RedundantSpace, t.FullTag, t.Position); });
-            invalidNestedTags.ForEach(tt => { messageBuilder.AppendFormat(warn_invalidNestedTag, tt[0].TagName, tt[1].FullTag, tt[1].Position); });
-            notAllowTags.ForEach(t => { messageBuilder.AppendFormat(error_notAllowTag, t.FullTag, t.Position); });
+            missingStartTags.ForEach(t => { messageBuilder.AppendFormat(error_MissingStartTag, t.FullTag, t.Position); messageBuilder.AppendLine(); });
+            missingEndTags.ForEach(t => { messageBuilder.AppendFormat(error_MissingEndTag, t.FullTag, t.Position); messageBuilder.AppendLine(); });
+            redundantSpaceTags.ForEach(t => { messageBuilder.AppendFormat(error_RedundantSpace, t.FullTag, t.Position); messageBuilder.AppendLine(); });
+            invalidNestedTags.ForEach(tt => { messageBuilder.AppendFormat(warn_invalidNestedTag, tt[0].TagName, tt[1].FullTag, tt[1].Position); messageBuilder.AppendLine(); });
+            notAllowTags.ForEach(t => { messageBuilder.AppendFormat(error_notAllowTag, t.FullTag, t.Position); messageBuilder.AppendLine(); });
             return messageBuilder.ToString();
         }
 
@@ -299,9 +299,9 @@ G[3]:
             return startTags.FindLastIndex(startTags.Count - 1, tag.IsTagPair);
         }
 
-        private static void ValidNotAllowTag(HtmlTag tag,List<HtmlTag> notAllowTags)
+        private static void ValidNotAllowTag(HtmlTag tag, List<HtmlTag> notAllowTags)
         {
-            if(tag.IsNotAllow) notAllowTags.Add(tag);
+            if (tag.IsNotAllow) notAllowTags.Add(tag);
         }
 
         class HtmlTag
@@ -474,7 +474,7 @@ G[3]:
                     {
                         HtmlTagValidator.ValidateHtmlTag(html, out msg);
                         //msg = HtmlTagValidator.checkHtmlTags(html);
-                        Console.WriteLine("result:{0}",msg);
+                        Console.WriteLine("result:{0}", msg);
                     }
                     else
                     {

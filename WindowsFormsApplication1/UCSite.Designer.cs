@@ -131,7 +131,7 @@
             this.编译启动ServerToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(188, 158);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(188, 136);
             // 
             // tsmiRun
             // 
@@ -143,7 +143,7 @@
             // tsmiStart
             // 
             this.tsmiStart.Name = "tsmiStart";
-            this.tsmiStart.Size = new System.Drawing.Size(165, 22);
+            this.tsmiStart.Size = new System.Drawing.Size(187, 22);
             this.tsmiStart.Text = "启动WebServer";
             this.tsmiStart.Click += new System.EventHandler(this.tsmiStart_Click);
             // 
@@ -157,7 +157,7 @@
             // 编译ToolStripMenuItem
             // 
             this.编译ToolStripMenuItem.Name = "编译ToolStripMenuItem";
-            this.编译ToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.编译ToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.编译ToolStripMenuItem.Text = "编译";
             this.编译ToolStripMenuItem.Click += new System.EventHandler(this.编译ToolStripMenuItem_Click);
             // 
@@ -203,6 +203,7 @@
             this.lblState.Size = new System.Drawing.Size(13, 13);
             this.lblState.TabIndex = 1;
             this.lblState.Text = "..";
+            this.lblState.Click += new System.EventHandler(this.lblState_Click);
             // 
             // label4
             // 
