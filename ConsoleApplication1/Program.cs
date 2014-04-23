@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -21,8 +22,17 @@ namespace ConsoleApplication1
             //Console.WriteLine(@"E:\Code\WWW\DEV\Soap\WebSite\AJAX\AddressAjax.aspx");
             RepeatRun(() =>
             {
-                string content = File.ReadAllText("html.txt");
-                HtmlTagValidatorTest.RunTest(content);
+                List<object> list = new List<object>()
+                                      {
+                                          "",new {A=1,B="waa\"baa'caa\r\ndaa\reaa\nfaa\\<>?/';:|}{[]+=_-)(*&^%$#@!~`",C=@"123123,ab""cd
+
+abcd",D=DateTime.Now}
+                                      };
+
+                foreach (var o in list)
+                {
+                    JsonSerializerTest.SerializeTest(o);
+                }
             });
         }
 

@@ -37,6 +37,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -45,6 +49,7 @@
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -60,6 +65,7 @@
     <Compile Include="HtmlTagValidator.cs" />
     <Compile Include="HtmlValidatorWithXSD.cs" />
     <Compile Include="ImageOperation.cs" />
+    <Compile Include="JsonSerizlizer.cs" />
     <Compile Include="LCS.cs" />
     <Compile Include="LevensteinDistance.cs" />
     <Compile Include="Logger.cs" />
@@ -80,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Library\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
+    <Content Include="Library\Newtonsoft.Json.dll" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
