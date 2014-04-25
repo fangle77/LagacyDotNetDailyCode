@@ -28,6 +28,7 @@ namespace MySharper
         public FrmMain()
         {
             InitializeComponent();
+            this.TopMost = true;
             this.Deactivate += FrmMain_Deactivate;
 
             AutoCloseTimer = new System.Windows.Forms.Timer();
@@ -65,7 +66,7 @@ namespace MySharper
             this.InitialWidth = this.Width;
             this.InitialHeight = this.Height;
             HalfScreenWidth = Screen.PrimaryScreen.WorkingArea.Width / 2 - 40;
-            HalfScreenHeight = Screen.PrimaryScreen.WorkingArea.Height / 2 - 30;
+            HalfScreenHeight = Screen.PrimaryScreen.WorkingArea.Height / 2 - 50;
 
             DateTime time1 = DateTime.Now;
             //Indexer.StartInitial(@"E:\OwenProject\REST\REST.sln");
@@ -113,7 +114,7 @@ namespace MySharper
 
         private void UpdateResult(List<FileItem> results)
         {
-            results = results == null ? null : results.GetRange(0, Math.Min(results.Count, 15));
+            results = results == null ? null : results.GetRange(0, Math.Min(results.Count, 20));
 
             panelResult.Controls.Clear();
             AdjustMaxSize(results);
@@ -136,7 +137,7 @@ namespace MySharper
             }
 
             Label[] currentResults = new Label[resultCount];
-            for (int i = 0; i < resultCount; )
+            for (int i = resultCount - 1; i >= 0; )
             {
                 foreach (var item in results)
                 {
@@ -144,7 +145,7 @@ namespace MySharper
                     label.Text = item.DisplayText;
                     label.Tag = item.FullPath;
                     currentResults[i] = label;
-                    i++;
+                    i--;
                 }
             }
 
@@ -178,7 +179,7 @@ namespace MySharper
         {
             int maxLength = results.Count == 0 ? 0 : results.Max(s => { return s.DisplayText.Length; });
 
-            int maxWidth = (int)(maxLength * 6) + 10;
+            int maxWidth = (int)(maxLength * 5) + 10;
             maxWidth = Math.Max(InitialWidth, maxWidth);
             maxWidth = Math.Min(HalfScreenWidth, maxWidth);
 
@@ -188,6 +189,9 @@ namespace MySharper
 
             this.Width = maxWidth;
             this.Height = maxHeight;
+            //panelResult.Width = maxWidth - 50;
+            //panelResult.Height = maxHeight - 200;
+            //panelResult.AutoScroll = true;
             //panelResult.AutoScrollMinSize = new Size(panelResult.Width, panelResult.Height);
         }
 

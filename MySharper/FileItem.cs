@@ -62,7 +62,10 @@ namespace MySharper
         private static readonly Dictionary<string, List<FileItem>> TwoLetterItems = new Dictionary<string, List<FileItem>>(StringComparer.OrdinalIgnoreCase);
         private static readonly Dictionary<string, List<FileItem>> ThreeLetterItems = new Dictionary<string, List<FileItem>>(StringComparer.OrdinalIgnoreCase);
         private static readonly Dictionary<string, List<FileItem>> MoreThanThreeLetterItems = new Dictionary<string, List<FileItem>>(StringComparer.OrdinalIgnoreCase);
-        private static readonly List<FileItem> EmptyResult = new List<FileItem>(0);
+        private static List<FileItem> EmptyResult
+        {
+            get { return new List<FileItem>(); }
+        }
 
         public static bool IsEmpty
         {
@@ -112,7 +115,14 @@ namespace MySharper
                 result = FindMoreThanThreeLetters(fileName);
             }
             SortFileItem(result);
-            return result == null ? EmptyResult : result;
+            if (result != null && result.Count <= 5)
+            {
+                var containResult = FindContainResult(fileName);
+                SortFileItem(containResult);
+                result.AddRange(containResult);
+            }
+
+            return result ?? EmptyResult;
         }
 
         private static List<FileItem> FindMoreThanThreeLetters(string fileName)
@@ -137,7 +147,7 @@ namespace MySharper
 
             if (exist && (items == null || items.Count == 0)) return items;
 
-            items = items == null ? ThreeLetterItems[startThreeLetter] : items;
+            items = items ?? ThreeLetterItems[startThreeLetter];
             List<FileItem> newItems = new List<FileItem>();
             items.ForEach(t =>
             {
@@ -167,6 +177,21 @@ namespace MySharper
             {
                 return item2.CompareTo(item1);
             });
+        }
+
+        private static List<FileItem> FindContainResult(string fileName)
+        {
+            int maxResult = 15;
+            List<FileItem> result = new List<FileItem>(maxResult);
+            foreach (var item in AllFileItems)
+            {
+                if (item.FileName.IndexOf(fileName, StringComparison.OrdinalIgnoreCase) > 0)
+                {
+                    result.Add(item);
+                    if (result.Count >= maxResult) break;
+                }
+            }
+            return result;
         }
     }
 }
