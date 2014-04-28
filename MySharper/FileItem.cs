@@ -55,17 +55,7 @@ namespace MySharper
 
     class FileItemContainer
     {
-        private static readonly int CacheSearchCount = 30;
-
         private static readonly List<FileItem> AllFileItems = new List<FileItem>();
-        private static readonly Dictionary<string, List<FileItem>> OneLetterItems = new Dictionary<string, List<FileItem>>(StringComparer.OrdinalIgnoreCase);
-        private static readonly Dictionary<string, List<FileItem>> TwoLetterItems = new Dictionary<string, List<FileItem>>(StringComparer.OrdinalIgnoreCase);
-        private static readonly Dictionary<string, List<FileItem>> ThreeLetterItems = new Dictionary<string, List<FileItem>>(StringComparer.OrdinalIgnoreCase);
-        private static readonly Dictionary<string, List<FileItem>> MoreThanThreeLetterItems = new Dictionary<string, List<FileItem>>(StringComparer.OrdinalIgnoreCase);
-        private static List<FileItem> EmptyResult
-        {
-            get { return new List<FileItem>(); }
-        }
 
         public static bool IsEmpty
         {
@@ -75,123 +65,27 @@ namespace MySharper
         public static void AddItem(FileItem item)
         {
             if (item != null) AllFileItems.Add(item);
-            AddToLetterItem(item, OneLetterItems, 1);
-            AddToLetterItem(item, TwoLetterItems, 2);
-            AddToLetterItem(item, ThreeLetterItems, 3);
-        }
-
-        private static void AddToLetterItem(FileItem item, Dictionary<string, List<FileItem>> dic, int letterCount)
-        {
-            if (string.IsNullOrEmpty(item.FileName)) return;
-            if (item.FileName.Length < letterCount) return;
-            string letter = item.FileName.Substring(0, letterCount);
-            if (dic.ContainsKey(letter)) dic[letter].Add(item);
-            else dic.Add(letter, new List<FileItem>() { item });
         }
 
         public static List<FileItem> FindItems(string fileName)
         {
-            if (AllFileItems.Count == 0) return EmptyResult;
-            if (fileName == null) return EmptyResult;
-            fileName = fileName.Trim().ToLower();
-            if (fileName.Length == 0) return EmptyResult;
-
-            List<FileItem> result = null;
-
-            if (fileName.Length == 1)
-            {
-                if (OneLetterItems.ContainsKey(fileName)) result = OneLetterItems[fileName];
-            }
-            else if (fileName.Length == 2)
-            {
-                if (TwoLetterItems.ContainsKey(fileName)) result = TwoLetterItems[fileName];
-            }
-            else if (fileName.Length == 3)
-            {
-                if (ThreeLetterItems.ContainsKey(fileName)) result = ThreeLetterItems[fileName];
-            }
-            else
-            {
-                result = FindMoreThanThreeLetters(fileName);
-            }
-            SortFileItem(result);
-            if (result != null && result.Count <= 5)
-            {
-                var containResult = FindContainResult(fileName);
-                SortFileItem(containResult);
-                result.AddRange(containResult);
-            }
-
-            return result ?? EmptyResult;
-        }
-
-        private static List<FileItem> FindMoreThanThreeLetters(string fileName)
-        {
-            string startThreeLetter = fileName.Substring(0, 3);
-            if (ThreeLetterItems.ContainsKey(startThreeLetter) == false) return EmptyResult;
-
-            string letters = string.Empty;
-            List<FileItem> items = null;
-            bool exist = false;
-            for (int len = fileName.Length; len > 3; len--)
-            {
-                letters = fileName.Substring(0, len);
-                if (MoreThanThreeLetterItems.ContainsKey(letters))
-                {
-                    items = MoreThanThreeLetterItems[letters];
-                    exist = true;
-                    break;
-                }
-            }
-            if (exist && letters.Length == fileName.Length) return items;
-
-            if (exist && (items == null || items.Count == 0)) return items;
-
-            items = items ?? ThreeLetterItems[startThreeLetter];
-            List<FileItem> newItems = new List<FileItem>();
-            items.ForEach(t =>
-            {
-                if (t.FileName.StartsWith(fileName, StringComparison.OrdinalIgnoreCase))
-                {
-                    newItems.Add(t);
-                }
-            });
-            AddToMoreDictionary(fileName, newItems);
-            return newItems;
-        }
-
-        private static void AddToMoreDictionary(string key, List<FileItem> value)
-        {
-            if (MoreThanThreeLetterItems.ContainsKey(key)) return;
-            if (MoreThanThreeLetterItems.Count >= CacheSearchCount)
-            {
-                MoreThanThreeLetterItems.Remove(MoreThanThreeLetterItems.Keys.First());
-            }
-            MoreThanThreeLetterItems.Add(key, value);
-        }
-
-        private static void SortFileItem(List<FileItem> items)
-        {
-            if (items == null) return;
-            items.Sort((item1, item2) =>
-            {
-                return item2.CompareTo(item1);
-            });
-        }
-
-        private static List<FileItem> FindContainResult(string fileName)
-        {
-            int maxResult = 15;
-            List<FileItem> result = new List<FileItem>(maxResult);
+            var r = new List<FileItem>(20);
+            var r2 = new List<FileItem>(20);
             foreach (var item in AllFileItems)
             {
-                if (item.FileName.IndexOf(fileName, StringComparison.OrdinalIgnoreCase) > 0)
+                int i = item.FileName.IndexOf(fileName, StringComparison.OrdinalIgnoreCase);
+                if (i == 0)
                 {
-                    result.Add(item);
-                    if (result.Count >= maxResult) break;
+                    r.Add(item);
                 }
+                else if (i > 0)
+                {
+                    r2.Add(item);
+                }
+                if (r.Count >= 20 || r2.Count >= 20) break;
             }
-            return result;
+            r.AddRange(r2);
+            return r;
         }
     }
 }
