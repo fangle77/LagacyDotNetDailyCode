@@ -9,12 +9,15 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySharper.Find;
+using MySharper.Model;
+using MySharper.Util;
 
 namespace MySharper
 {
     public partial class FrmMain : Form
     {
-        private System.Windows.Forms.Timer AutoCloseTimer;
+        public static List<string> Solutions = new List<string>();
         private static bool IsShowOnTopMost = false;
 
         private int InitialWidth = 300;
@@ -22,23 +25,62 @@ namespace MySharper
         private int HalfScreenWidth = 600;
         private int HalfScreenHeight = 400;
 
-        public static List<string> Solutions = new List<string>();
+        private System.Windows.Forms.Timer AutoCloseTimer;
+        private readonly List<Label> ResultLabels = new List<Label>();
         private Label SelectedLabel;
 
         public FrmMain()
         {
             InitializeComponent();
             this.TopMost = true;
-            this.Deactivate += FrmMain_Deactivate;
+            this.Deactivate += btnClose_Click;
 
             AutoCloseTimer = new System.Windows.Forms.Timer();
             AutoCloseTimer.Interval = 20000;
             AutoCloseTimer.Tick += AutoCloseTimer_Tick;
         }
 
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            this.InitialWidth = this.Width;
+            this.InitialHeight = this.Height;
+            HalfScreenWidth = Screen.PrimaryScreen.WorkingArea.Width / 2 - 40;
+            HalfScreenHeight = Screen.PrimaryScreen.WorkingArea.Height / 2 - 50;
+
+            Index();
+
+            ResetAutoClose();
+        }
+
         void AutoCloseTimer_Tick(object sender, EventArgs e)
         {
+            ClosePrograme();
+        }
 
+        private void Index()
+        {
+            DateTime time1 = DateTime.Now;
+            Indexer.StartIndex(Solutions);
+#if DEBUG
+            if (Solutions == null || Solutions.Count == 0)
+            {
+                Indexer.StartIndex(new List<string> { @"E:\Code\WWW\DEV\Diapers\DiapersWebSite.sln" });
+            }
+#endif
+            lblElapseTime.Text = DateTime.Now.Subtract(time1).TotalMilliseconds.ToString("0.0");
+        }
+
+        private void Search()
+        {
+            DateTime time1 = DateTime.Now;
+            string keyword = txtKeyWord.Text.Trim();
+
+            List<FileItem> items = Finder.Find(keyword);
+
+            DateTime time2 = DateTime.Now;
+            lblElapseTime.Text = string.Format("{0} - {1}", items.Count, time2.Subtract(time1).TotalMilliseconds.ToString("0.0"));
+            UpdateResult(items);
+            ResetAutoClose();
         }
 
         private void ClosePrograme()
@@ -55,62 +97,6 @@ namespace MySharper
             AutoCloseTimer.Enabled = false;
             AutoCloseTimer.Enabled = true;
         }
-
-        void FrmMain_Deactivate(object sender, EventArgs e)
-        {
-            ClosePrograme();
-        }
-
-        private void FrmMain_Load(object sender, EventArgs e)
-        {
-            this.InitialWidth = this.Width;
-            this.InitialHeight = this.Height;
-            HalfScreenWidth = Screen.PrimaryScreen.WorkingArea.Width / 2 - 40;
-            HalfScreenHeight = Screen.PrimaryScreen.WorkingArea.Height / 2 - 50;
-
-            DateTime time1 = DateTime.Now;
-            //Indexer.StartInitial(@"E:\OwenProject\REST\REST.sln");
-            Indexer.StartInitial(Solutions);
-
-#if DEBUG
-            if (Solutions == null || Solutions.Count == 0)
-            {
-                //Indexer.StartInitial(@"E:\Code\WWW\DEV\Diapers\DiapersWebSite.sln");
-                Indexer.StartInitial(new List<string> { @"E:\Code\Intranet\DEV\1800DiapersIntranet2010.sln" });
-            }
-#endif
-
-            lblElapseTime.Text = DateTime.Now.Subtract(time1).TotalMilliseconds.ToString();
-
-            ResetAutoClose();
-        }
-
-        private void txtKeyWord_TextChanged(object sender, EventArgs e)
-        {
-            Search();
-        }
-
-        private void Search()
-        {
-            DateTime time1 = DateTime.Now;
-            string keyword = txtKeyWord.Text.Trim();
-
-            List<FileItem> items = null;
-            if (keyword.Length > 10)
-            {
-                items = SiteSpecFinder.FindItems(keyword);
-            }
-            if (items == null || items.Count == 0)
-            {
-                items = FileItemContainer.FindItems(keyword);
-            }
-            DateTime time2 = DateTime.Now;
-            lblElapseTime.Text = items.Count + "," + time2.Subtract(time1).TotalMilliseconds.ToString();
-            UpdateResult(items);
-            ResetAutoClose();
-        }
-
-        private readonly List<Label> ResultLabels = new List<Label>();
 
         private void UpdateResult(List<FileItem> results)
         {
@@ -150,29 +136,6 @@ namespace MySharper
             }
 
             panelResult.Controls.AddRange(currentResults);
-        }
-
-        void l_MouseEnter(object sender, EventArgs e)
-        {
-            ClearLabelStyle(SelectedLabel);
-            SelectedLabel = sender as Label;
-            SelectLabelStyle(SelectedLabel);
-        }
-
-        void label_Click(object sender, EventArgs e)
-        {
-            string file = (sender as Label).Tag.ToString();
-
-            if (file.EndsWith(".sql", StringComparison.OrdinalIgnoreCase))
-            {
-                Process.Start(file);
-            }
-            else
-            {
-                VSIDE.EditFile(file);
-            }
-
-            ClosePrograme();
         }
 
         private void AdjustMaxSize(List<FileItem> results)
@@ -245,7 +208,30 @@ namespace MySharper
             label_Click(SelectedLabel, null);
         }
 
-        private void lblElapseTime_Click(object sender, EventArgs e)
+        void l_MouseEnter(object sender, EventArgs e)
+        {
+            ClearLabelStyle(SelectedLabel);
+            SelectedLabel = sender as Label;
+            SelectLabelStyle(SelectedLabel);
+        }
+
+        void label_Click(object sender, EventArgs e)
+        {
+            string file = (sender as Label).Tag.ToString();
+
+            if (file.EndsWith(".sql", StringComparison.OrdinalIgnoreCase))
+            {
+                Process.Start(file);
+            }
+            else
+            {
+                VSIDE.EditFile(file);
+            }
+
+            ClosePrograme();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
         {
             ClosePrograme();
         }
@@ -264,8 +250,14 @@ namespace MySharper
         private void btnTop_Click(object sender, EventArgs e)
         {
             IsShowOnTopMost = !IsShowOnTopMost;
-            btnTop.BackColor = IsShowOnTopMost ? Color.Chartreuse : Color.Transparent;
+            //btnTop.BackColor = IsShowOnTopMost ? Color.Chartreuse : Color.Transparent;
+            btnTop.Image = IsShowOnTopMost ? global::MySharper.Properties.Resources.Anchor : global::MySharper.Properties.Resources.Bluepin;
             this.TopMost = IsShowOnTopMost;
+        }
+
+        private void txtKeyWord_TextChanged(object sender, EventArgs e)
+        {
+            Search();
         }
     }
 }

@@ -51,7 +51,6 @@
             this.lblElapseTime.Size = new System.Drawing.Size(13, 13);
             this.lblElapseTime.TabIndex = 2;
             this.lblElapseTime.Text = "0";
-            this.lblElapseTime.Click += new System.EventHandler(this.lblElapseTime_Click);
             // 
             // panelResult
             // 
@@ -77,13 +76,14 @@
             this.btnClose.TabIndex = 4;
             this.btnClose.Text = "X";
             this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.lblElapseTime_Click);
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnTop
             // 
             this.btnTop.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnTop.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnTop.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTop.Image = global::MySharper.Properties.Resources.Bluepin;
             this.btnTop.Location = new System.Drawing.Point(312, -1);
             this.btnTop.Margin = new System.Windows.Forms.Padding(0);
             this.btnTop.Name = "btnTop";

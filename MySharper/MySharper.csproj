@@ -44,10 +44,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppProcessor.cs" />
+    <Compile Include="Finder.cs" />
+    <Compile Include="Find\FileFider.cs" />
+    <Compile Include="Find\IFinder.cs" />
+    <Compile Include="Model\FileItemContainer.cs" />
+    <Compile Include="Index\FilePathIndexer.cs" />
+    <Compile Include="Index\IIndexer.cs" />
+    <Compile Include="Util\AppProcessor.cs" />
     <Compile Include="Common\CommonFunc.cs" />
-    <Compile Include="FileItem.cs" />
-    <Compile Include="IEquatable.cs" />
+    <Compile Include="Model\FileItem.cs" />
     <Compile Include="Indexer.cs" />
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
@@ -56,18 +61,16 @@
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="Project.cs" />
+    <Compile Include="Index\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SiteSpecFinder.cs" />
-    <Compile Include="Solution.cs" />
-    <Compile Include="TaskUtility.cs" />
-    <Compile Include="TextFinder.cs" />
-    <Compile Include="VSIDE.cs" />
+    <Compile Include="Find\SiteSpecFinder.cs" />
+    <Compile Include="Index\Solution.cs" />
+    <Compile Include="Util\VSIDE.cs" />
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -93,6 +96,7 @@
     <Content Include="icon\Anchor.png" />
     <Content Include="icon\Bluepin.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

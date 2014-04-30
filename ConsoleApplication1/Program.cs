@@ -22,17 +22,12 @@ namespace ConsoleApplication1
             //Console.WriteLine(@"E:\Code\WWW\DEV\Soap\WebSite\AJAX\AddressAjax.aspx");
             RepeatRun(() =>
             {
-                List<object> list = new List<object>()
-                                      {
-                                          "",new {A=1,B="waa\"baa'caa\r\ndaa\reaa\nfaa\\<>?/';:|}{[]+=_-)(*&^%$#@!~`",C=@"123123,ab""cd
+                var fiLink = new FileInfo(@"E:\Code\WWW\DEV\Diapers\WebSite\JS\SearchSite\plplazyload.js");
+                var originFile = new FileInfo(@"E:\Code\WWW\DEV\QuidsiWebSite\UnifiedJs\SearchSite\plplazyload.js");
 
-abcd",D=DateTime.Now}
-                                      };
-
-                foreach (var o in list)
-                {
-                    JsonSerializerTest.SerializeTest(o);
-                }
+                Console.WriteLine(fiLink.Length);
+                Console.WriteLine((fiLink.Directory.Attributes & FileAttributes.ReparsePoint) == FileAttributes.ReparsePoint);
+                Console.WriteLine(originFile.Directory.Attributes);
             });
         }
 
