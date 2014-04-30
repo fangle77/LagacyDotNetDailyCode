@@ -36,7 +36,7 @@ namespace MySharper
             this.Deactivate += btnClose_Click;
 
             AutoCloseTimer = new System.Windows.Forms.Timer();
-            AutoCloseTimer.Interval = 20000;
+            AutoCloseTimer.Interval = 60000;
             AutoCloseTimer.Tick += AutoCloseTimer_Tick;
         }
 
@@ -64,7 +64,7 @@ namespace MySharper
 #if DEBUG
             if (Solutions == null || Solutions.Count == 0)
             {
-                Indexer.StartIndex(new List<string> { @"E:\Code\WWW\DEV\Diapers\DiapersWebSite.sln" });
+                Indexer.StartIndex(new List<string> { @"E:\OwenProject\Test\WindowsFormsApplication1\WebDev.WebServerManager.csproj" });
             }
 #endif
             lblElapseTime.Text = DateTime.Now.Subtract(time1).TotalMilliseconds.ToString("0.0");
@@ -197,6 +197,7 @@ namespace MySharper
             else
             {
                 label.BackColor = Color.SpringGreen;
+                panelResult.ScrollControlIntoView(label);
             }
             ResetAutoClose();
         }
@@ -258,6 +259,18 @@ namespace MySharper
         private void txtKeyWord_TextChanged(object sender, EventArgs e)
         {
             Search();
+        }
+
+        private void txtKeyWord_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                //supress key up/down change the cursor position of textbox
+                case Keys.Up:
+                case Keys.Down:
+                    e.Handled = true;
+                    break;
+            }
         }
     }
 }

@@ -14,7 +14,7 @@ namespace MySharper.Index
     class Project
     {
         private static readonly HashSet<string> UnIndexDirecotry = new HashSet<string>("bin,obj,Log Files,Images,PDF,SearchPerformanceTest,pwr,webfont".Split(','), StringComparer.OrdinalIgnoreCase);
-        private static readonly HashSet<string> UnIndexFileType = new HashSet<string>("exe,dll,bin,cmd,pdb,xml,png,jpeg,jpg,gif,cur".Split(','), StringComparer.OrdinalIgnoreCase);
+        private static readonly HashSet<string> UnIndexFileType = new HashSet<string>(".exe,.dll,.bin,.cmd,.pdb,.xml,.png,.jpeg,.jpg,.gif,.cur".Split(','), StringComparer.OrdinalIgnoreCase);
 
         public Project() { }
         public Project(eProjectType projectType, string path)
@@ -51,7 +51,7 @@ namespace MySharper.Index
             List<string> allFiles = new List<string>(files.Length);
             foreach (var file in files)
             {
-                if (UnIndexFileType.Contains(file.Extension.Trim('.'))) continue;
+                if (UnIndexFileType.Contains(file.Extension)) continue;
                 allFiles.Add(file.FullName);
             }
 
@@ -80,7 +80,7 @@ namespace MySharper.Index
             List<string> allFiles = new List<string>(matchs.Count);
             foreach (Match m in matchs)
             {
-                if (m.Success)
+                if (m.Success && !string.IsNullOrEmpty(m.Groups[1].Value))
                 {
                     allFiles.Add(System.IO.Path.Combine(fileInfo.DirectoryName, m.Groups[1].Value));
                 }

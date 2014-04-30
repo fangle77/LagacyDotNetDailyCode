@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace MySharper.Model
 {
@@ -35,16 +36,21 @@ namespace MySharper.Model
         private string InitDisplayText()
         {
             string[] paths = FullPath.Split('\\');
-            int count = Math.Min(paths.Length, 3);
 
-            string r = paths[paths.Length - 1];
-            int i = paths.Length - 2;
-            for (; count > 0 && i >= 0; i--, count--)
+            if (paths.Length < 5)
             {
-                r = paths[i] + "\\" + r;
+                return string.Format("{0}    {1}", FileName, FullPath.Substring(0, FullPath.LastIndexOf('\\')));
             }
-            if (i >= 0) return string.Format("{0}...\\{1}", FileName, r);
-            else return string.Format("{0}...{1}", FileName, r);
+            else
+            {
+                StringBuilder sb = new StringBuilder(FullPath.Length + 4);
+                sb.AppendFormat("{0}    \\", FileName);
+                for (int i = 4; i >= 1; i--)
+                {
+                    sb.AppendFormat("{0}\\", paths[paths.Length - i]);
+                }
+                return sb.ToString();
+            }
         }
 
         public int CompareTo(object obj)
