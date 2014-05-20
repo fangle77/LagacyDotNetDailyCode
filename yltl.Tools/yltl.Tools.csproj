@@ -112,6 +112,12 @@
     <Compile Include="FrmReg.Designer.cs">
       <DependentUpon>FrmReg.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmStringUtil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmStringUtil.Designer.cs">
+      <DependentUpon>FrmStringUtil.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmTableTransport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmReg.resx">
       <DependentUpon>FrmReg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmStringUtil.resx">
+      <DependentUpon>FrmStringUtil.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmTableTransport.resx">
       <DependentUpon>FrmTableTransport.cs</DependentUpon>

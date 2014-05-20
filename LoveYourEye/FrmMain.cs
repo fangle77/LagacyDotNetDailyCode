@@ -100,14 +100,14 @@ namespace LoveYourEye
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.TopMost = true;
-            this.BackColor = Color.DarkTurquoise;
+            this.BackColor = Color.Green;
         }
 
         private void InitLabel()
         {
-            lblMessage.Text = "LOVE YOUR EYES!";
-            lblMessage.Font = new Font(FontFamily.GenericSerif, 72, FontStyle.Bold);
-            lblMessage.ForeColor = Color.White;
+            //lblMessage.Text = "LOVE YOUR EYES!";
+            //lblMessage.Font = new Font(FontFamily.GenericSerif, 72, FontStyle.Bold);
+            //lblMessage.ForeColor = Color.White;
 
             lblCountDown.Text = lblCountDown.Text = _ContinueSecond.ToString();
             lblCountDown.Font = new Font(FontFamily.GenericMonospace, 18, FontStyle.Regular);

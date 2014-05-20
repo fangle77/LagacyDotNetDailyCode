@@ -16,7 +16,7 @@ namespace MySharper.Model
         {
             get
             {
-                return _displayText = _displayText ?? (_calcDisplayText ? InitDisplayText() : FullPath);
+                return _displayText;//= _displayText ?? (_calcDisplayText ? InitDisplayText() : FullPath);
             }
         }
 
@@ -31,6 +31,7 @@ namespace MySharper.Model
             this.FileName = fileName;
             this.FullPath = fullPath;
             this._calcDisplayText = calcDisplayText;
+            _displayText = calcDisplayText ? InitDisplayText() : fullPath;
         }
 
         private string InitDisplayText()
@@ -39,17 +40,17 @@ namespace MySharper.Model
 
             if (paths.Length < 5)
             {
-                return string.Format("{0}    {1}", FileName, FullPath.Substring(0, FullPath.LastIndexOf('\\')));
+                return string.Format("{0}    {1}", FileName, FullPath);
             }
             else
             {
                 StringBuilder sb = new StringBuilder(FullPath.Length + 4);
-                sb.AppendFormat("{0}    \\", FileName);
-                for (int i = 4; i >= 1; i--)
+                sb.AppendFormat("{0}    ", FileName);
+                for (int i = 5; i >= 1; i--)
                 {
                     sb.AppendFormat("{0}\\", paths[paths.Length - i]);
                 }
-                return sb.ToString();
+                return sb.ToString().TrimEnd('\\');
             }
         }
 

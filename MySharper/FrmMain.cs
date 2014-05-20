@@ -108,7 +108,6 @@ namespace MySharper
             if (results == null || results.Count == 0) return;
 
             int resultCount = results.Count;
-
             if (ResultLabels.Count < resultCount)
             {
                 int count = resultCount - ResultLabels.Count;
@@ -117,32 +116,32 @@ namespace MySharper
                     Label l = new Label();
                     l.MouseEnter += l_MouseEnter;
                     l.Dock = DockStyle.Top;
+                    l.AutoSize = true;
+                    l.Padding = new Padding(0, 5, 5, 5);
                     l.Click += label_Click;
                     ResultLabels.Add(l);
                 }
             }
 
             Label[] currentResults = new Label[resultCount];
-            for (int i = resultCount - 1; i >= 0; )
+            int index = resultCount - 1;
+            foreach (var item in results)
             {
-                foreach (var item in results)
-                {
-                    var label = ResultLabels[i];
-                    label.Text = item.DisplayText;
-                    label.Tag = item.FullPath;
-                    currentResults[i] = label;
-                    i--;
-                }
+                var label = ResultLabels[index];
+                label.Text = item.DisplayText;
+                label.Tag = item.FullPath;
+                currentResults[index--] = label;
             }
+
 
             panelResult.Controls.AddRange(currentResults);
         }
 
         private void AdjustMaxSize(List<FileItem> results)
         {
-            int maxLength = results.Count == 0 ? 0 : results.Max(s => { return s.DisplayText.Length; });
+            int maxLength = results.Count == 0 ? 0 : results.Max(s => s.DisplayText.Length);
 
-            int maxWidth = (int)(maxLength * 5) + 10;
+            int maxWidth = (int)(maxLength * this.Font.Size) + 10;
             maxWidth = Math.Max(InitialWidth, maxWidth);
             maxWidth = Math.Min(HalfScreenWidth, maxWidth);
 
@@ -152,8 +151,8 @@ namespace MySharper
 
             this.Width = maxWidth;
             this.Height = maxHeight;
-            //panelResult.Width = maxWidth - 50;
-            //panelResult.Height = maxHeight - 200;
+            panelResult.Width = maxWidth - 5;
+            panelResult.Height = maxHeight - 5;
             //panelResult.AutoScroll = true;
             //panelResult.AutoScrollMinSize = new Size(panelResult.Width, panelResult.Height);
         }
