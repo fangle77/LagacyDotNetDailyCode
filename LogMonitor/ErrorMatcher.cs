@@ -9,17 +9,21 @@ namespace LogMonitor
 {
     class ErrorMatcher : IMatcher
     {
-        private static Regex TimeFormat = new Regex("");//yyyy-MM-dd HH:mm:ss
+        private string Year = DateTime.Now.ToString("yyyy-");
 
         public bool BeginMatch(string content)
         {
-            return !string.IsNullOrEmpty(content) && content.IndexOf("] ERROR", StringComparison.OrdinalIgnoreCase) >= 0;
+            return !string.IsNullOrEmpty(content)
+                && (content.IndexOf("] ERROR", StringComparison.OrdinalIgnoreCase) >= 0
+                || (content.LastIndexOf("Exception", StringComparison.OrdinalIgnoreCase) > 0
+                && content.LastIndexOf("ExceptionInterceptor", StringComparison.OrdinalIgnoreCase) < 0
+                ));
         }
 
         public bool EndMatch(string content)
         {
             return !string.IsNullOrEmpty(content)
-                && content.TrimStart().StartsWith("2014", StringComparison.OrdinalIgnoreCase);
+                && content.TrimStart().StartsWith(Year, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

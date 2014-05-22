@@ -29,5 +29,10 @@ namespace LogMonitor
         {
             contentBuilder.Append(content);
         }
+
+        public override string ToString()
+        {
+            return string.Format("File:{0},\r\nLine:{1},\r\nContent:{2}\r\n", FileName, LineNumber, contentBuilder);
+        }
     }
 }

@@ -44,8 +44,9 @@ namespace MySharper
         {
             this.InitialWidth = this.Width;
             this.InitialHeight = this.Height;
-            HalfScreenWidth = Screen.PrimaryScreen.WorkingArea.Width / 2 - 40;
-            HalfScreenHeight = Screen.PrimaryScreen.WorkingArea.Height / 2 - 50;
+            HalfScreenWidth = Screen.PrimaryScreen.WorkingArea.Width / 2;
+            HalfScreenHeight = Screen.PrimaryScreen.WorkingArea.Height / 2;
+            this.Location = new Point(HalfScreenWidth - 250, HalfScreenHeight - 150);
 
             Index();
 
@@ -117,6 +118,7 @@ namespace MySharper
                     l.MouseEnter += l_MouseEnter;
                     l.Dock = DockStyle.Top;
                     l.AutoSize = true;
+                    l.AutoEllipsis = true;
                     l.Padding = new Padding(0, 5, 5, 5);
                     l.Click += label_Click;
                     ResultLabels.Add(l);
@@ -141,11 +143,14 @@ namespace MySharper
         {
             int maxLength = results.Count == 0 ? 0 : results.Max(s => s.DisplayText.Length);
 
-            int maxWidth = (int)(maxLength * this.Font.Size) + 10;
+            var maxLengthItem = maxLength <= 0 ? null : results.Find(s => s.DisplayText.Length == maxLength);
+            var maxSize = maxLengthItem == null ? new Size(0, 0) : TextRenderer.MeasureText(maxLengthItem.DisplayText, this.Font);
+
+            int maxWidth = maxSize.Width + 17;
             maxWidth = Math.Max(InitialWidth, maxWidth);
             maxWidth = Math.Min(HalfScreenWidth, maxWidth);
 
-            int maxHeight = results.Count * 20 + 60;
+            int maxHeight = (maxSize.Height + 10) * results.Count + 50;
             maxHeight = Math.Max(InitialHeight, maxHeight);
             maxHeight = Math.Min(HalfScreenHeight, maxHeight);
 
@@ -153,6 +158,7 @@ namespace MySharper
             this.Height = maxHeight;
             panelResult.Width = maxWidth - 5;
             panelResult.Height = maxHeight - 5;
+
             //panelResult.AutoScroll = true;
             //panelResult.AutoScrollMinSize = new Size(panelResult.Width, panelResult.Height);
         }

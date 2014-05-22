@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FD556403-0C36-4B18-8B48-B37A3F2E33E8}</ProjectGuid>
+    <ProjectGuid>{A81CEB83-618C-4DE8-8049-5DB4BEF0C44B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LogMonitor</RootNamespace>
@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="ErrorMatcher.cs" />
     <Compile Include="FileContentFinder.cs" />
+    <Compile Include="FileFinder.cs" />
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>

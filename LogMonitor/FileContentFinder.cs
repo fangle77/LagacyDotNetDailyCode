@@ -39,17 +39,19 @@ namespace LogMonitor
                     }
                     else
                     {
-                        result.AddContent(line);
                         if (matcher.EndMatch(line))
                         {
                             start = false;
                             results.Add(result);
                             result = null;
                         }
+                        else
+                        {
+                            result.AddContent(line);
+                        }
                     }
                 }
                 if (result != null) results.Add(result);
-
             }
             return results;
         }
