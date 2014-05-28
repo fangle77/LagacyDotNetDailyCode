@@ -61,13 +61,13 @@ namespace MySharper
         private void Index()
         {
             DateTime time1 = DateTime.Now;
-            Indexer.StartIndex(Solutions);
 #if DEBUG
             if (Solutions == null || Solutions.Count == 0)
             {
-                Indexer.StartIndex(new List<string> { @"E:\OwenProject\Test\WindowsFormsApplication1\WebDev.WebServerManager.csproj" });
+                Solutions = new List<string> { @"E:\Code\WWW\DEV\Diapers\DiapersWebSite.sln" };
             }
 #endif
+            Indexer.StartIndex(Solutions);
             lblElapseTime.Text = DateTime.Now.Subtract(time1).TotalMilliseconds.ToString("0.0");
         }
 
@@ -131,7 +131,7 @@ namespace MySharper
             {
                 var label = ResultLabels[index];
                 label.Text = item.DisplayText;
-                label.Tag = item.FullPath;
+                label.Tag = item;
                 currentResults[index--] = label;
             }
 
@@ -223,18 +223,25 @@ namespace MySharper
 
         void label_Click(object sender, EventArgs e)
         {
-            string file = (sender as Label).Tag.ToString();
+            OpenFile((sender as Label).Tag as FileItem);
+            ClosePrograme();
+        }
 
-            if (file.EndsWith(".sql", StringComparison.OrdinalIgnoreCase))
+        private void OpenFile(FileItem fileItem)
+        {
+            if (fileItem == null) return;
+            if (fileItem.OpenFileLocation)
             {
-                Process.Start(file);
+                Process.Start("explorer.exe", "/select, \"" + fileItem.FullPath + "\"");
+            }
+            else if (fileItem.FullPath.EndsWith(".sql", StringComparison.OrdinalIgnoreCase))
+            {
+                Process.Start(fileItem.FullPath);
             }
             else
             {
-                VSIDE.EditFile(file);
+                VSIDE.EditFile(fileItem.FullPath);
             }
-
-            ClosePrograme();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

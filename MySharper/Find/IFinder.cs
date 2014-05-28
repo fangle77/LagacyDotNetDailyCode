@@ -9,7 +9,7 @@ namespace MySharper.Find
     interface IFinder
     {
         bool BreakIfFounded { get; }
-
+        
         List<Model.FileItem> Find(string keyword);
     }
 }

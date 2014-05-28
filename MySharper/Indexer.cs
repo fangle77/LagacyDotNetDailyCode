@@ -14,6 +14,7 @@ namespace MySharper
     {
         private static readonly List<IIndexer> Indexers = new List<IIndexer>
                                                              {
+                                                                 new JunctionIndexer(),
                                                                  new FilePathIndexer()
                                                              };
 

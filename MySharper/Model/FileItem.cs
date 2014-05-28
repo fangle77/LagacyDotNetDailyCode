@@ -9,6 +9,8 @@ namespace MySharper.Model
         public readonly string FileName;
         public readonly string FullPath;
 
+        public bool OpenFileLocation = false;
+
         private readonly bool _calcDisplayText = false;
         private string _displayText;
 

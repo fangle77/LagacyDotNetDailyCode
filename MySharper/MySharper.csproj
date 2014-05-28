@@ -47,6 +47,8 @@
     <Compile Include="Finder.cs" />
     <Compile Include="Find\FileFider.cs" />
     <Compile Include="Find\IFinder.cs" />
+    <Compile Include="Find\JunctionFinder.cs" />
+    <Compile Include="Index\JunctionIndexer.cs" />
     <Compile Include="Model\FileItemContainer.cs" />
     <Compile Include="Index\FilePathIndexer.cs" />
     <Compile Include="Index\IIndexer.cs" />

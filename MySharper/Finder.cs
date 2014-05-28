@@ -13,6 +13,7 @@ namespace MySharper
         private static readonly List<Find.IFinder> Finders = new List<IFinder>
                                                       {
                                                           new SiteSpecFinder(),
+                                                          new JunctionFinder(),
                                                           new FileFider()
                                                       };
 

@@ -12,6 +12,7 @@ namespace MySharper.Find
         public static List<FileItem> FindItems(string fileName)
         {
             if (string.IsNullOrEmpty(fileName)) return null;
+            if (fileName.Length < 20) return null;
             if (File.Exists(fileName) == false) return null;
 
 
@@ -41,7 +42,7 @@ namespace MySharper.Find
             return items;
         }
 
-        public bool BreakIfFounded { get { return true; } }
+        public bool BreakIfFounded { get { return false; } }
 
         public List<FileItem> Find(string keyword)
         {
