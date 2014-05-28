@@ -21,11 +21,36 @@ namespace MySharper.Find
             if (File.Exists(keyword) == false) return null;
             var fileInfo = new FileInfo(keyword);
             if (fileInfo.Directory == null) return null;
-            if ((fileInfo.Directory.Attributes & FileAttributes.ReparsePoint) != FileAttributes.ReparsePoint) return null;
+            if (!HasReparsePoint(fileInfo)) return null;
 
-            string originPath = Index.JunctionIndexer.FindOrigin(fileInfo.Directory.FullName);
-            if (string.IsNullOrEmpty(originPath)) return null;
-            return new List<FileItem> { new FileItem(fileInfo.Name, Path.Combine(originPath, fileInfo.Name)) { OpenFileLocation = true } };
+            List<string> fullPaths = new List<string>();
+            fullPaths.Add(fileInfo.Name);
+
+            DirectoryInfo di = fileInfo.Directory;
+            while (di != null)
+            {
+                string originPath = Index.JunctionIndexer.FindOrigin(di.FullName);
+                if (!string.IsNullOrEmpty(originPath))
+                {
+                    fullPaths.Add(originPath);
+                    fullPaths.Reverse();
+                    return new List<FileItem> { new FileItem(fileInfo.Name, Path.Combine(fullPaths.ToArray())) { OpenFileLocation = true } };
+                }
+                fullPaths.Add(di.Name);
+                di = di.Parent;
+            }
+            return null;
+        }
+
+        private bool HasReparsePoint(FileInfo fi)
+        {
+            DirectoryInfo di = fi.Directory;
+            while (di != null)
+            {
+                if ((di.Attributes & FileAttributes.ReparsePoint) != FileAttributes.ReparsePoint) return true;
+                di = di.Parent;
+            }
+            return false;
         }
     }
 }

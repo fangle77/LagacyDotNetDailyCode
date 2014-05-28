@@ -22,7 +22,7 @@ namespace ConsoleApplication1
             //Console.WriteLine(@"E:\Code\WWW\DEV\Soap\WebSite\AJAX\AddressAjax.aspx");
             RepeatRun(() =>
             {
-                var fiLink = new FileInfo(@"E:\Code\WWW\DEV\Diapers\WebSite\JS\SearchSite\plplazyload.js");
+                var fiLink = new FileInfo(@"E:\Code\WWW\DEV\Diapers\WebSite\JS\BabyRegistry\babyRegistryGa.js");
                 var originFile = new FileInfo(@"E:\Code\WWW\DEV\QuidsiWebSite\UnifiedJs\SearchSite\plplazyload.js");
 
                 Console.WriteLine(fiLink.Length);

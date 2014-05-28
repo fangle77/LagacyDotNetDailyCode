@@ -123,12 +123,10 @@ namespace MySharper.Index
         {
             if (kvp.Key == null) return dest;
             var result = new Dictionary<string, string>(dest.Count + 1);
-            bool foundMapping = false;
             foreach (string dd in dest.Keys)
             {
                 if (dd.StartsWith(kvp.Value, StringComparison.OrdinalIgnoreCase))
                 {
-                    foundMapping = true;
                     string newDestKey = dd.Replace(kvp.Value, kvp.Key);
                     if (result.ContainsKey(newDestKey) == false) result.Add(newDestKey, dest[dd]);
                 }
@@ -137,10 +135,7 @@ namespace MySharper.Index
                     if (result.ContainsKey(dd) == false) result.Add(dd, dest[dd]);
                 }
             }
-            if (!foundMapping)
-            {
-                if (result.ContainsKey(kvp.Key) == false) result.Add(kvp.Key, kvp.Value);
-            }
+            if (result.ContainsKey(kvp.Key) == false) result.Add(kvp.Key, kvp.Value);
             return result;
         }
 
@@ -152,13 +147,10 @@ namespace MySharper.Index
                 string source = result[destination];
                 foreach (string variable in variables.Keys)
                 {
-                    if (destination.IndexOf(variable, StringComparison.OrdinalIgnoreCase) >= 0)
+                    foreach (string value in variables[variable])
                     {
-                        foreach (string value in variables[variable])
-                        {
-                            string dest = destination.Replace(variable, value);
-                            if (dic.ContainsKey(dest) == false) dic.Add(dest, source);
-                        }
+                        string dest = destination.Replace(variable, value);
+                        if (dic.ContainsKey(dest) == false) dic.Add(dest, source.Replace(variable, value));
                     }
                 }
                 if (variables.Count == 0)

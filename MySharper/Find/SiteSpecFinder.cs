@@ -9,7 +9,7 @@ namespace MySharper.Find
     {
         private static List<string> SiteSpecs = new List<string>() { "diapers", "beautybar", "soap", "casa", "green", "wag", "book", "look", "jump", "yoyo" };
 
-        public static List<FileItem> FindItems(string fileName)
+        private static List<FileItem> FindItems(string fileName)
         {
             if (string.IsNullOrEmpty(fileName)) return null;
             if (fileName.Length < 20) return null;
@@ -48,7 +48,13 @@ namespace MySharper.Find
         {
             if (keyword == null || keyword.Length < 20) return null;
 
-            return FindItems(keyword);
+            var result = FindItems(keyword);
+            if (File.Exists(keyword) && (result == null || result.Count == 0))
+            {
+                var fi = new FileInfo(keyword);
+                result = new List<FileItem>() { new FileItem(fi.Name, fi.FullName, false) };
+            }
+            return result;
         }
     }
 }
