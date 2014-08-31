@@ -33,7 +33,7 @@ namespace MySharper
         {
             InitializeComponent();
             this.TopMost = true;
-            this.Deactivate += FrmMain_Deactivate;
+            this.Deactivate += btnClose_Click;
 
             AutoCloseTimer = new System.Windows.Forms.Timer();
             AutoCloseTimer.Interval = 60000;
@@ -55,7 +55,7 @@ namespace MySharper
 
         void AutoCloseTimer_Tick(object sender, EventArgs e)
         {
-            CloseProgram();
+            ClosePrograme();
         }
 
         private void Index()
@@ -84,7 +84,7 @@ namespace MySharper
             ResetAutoClose();
         }
 
-        private void CloseProgram()
+        private void ClosePrograme()
         {
             if (!IsShowOnTopMost)
             {
@@ -224,7 +224,7 @@ namespace MySharper
         void label_Click(object sender, EventArgs e)
         {
             OpenFile((sender as Label).Tag as FileItem);
-            CloseProgram();
+            ClosePrograme();
         }
 
         private void OpenFile(FileItem fileItem)
@@ -246,13 +246,7 @@ namespace MySharper
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            IsShowOnTopMost = false;
-            CloseProgram();
-        }
-
-        private void FrmMain_Deactivate(object sender, EventArgs e)
-        {
-            CloseProgram();
+            ClosePrograme();
         }
 
         private void FrmMain_KeyDown(object sender, KeyEventArgs e)
