@@ -30,7 +30,9 @@ namespace Pineapple.Core
                     if (type.ContainsGenericParameters) continue;
                     if (!type.IsClass) continue;
                     var instance = Activator.CreateInstance(type);
+                    
                     unityContainer.RegisterInstance(type, instance, new ContainerControlledLifetimeManager());
+                    unityContainer.BuildUp(type, instance);
                 }
             }
         }

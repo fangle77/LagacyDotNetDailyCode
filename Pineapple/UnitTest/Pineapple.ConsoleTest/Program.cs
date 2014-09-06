@@ -9,9 +9,19 @@ namespace Pineapple.ConsoleTest
     {
         static void Main(string[] args)
         {
-            Core.ContainerTest.RegisterAssemblyTest();
+            InitInjection();
 
+            //Core.ContainerTest.RegisterAssemblyTest();
+            Service.VisitorServiceTest.InjectionTest();
+
+            Console.WriteLine("Finish!");
             Console.Read();
+        }
+
+        private static void InitInjection()
+        {
+            Pineapple.Core.Container.ResisterAssemblyType("Pineapple.Data"
+                , "Pineapple.Business", "Pineapple.Service");
         }
     }
 }

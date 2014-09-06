@@ -9,6 +9,8 @@ namespace Pineapple.Data
     {
         public Visitor AddVisitor(Visitor visitor)
         {
+            SqLiteBaseRepository.InitDataBase();
+
             using (var cnn = SqLiteBaseRepository.DbConnection())
             {
                 cnn.Open();
