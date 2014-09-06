@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pineapple.Service", "Pineap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pineapple.WebSite", "Pineapple.WebSite\Pineapple.WebSite.csproj", "{45048224-C98F-46D8-832A-BCED11476C33}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{A24FCB0B-198A-4BFE-991F-2A14B909F809}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pineapple.Core.Test", "UnitTest\Pineapple.Core.Test\Pineapple.Core.Test.csproj", "{CA56F12A-FFAF-4001-BD06-126210DD9458}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,8 +47,15 @@ Global
 		{45048224-C98F-46D8-832A-BCED11476C33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45048224-C98F-46D8-832A-BCED11476C33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45048224-C98F-46D8-832A-BCED11476C33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA56F12A-FFAF-4001-BD06-126210DD9458}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA56F12A-FFAF-4001-BD06-126210DD9458}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA56F12A-FFAF-4001-BD06-126210DD9458}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA56F12A-FFAF-4001-BD06-126210DD9458}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CA56F12A-FFAF-4001-BD06-126210DD9458} = {A24FCB0B-198A-4BFE-991F-2A14B909F809}
 	EndGlobalSection
 EndGlobal

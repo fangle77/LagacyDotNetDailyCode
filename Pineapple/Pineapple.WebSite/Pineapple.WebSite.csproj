@@ -216,6 +216,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Pineapple.Core\Pineapple.Core.csproj">
+      <Project>{2957a855-c7f3-446f-bef6-6ccf5fc19a3e}</Project>
+      <Name>Pineapple.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Pineapple.Model\Pineapple.Model.csproj">
       <Project>{8dbce0d3-acc5-49f3-ad7b-20f7a9cc80ae}</Project>
       <Name>Pineapple.Model</Name>
