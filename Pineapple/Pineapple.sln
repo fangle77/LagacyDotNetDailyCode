@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pineapple.Business", "Pineapple.Business\Pineapple.Business.csproj", "{32DD754C-B0D0-4EA8-8BFA-7ABEC705E73A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pineapple.Core", "Pineapple.Core\Pineapple.Core.csproj", "{2957A855-C7F3-446F-BEF6-6CCF5FC19A3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pineapple.Data", "Pineapple.Data\Pineapple.Data.csproj", "{00A9B7AD-9747-4F30-BCD5-7BF3EF29801D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pineapple.Model", "Pineapple.Model\Pineapple.Model.csproj", "{8DBCE0D3-ACC5-49F3-AD7B-20F7A9CC80AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pineapple.Service", "Pineapple.Service\Pineapple.Service.csproj", "{96D9E5D1-800E-4082-AE8C-A04B6DAA34A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pineapple.WebSite", "Pineapple.WebSite\Pineapple.WebSite.csproj", "{45048224-C98F-46D8-832A-BCED11476C33}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32DD754C-B0D0-4EA8-8BFA-7ABEC705E73A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32DD754C-B0D0-4EA8-8BFA-7ABEC705E73A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32DD754C-B0D0-4EA8-8BFA-7ABEC705E73A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32DD754C-B0D0-4EA8-8BFA-7ABEC705E73A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2957A855-C7F3-446F-BEF6-6CCF5FC19A3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2957A855-C7F3-446F-BEF6-6CCF5FC19A3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2957A855-C7F3-446F-BEF6-6CCF5FC19A3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2957A855-C7F3-446F-BEF6-6CCF5FC19A3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00A9B7AD-9747-4F30-BCD5-7BF3EF29801D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00A9B7AD-9747-4F30-BCD5-7BF3EF29801D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00A9B7AD-9747-4F30-BCD5-7BF3EF29801D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00A9B7AD-9747-4F30-BCD5-7BF3EF29801D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DBCE0D3-ACC5-49F3-AD7B-20F7A9CC80AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DBCE0D3-ACC5-49F3-AD7B-20F7A9CC80AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DBCE0D3-ACC5-49F3-AD7B-20F7A9CC80AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DBCE0D3-ACC5-49F3-AD7B-20F7A9CC80AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96D9E5D1-800E-4082-AE8C-A04B6DAA34A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96D9E5D1-800E-4082-AE8C-A04B6DAA34A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96D9E5D1-800E-4082-AE8C-A04B6DAA34A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96D9E5D1-800E-4082-AE8C-A04B6DAA34A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45048224-C98F-46D8-832A-BCED11476C33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45048224-C98F-46D8-832A-BCED11476C33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45048224-C98F-46D8-832A-BCED11476C33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45048224-C98F-46D8-832A-BCED11476C33}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
