@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>yltl.Tools</RootNamespace>
     <AssemblyName>小工具</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>toos.ico</ApplicationIcon>
     <FileUpgradeFlags>
@@ -32,6 +32,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,6 +43,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -51,6 +53,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -112,12 +115,6 @@
     <Compile Include="FrmReg.Designer.cs">
       <DependentUpon>FrmReg.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmStringUtil.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmStringUtil.Designer.cs">
-      <DependentUpon>FrmStringUtil.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmTableTransport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,9 +144,6 @@
     <EmbeddedResource Include="FrmReg.resx">
       <DependentUpon>FrmReg.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmStringUtil.resx">
-      <DependentUpon>FrmStringUtil.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmTableTransport.resx">
       <DependentUpon>FrmTableTransport.cs</DependentUpon>
     </EmbeddedResource>
@@ -163,6 +157,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

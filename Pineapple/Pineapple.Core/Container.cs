@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Remoting;
 using System.Text;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.ObjectBuilder2;
@@ -23,6 +24,11 @@ namespace Pineapple.Core
                 Assembly assembly = Assembly.LoadFrom(assemblyFile);
                 foreach (var type in assembly.GetTypes())
                 {
+                    if (type.Namespace == null || !type.Namespace.StartsWith(assemblyName, StringComparison.OrdinalIgnoreCase)) continue;
+                    if (type.IsAbstract) continue;
+                    if (type.IsInterface) continue;
+                    if (type.ContainsGenericParameters) continue;
+                    if (!type.IsClass) continue;
                     var instance = Activator.CreateInstance(type);
                     unityContainer.RegisterInstance(type, instance, new ContainerControlledLifetimeManager());
                 }
