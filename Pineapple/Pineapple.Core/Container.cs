@@ -4,8 +4,10 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Remoting;
 using System.Text;
+using Microsoft.Practices.EnterpriseLibrary.PolicyInjection;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.ObjectBuilder2;
+using Microsoft.Practices.Unity.InterceptionExtension;
 
 namespace Pineapple.Core
 {
@@ -13,6 +15,8 @@ namespace Pineapple.Core
     {
         private static readonly UnityContainer unityContainer = new UnityContainer();
         private static readonly string DomainDirectory = System.AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\');
+
+        public static UnityContainer UnityContainer { get { return unityContainer; } }
 
         public static void ResisterAssemblyType(params string[] assemblyNames)
         {
@@ -29,8 +33,9 @@ namespace Pineapple.Core
                     if (type.IsInterface) continue;
                     if (type.ContainsGenericParameters) continue;
                     if (!type.IsClass) continue;
-                    var instance = Activator.CreateInstance(type);
-                    
+
+                    var instance = PolicyInjection.Create(type, type);// Activator.CreateInstance(type);
+
                     unityContainer.RegisterInstance(type, instance, new ContainerControlledLifetimeManager());
                     unityContainer.BuildUp(type, instance);
                 }

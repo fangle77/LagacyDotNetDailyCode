@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Dapper;
+using Pineapple.Core.Cache;
 using Pineapple.Model;
 
 namespace Pineapple.Data
@@ -20,6 +21,7 @@ namespace Pineapple.Data
             }
         }
 
+        [Cache("Visitor","LatestN")]
         public List<Visitor> LoadLatestNVisitors(int latestN)
         {
             using (var cnn = SqLiteBaseRepository.DbConnection())

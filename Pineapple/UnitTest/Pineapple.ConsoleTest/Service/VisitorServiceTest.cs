@@ -26,5 +26,19 @@ namespace Pineapple.ConsoleTest.Service
 
             Console.WriteLine(visitor.Id);
         }
+
+        public static void CacheInterceptorTest()
+        {
+            var top = VisitorService.LoadLatestNVisitors(1);
+
+            Visitor visitor = new Visitor() { VisitDate = DateTime.Now.ToString() };
+            visitor = VisitorService.AddVisitor(visitor);
+
+            var top2 = VisitorService.LoadLatestNVisitors(1);
+
+            top.ForEach(Console.WriteLine);
+            Console.WriteLine("==========");
+            top2.ForEach(Console.WriteLine);
+        }
     }
 }
