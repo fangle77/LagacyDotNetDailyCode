@@ -16,6 +16,11 @@ namespace Pineapple.Core
         private static readonly UnityContainer unityContainer = new UnityContainer();
         private static readonly string DomainDirectory = System.AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\');
 
+        static Container()
+        {
+            unityContainer.AddNewExtension<Interception>();
+        }
+
         public static UnityContainer UnityContainer { get { return unityContainer; } }
 
         public static void ResisterAssemblyType(params string[] assemblyNames)
@@ -34,10 +39,11 @@ namespace Pineapple.Core
                     if (type.ContainsGenericParameters) continue;
                     if (!type.IsClass) continue;
 
-                    var instance = PolicyInjection.Create(type, type);// Activator.CreateInstance(type);
-
-                    unityContainer.RegisterInstance(type, instance, new ContainerControlledLifetimeManager());
-                    unityContainer.BuildUp(type, instance);
+                    //unityContainer.RegisterType(type, new ContainerControlledLifetimeManager());
+                    //Intercept.NewInstance(type,new VirtualMethodInterceptor(), )
+                    unityContainer.RegisterType(type, new ContainerControlledLifetimeManager()
+                        , new InterceptionBehavior<PolicyInjectionBehavior>()
+                        , new Interceptor<VirtualMethodInterceptor>());
                 }
             }
         }
