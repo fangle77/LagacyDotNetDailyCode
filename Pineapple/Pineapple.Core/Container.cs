@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Remoting;
@@ -13,12 +14,16 @@ namespace Pineapple.Core
 {
     public class Container
     {
-        private static readonly UnityContainer unityContainer = new UnityContainer();
-        private static readonly string DomainDirectory = System.AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\');
+        private static readonly UnityContainer unityContainer;
+        private static readonly string DomainDirectory;
 
         static Container()
         {
+            unityContainer = new UnityContainer();
             unityContainer.AddNewExtension<Interception>();
+
+            string baseDir = System.AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\');
+            DomainDirectory = Directory.Exists(baseDir + "\\bin") ? baseDir + "\\bin" : baseDir;
         }
 
         public static UnityContainer UnityContainer { get { return unityContainer; } }

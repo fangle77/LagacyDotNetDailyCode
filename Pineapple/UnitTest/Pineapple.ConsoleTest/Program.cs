@@ -23,8 +23,6 @@ namespace Pineapple.ConsoleTest
 
         private static void InitInjection()
         {
-            Pineapple.Core.Container.UnityContainer.AddNewExtension<Interception>();
-
             Pineapple.Core.Container.ResisterAssemblyType("Pineapple.Data"
                 , "Pineapple.Business", "Pineapple.Service");
         }
