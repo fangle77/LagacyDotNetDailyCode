@@ -57,5 +57,15 @@ namespace Pineapple.Core
         {
             return unityContainer.Resolve<T>();
         }
+
+        public static object Resolve(Type type)
+        {
+            return unityContainer.Resolve(type);
+        }
+
+        public static IEnumerable<object> ResolveAll(Type type)
+        {
+            return unityContainer.ResolveAll(type);
+        }
     }
 }
