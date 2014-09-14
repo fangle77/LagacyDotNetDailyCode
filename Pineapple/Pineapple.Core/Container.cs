@@ -67,5 +67,11 @@ namespace Pineapple.Core
         {
             return unityContainer.ResolveAll(type);
         }
+
+        public static bool CanResolve(Type type)
+        {
+            return (type.IsClass && !type.IsAbstract)
+                   || unityContainer.IsRegistered(type);
+        }
     }
 }

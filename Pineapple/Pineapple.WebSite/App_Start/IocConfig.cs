@@ -16,8 +16,7 @@ namespace Pineapple.WebSite.App_Start
                 , "Pineapple.Business", "Pineapple.Service");
 
             Container.UnityContainer.RegisterType<IControllerActivator, ControllerActivator>()
-                .RegisterType<IDependencyResolver, UnityDependencyResolver>()
-                .RegisterType<IControllerFactory, DefaultControllerFactory>();
+                .RegisterType<IDependencyResolver, UnityDependencyResolver>();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver());
         }
@@ -27,12 +26,12 @@ namespace Pineapple.WebSite.App_Start
     {
         public object GetService(Type serviceType)
         {
-            return Container.Resolve(serviceType);
+            return Container.CanResolve(serviceType) ? Container.Resolve(serviceType) : null;
         }
 
         public IEnumerable<object> GetServices(Type serviceType)
         {
-            return Container.ResolveAll(serviceType);
+            return Container.CanResolve(serviceType) ? Container.ResolveAll(serviceType) : new object[0];
         }
     }
 
