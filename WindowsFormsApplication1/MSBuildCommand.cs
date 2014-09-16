@@ -22,7 +22,7 @@ namespace WebServerManager
             }
         }
 
-        private static string BuildSolutionCommand = " {0} ";
+        private static string BuildSolutionCommand = " \"{0}\" ";
 
         public string BuildSolution(string solutionFile)
         {

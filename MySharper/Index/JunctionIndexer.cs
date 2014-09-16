@@ -24,43 +24,64 @@ namespace MySharper.Index
             if (IndexerPaths == null || IndexerPaths.Count == 0) return;
             IndexerPaths.ForEach(path =>
                                      {
-                                         string junctionFile = GetJunctionConfigFile(path);
-                                         if (!string.IsNullOrEmpty(junctionFile))
+                                         var junctionFiles = GetJunctionConfigFile(path);
+                                         if (junctionFiles != null)
                                          {
-                                             var dic = BuildRelated(junctionFile);
-                                             if (dic != null)
-                                             {
-                                                 foreach (string key in dic.Keys)
-                                                 {
-                                                     if (DicReparse_Origin.ContainsKey(key) == false)
-                                                     {
-                                                         DicReparse_Origin.Add(key, dic[key]);
-                                                     }
-                                                 }
-                                             }
+                                             junctionFiles.ForEach(IndexJunction);
                                          }
                                      }
                 );
         }
 
-        private static string GetJunctionConfigFile(string path)
+        private static void IndexJunction(string junctionFile)
         {
-            if (path == null || path.LastIndexOf("WebSite.sln", StringComparison.OrdinalIgnoreCase) < 0) return string.Empty;
+            if (!string.IsNullOrEmpty(junctionFile))
+            {
+                var dic = BuildRelated(junctionFile);
+                if (dic != null)
+                {
+                    foreach (string key in dic.Keys)
+                    {
+                        if (DicReparse_Origin.ContainsKey(key) == false)
+                        {
+                            DicReparse_Origin.Add(key, dic[key]);
+                        }
+                    }
+                }
+            }
+        }
 
+        private static List<string> GetJunctionConfigFile(string path)
+        {
+            if (path == null || path.LastIndexOf("WebSite.sln", StringComparison.OrdinalIgnoreCase) < 0) return null;
+
+            //ContentGenerationModule\PrettyJunction.txt
             //QuidsiWebSite\PrettyJunction.txt
+            List<string> list = new List<string>();
+            (new List<string> { "QuidsiWebSite", "ContentGenerationModule" }).ForEach(directory =>
+                                         {
+                                             string config = GetJunctionConfigFile(path, directory);
+                                             if (!string.IsNullOrEmpty(config)) list.Add(config);
+                                         });
+
+            return list;
+        }
+
+        private static string GetJunctionConfigFile(string path, string directory)
+        {
             FileInfo fi = new FileInfo(path);
-            if (fi.Exists == false) return string.Empty;
+            if (fi.Exists == false) return null;
             DirectoryInfo di = fi.Directory;
             DirectoryInfo[] quidsiWebSites = null;
-            while (di != null && (quidsiWebSites = di.GetDirectories("QuidsiWebSite", SearchOption.TopDirectoryOnly)).Length == 0)
+            while (di != null && (quidsiWebSites = di.GetDirectories(directory, SearchOption.TopDirectoryOnly)).Length == 0)
             {
                 di = di.Parent;
             }
 
-            if (quidsiWebSites == null || quidsiWebSites.Length == 0) return string.Empty;
+            if (quidsiWebSites == null || quidsiWebSites.Length == 0) return null;
             string file = Path.Combine(quidsiWebSites[0].FullName, "PrettyJunction.txt");
             if (File.Exists(file)) return file;
-            return string.Empty;
+            return null;
         }
 
         private static Dictionary<string, string> BuildRelated(string junctionConfig)

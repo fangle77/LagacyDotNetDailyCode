@@ -68,6 +68,7 @@
     <Compile Include="JsonSerizlizer.cs" />
     <Compile Include="LCS.cs" />
     <Compile Include="LevensteinDistance.cs" />
+    <Compile Include="ListDefaultSort.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="MD5Hasher.cs" />
     <Compile Include="NVelocityToken.cs" />
@@ -75,14 +76,17 @@
     <Compile Include="ProcessManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReferenceFinder.cs" />
     <Compile Include="Similar.cs" />
     <Compile Include="SplitVSReg.cs" />
     <Compile Include="StringResolver.cs" />
     <Compile Include="SVNVersion.cs" />
+    <Compile Include="SyncTest.cs" />
     <Compile Include="TableAnalyser.cs" />
     <Compile Include="TaskUtility.cs" />
     <Compile Include="TextFinder.cs" />
     <Compile Include="UrlUtility.cs" />
+    <Compile Include="XXXTest\MylistItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Library\Microsoft.Practices.EnterpriseLibrary.Data.dll" />

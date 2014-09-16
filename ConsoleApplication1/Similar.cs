@@ -61,12 +61,12 @@ namespace ConsoleApplication1
 
     class FileSimilar
     {
-        private static readonly List<string> Sites = new List<string>() { "casa", "diapers", "beautybar", "soap", "casa", "green", "wag", "book", "look", "jump", "yoyo" };
+        private static readonly List<string> Sites = new List<string>() { "casa", "diapers", "casa", "beautybar", "soap", "casa", "green", "wag", "book", "look", "jump", "yoyo" };
 
         public static void WWWCompareFiles()
         {
             List<string> list = new List<string>();
-            string siteFormat = @"E:\Code\WWW\DEV\QuidsiWebSite\{0}\Views\Product\ProductCell.svm";
+            string siteFormat = @"E:\Code\WWWreview\current\QuidsiWebSite\{0}\Views\Marco\IntegerTextBox.svm";
 
             Sites.ForEach(s =>
             {
