@@ -6,7 +6,7 @@ namespace Pineapple.Data
 {
     public class SqLiteBaseRepository
     {
-        internal static string DbFile
+        private static string DbFile
         {
             get { return System.AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\') + "\\App_Data\\Pineapple.sqlite"; }
         }
@@ -37,6 +37,9 @@ namespace Pineapple.Data
                  VisitDate                           varchar(30) not null
               )");
             }
+
+            SqliteTables st = new SqliteTables();
+            st.CreateTables();
         }
     }
 }
