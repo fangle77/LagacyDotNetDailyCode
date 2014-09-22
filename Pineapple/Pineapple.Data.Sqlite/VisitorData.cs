@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Dapper;
 using Pineapple.Core.Cache;
 using Pineapple.Model;
 
-namespace Pineapple.Data
+namespace Pineapple.Data.Sqlite
 {
-    public class VisitorData
+    public class VisitorData : IVisitorData
     {
         public Visitor AddVisitor(Visitor visitor)
         {
@@ -22,7 +21,6 @@ namespace Pineapple.Data
             }
         }
 
-        [Cache("Visitor","LatestN")]
         public virtual List<Visitor> LoadLatestNVisitors(int latestN)
         {
             using (var cnn = SqLiteBaseRepository.DbConnection())

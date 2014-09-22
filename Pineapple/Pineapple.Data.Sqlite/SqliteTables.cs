@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using Dapper;
+﻿using Dapper;
 
-namespace Pineapple.Data
+namespace Pineapple.Data.Sqlite
 {
     public class SqliteTables
     {
@@ -20,7 +15,8 @@ namespace Pineapple.Data
                 Icon        TEXT,
                 Logo        TEXT,
                 CopyRight   TEXT,
-                ICP         TEXT
+                ICP         TEXT,
+                Status      TEXT
             )";
 
         private string Category =
@@ -32,22 +28,19 @@ namespace Pineapple.Data
                 ParentId        INTEGER,
                 DisplayOrder    INTEGER,
                 DisplayName     TEXT,
-                SubDisplayName  TEXT,
-                Status          TEXT
+                SubDisplayName  TEXT
             )";
 
         private string CategoryItem =
             @"Create Table CategoryItem
             (
                 CategoryItemId  INTEGER primary key AUTOINCREMENT,
-                CategoryId      INTEGER,
                 DisplayOrder    INTEGER,
                 Title           TEXT,
                 SubTitle        TEXT,
                 Time            TEXT,
                 DisplayText     TEXT,
-                Image           TEXT,
-                Status          TEXT
+                Image           TEXT
             )";
 
         public void CreateTables()

@@ -2,7 +2,7 @@
 using System.IO;
 using Dapper;
 
-namespace Pineapple.Data
+namespace Pineapple.Data.Sqlite
 {
     public class SqLiteBaseRepository
     {
