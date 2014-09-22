@@ -36,20 +36,37 @@ namespace Dapper
             HashSet<string> ignores = new HashSet<string>(ignoreFields ?? new string[0], StringComparer.OrdinalIgnoreCase);
 
             var properties = GetProperties(model);
-            //update xx set a=@a,b=@b where c=@c
             StringBuilder sql = new StringBuilder();
             sql.AppendFormat("UPDATE {0} SET ", model.GetType().Name);
             foreach (var propertyInfo in properties)
             {
                 if (!propertyInfo.CanRead || !propertyInfo.CanWrite) continue;
                 if (ignores.Contains(propertyInfo.Name)) continue;
-                
+
                 if (propertyInfo.GetValue(model, BindingFlags.Default, null, null, null) == null) continue;
 
                 sql.AppendFormat("{0} = @{0}", propertyInfo.Name);
             }
 
             sql.AppendFormat("where {0} = @{0}; ", keyField);
+            return sql.ToString();
+        }
+
+        public static string GetSelectSql(this Type type, params string[] ignoreFields)
+        {
+            HashSet<string> ignores = new HashSet<string>(ignoreFields ?? new string[0], StringComparer.OrdinalIgnoreCase);
+            var properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            StringBuilder sql = new StringBuilder();
+            sql.Append("SELECT ");
+            foreach (var propertyInfo in properties)
+            {
+                if (!propertyInfo.CanWrite) continue;
+                if (ignores.Contains(propertyInfo.Name)) continue;
+                sql.AppendFormat("{0},", propertyInfo.Name);
+            }
+            sql = sql.Remove(sql.Length - 1, 1);
+            sql.AppendFormat(" FROM {0} ", type.Name);
+
             return sql.ToString();
         }
 

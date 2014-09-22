@@ -61,6 +61,10 @@
       <Project>{2957a855-c7f3-446f-bef6-6ccf5fc19a3e}</Project>
       <Name>Pineapple.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Pineapple.Data.Sqlite\Pineapple.Data.Sqlite.csproj">
+      <Project>{6e301021-ffbe-430e-ae30-743ef4a250ff}</Project>
+      <Name>Pineapple.Data.Sqlite</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Pineapple.Data\Pineapple.Data.csproj">
       <Project>{00a9b7ad-9747-4f30-bcd5-7bf3ef29801d}</Project>
       <Name>Pineapple.Data</Name>
