@@ -34,8 +34,8 @@ namespace Pineapple.Core
 
             foreach (var assemblyName in assemblyNames)
             {
-                string assemblyFile = string.Format("{0}\\{1}.dll", DomainDirectory, assemblyName);
-                Assembly assembly = Assembly.LoadFrom(assemblyFile);
+                //string assemblyFile = string.Format("{0}\\{1}.dll", DomainDirectory, assemblyName);
+                Assembly assembly = Assembly.Load(assemblyName);
                 foreach (var type in assembly.GetTypes())
                 {
                     if (type.Namespace == null || !type.Namespace.StartsWith(assemblyName, StringComparison.OrdinalIgnoreCase)) continue;

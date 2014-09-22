@@ -35,12 +35,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SQLite">
-      <HintPath>..\Libraly\Sqlite.Data.x86\System.Data.SQLite.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SQLite.Linq">
-      <HintPath>..\Libraly\Sqlite.Data.x86\System.Data.SQLite.Linq.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,11 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICatalogData.cs" />
+    <Compile Include="IVisitorData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SqLiteBaseRepository.cs" />
-    <Compile Include="SqliteTables.cs" />
-    <Compile Include="SqlMapper.cs" />
-    <Compile Include="VisitorData.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Pineapple.Core\Pineapple.Core.csproj">

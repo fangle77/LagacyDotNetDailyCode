@@ -12,7 +12,7 @@ namespace Pineapple.ConsoleTest.Core
         public static void RegisterAssemblyTest()
         {
             Container.ResisterAssemblyType("Pineapple.Data");
-            var data = Container.Resolve<VisitorData>();
+            var data = Container.Resolve<IVisitorData>();
 
             Console.WriteLine(data == null);
             if (data != null) Console.WriteLine(data.GetType());

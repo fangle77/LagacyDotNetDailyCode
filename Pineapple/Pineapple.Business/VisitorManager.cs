@@ -11,7 +11,7 @@ namespace Pineapple.Business
     public class VisitorManager
     {
         [Dependency]
-        public VisitorData VisitorData { private get; set; }
+        public IVisitorData VisitorData { private get; set; }
 
         public Visitor AddVisitor(Visitor visitor)
         {
