@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.InterceptionExtension;
+using Pineapple.Core;
 
 namespace Pineapple.ConsoleTest
 {
@@ -23,8 +24,8 @@ namespace Pineapple.ConsoleTest
 
         private static void InitInjection()
         {
-            Pineapple.Core.Container.ResisterAssemblyType("Pineapple.Data"
-                , "Pineapple.Business", "Pineapple.Service");
+            Container.RegisterAssemblyInterface("Pineapple.Data", "Pineapple.Data.Sqlite");
+            Container.ResisterAssemblyType("Pineapple.Business", "Pineapple.Service");
         }
     }
 }

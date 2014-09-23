@@ -53,6 +53,30 @@ namespace Pineapple.Core
             }
         }
 
+        public static void RegisterAssemblyInterface(string interfaceAssembly, string realizeAssembly)
+        {
+            Assembly interAssembly = Assembly.Load(interfaceAssembly);
+            Assembly realAssembly = Assembly.Load(realizeAssembly);
+
+            Dictionary<string, Type> intersTypes = interAssembly.GetTypes().ToDictionary(t => t.FullName, t => t);
+
+            foreach (var type in realAssembly.GetTypes())
+            {
+                var its = type.GetInterfaces();
+                if (its.Length == 0) continue;
+                foreach (var it in its)
+                {
+                    if (intersTypes.ContainsKey(it.FullName))
+                    {
+                        unityContainer.RegisterType(intersTypes[it.FullName], type,
+                            new ContainerControlledLifetimeManager()
+                            , new InterceptionBehavior<PolicyInjectionBehavior>()
+                            , new Interceptor<InterfaceInterceptor>());
+                    }
+                }
+            }
+        }
+
         public static T Resolve<T>()
         {
             return unityContainer.Resolve<T>();

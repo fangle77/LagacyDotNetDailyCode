@@ -74,6 +74,14 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /y "$(TargetPath)" "$(SolutionDir)Pineapple.WebSite\bin\$(TargetFileName)"
+copy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)Pineapple.WebSite\bin\$(TargetName).pdb"
+
+copy /y "$(TargetPath)" "$(SolutionDir)UnitTest\Pineapple.ConsoleTest\bin\$(ConfigurationName)\$(TargetFileName)"
+copy /y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)UnitTest\Pineapple.ConsoleTest\bin\$(ConfigurationName)\$(TargetName).pdb"
+</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

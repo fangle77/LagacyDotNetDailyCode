@@ -21,6 +21,7 @@ namespace Pineapple.Data.Sqlite
             }
         }
 
+        [Cache("Visitor", "LatestN")]
         public virtual List<Visitor> LoadLatestNVisitors(int latestN)
         {
             using (var cnn = SqLiteBaseRepository.DbConnection())

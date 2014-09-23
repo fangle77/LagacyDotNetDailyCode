@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace Dapper
 {
-    public static class InsertUpdateExtendtion
+    public static class SqlExtendtion
     {
         public static string GetInsertSql(this object model, params string[] ignoreFields)
         {

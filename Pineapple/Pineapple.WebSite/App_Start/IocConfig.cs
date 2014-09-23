@@ -12,8 +12,8 @@ namespace Pineapple.WebSite.App_Start
     {
         public static void RegisterTypes()
         {
-            Container.ResisterAssemblyType("Pineapple.Data"
-                , "Pineapple.Business", "Pineapple.Service");
+            Container.RegisterAssemblyInterface("Pineapple.Data", "Pineapple.Data.Sqlite");
+            Container.ResisterAssemblyType("Pineapple.Business", "Pineapple.Service");
 
             Container.UnityContainer.RegisterType<IControllerActivator, ControllerActivator>()
                 .RegisterType<IDependencyResolver, UnityDependencyResolver>();
