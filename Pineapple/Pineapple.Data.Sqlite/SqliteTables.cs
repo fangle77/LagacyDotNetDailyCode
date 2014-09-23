@@ -2,7 +2,7 @@
 
 namespace Pineapple.Data.Sqlite
 {
-    public class SqliteTables
+    internal class SqliteTables
     {
         private string Catalog =
             @"Create Table Catalog

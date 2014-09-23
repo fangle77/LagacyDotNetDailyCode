@@ -56,7 +56,11 @@ namespace Pineapple.Data.Sqlite
 
         public Catalog GetCatalogById(int catalogId)
         {
-            throw new NotImplementedException();
+            using (var cnn = SqLiteBaseRepository.DbConnection())
+            {
+                cnn.Open();
+                return cnn.Query<Catalog>(typeof(Catalog).GetSelectSql() + " where CatalogId=@CatalogId", new { CatalogId = catalogId }).FirstOrDefault();
+            }
         }
     }
 }

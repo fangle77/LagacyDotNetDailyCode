@@ -4,7 +4,7 @@ using Dapper;
 
 namespace Pineapple.Data.Sqlite
 {
-    public class SqLiteBaseRepository
+    internal class SqLiteBaseRepository
     {
         private static string DbFile
         {
