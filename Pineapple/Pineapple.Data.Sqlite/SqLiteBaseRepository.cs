@@ -1,4 +1,5 @@
-﻿using System.Data.SQLite;
+﻿using System;
+using System.Data.SQLite;
 using System.IO;
 using Dapper;
 
@@ -13,9 +14,17 @@ namespace Pineapple.Data.Sqlite
 
         internal static SQLiteConnection DbConnection()
         {
-            return new SQLiteConnection("Data Source=" + DbFile);
+            var cnn = new SQLiteConnection(string.Format("Data Source={0};Pooling=True;", DbFile));
+            cnn.Open();
+            return cnn;
         }
 
+        internal static SQLiteConnection DbReadOnlyConnection()
+        {
+            var cnn = new SQLiteConnection(string.Format("Data Source={0};Pooling=True;Read Only=True;", DbFile));
+            cnn.Open();
+            return cnn;
+        }
 
         internal static void InitDataBase()
         {
@@ -29,7 +38,6 @@ namespace Pineapple.Data.Sqlite
         {
             using (var cnn = DbConnection())
             {
-                cnn.Open();
                 cnn.Execute(
                     @"create table Visitor
               (

@@ -11,7 +11,7 @@ namespace Dapper
         public static string GetInsertSql(this object model, params string[] ignoreFields)
         {
             HashSet<string> ignores = new HashSet<string>(ignoreFields ?? new string[0], StringComparer.OrdinalIgnoreCase);
-            var properties = GetProperties(model);
+            var properties = FilterProperties(model.GetType());
 
             StringBuilder fileds = new StringBuilder(properties.Count() * 16);
             StringBuilder values = new StringBuilder();
@@ -35,7 +35,7 @@ namespace Dapper
         {
             HashSet<string> ignores = new HashSet<string>(ignoreFields ?? new string[0], StringComparer.OrdinalIgnoreCase);
 
-            var properties = GetProperties(model);
+            var properties = FilterProperties(model.GetType());
             StringBuilder sql = new StringBuilder();
             sql.AppendFormat("UPDATE {0} SET ", model.GetType().Name);
             foreach (var propertyInfo in properties)
@@ -52,10 +52,10 @@ namespace Dapper
             return sql.ToString();
         }
 
-        public static string GetSelectSql(this Type type, params string[] ignoreFields)
+        public static string GetSelectSql(this Type type, string where = null, params string[] ignoreFields)
         {
             HashSet<string> ignores = new HashSet<string>(ignoreFields ?? new string[0], StringComparer.OrdinalIgnoreCase);
-            var properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            var properties = FilterProperties(type);
             StringBuilder sql = new StringBuilder();
             sql.Append("SELECT ");
             foreach (var propertyInfo in properties)
@@ -66,14 +66,15 @@ namespace Dapper
             }
             sql = sql.Remove(sql.Length - 1, 1);
             sql.AppendFormat(" FROM {0} ", type.Name);
+            if (!string.IsNullOrEmpty(where)) sql.AppendFormat("where {0}", where);
 
             return sql.ToString();
         }
 
-        private static PropertyInfo[] GetProperties(object model)
+        private static PropertyInfo[] FilterProperties(Type type)
         {
-            Type type = model.GetType();
-            return type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            var pros = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            return pros;
         }
     }
 }

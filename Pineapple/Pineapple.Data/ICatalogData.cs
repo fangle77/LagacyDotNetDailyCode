@@ -8,5 +8,6 @@ namespace Pineapple.Data
         Catalog SaveCatalog(Catalog catalog);
         List<Catalog> CatalogLoadAll();
         Catalog GetCatalogById(int catalogId);
+        bool Delete(int catalogId);
     }
 }
