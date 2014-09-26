@@ -4,6 +4,7 @@ namespace Pineapple.Data.Sqlite
 {
     internal class SqliteTables
     {
+        #region Tables
         private string Catalog =
             @"Create Table Catalog
             (
@@ -62,6 +63,10 @@ namespace Pineapple.Data.Sqlite
                 ParentId        INTEGER
             )";
 
+        #endregion
+
+        #region Mappings
+
         private string CatalogNavigationMapping =
             @" Create Table CatalogNavigationMapping
             (
@@ -101,6 +106,8 @@ namespace Pineapple.Data.Sqlite
                 CategoryId      INTEGER,
                 TemplateId      INTEGER
             )";
+
+        #endregion
 
         public void CreateTables()
         {

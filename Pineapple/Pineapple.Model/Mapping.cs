@@ -14,11 +14,20 @@ namespace Pineapple.Model
 
     public class Mapping<TKey, TValue>
     {
-        public string MappingName { get; set; }
-        public string KeyName { get; set; }
-        public string ValueName { get; set; }
+        public string MappingName { get; protected set; }
+        public string KeyName { get; protected set; }
+        public string ValueName { get; protected set; }
+
+        public Mapping() { }
+        public Mapping(string mappingName, string keyName, string valueName)
+        {
+            MappingName = mappingName;
+            KeyName = keyName;
+            ValueName = valueName;
+        }
 
         private readonly List<MappingItem<TKey, TValue>> _items = new List<MappingItem<TKey, TValue>>();
+        private readonly HashSet<string> _existKeyValue = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         public List<MappingItem<TKey, TValue>> Items
         {
             get { return _items; }
@@ -26,10 +35,26 @@ namespace Pineapple.Model
 
         public void AddItem(MappingItem<TKey, TValue> item)
         {
-            if (item != null) _items.Add(item);
+            if (item != null)
+            {
+                string code = string.Format("{0}_{1}", item.Key, item.Value);
+                if (!_existKeyValue.Contains(code))
+                {
+                    _items.Add(item);
+                    _existKeyValue.Add(code);
+                }
+            }
         }
 
-        public List<MappingItem<TKey, TValue>> FindItemsItemByKey(TKey key)
+        public void AddItems(IEnumerable<MappingItem<TKey, TValue>> items)
+        {
+            if (items != null)
+            {
+                foreach (var item in items) AddItem(item);
+            }
+        }
+
+        public List<MappingItem<TKey, TValue>> FindItemsByKey(TKey key)
         {
             return _items.FindAll(item => item.Key.Equals(key));
         }
@@ -48,10 +73,5 @@ namespace Pineapple.Model
         {
             return _items.Find(item => item.Value.Equals(value));
         }
-    }
-
-    public class MappingInt : Mapping<int, int>
-    {
-
     }
 }
