@@ -13,17 +13,17 @@ namespace Pineapple.Business
         [Dependency]
         public ICatalogData CatalogData { protected get; set; }
 
-        public Catalog SaveCatalog(Catalog catalog)
+        public virtual Catalog SaveCatalog(Catalog catalog)
         {
             return CatalogData.SaveCatalog(catalog);
         }
 
-        public List<Catalog> CatalogLoadAll()
+        public virtual List<Catalog> CatalogLoadAll()
         {
             return CatalogData.CatalogLoadAll();
         }
 
-        public Catalog GetCatalogById(int catalogId)
+        public virtual Catalog GetCatalogById(int catalogId)
         {
             return CatalogData.GetCatalogById(catalogId);
         }

@@ -13,17 +13,17 @@ namespace Pineapple.Service
         [Dependency]
         public CatalogManager CatalogManager { protected get; set; }
 
-        public Catalog SaveCatalog(Catalog catalog)
+        public virtual Catalog SaveCatalog(Catalog catalog)
         {
             return CatalogManager.SaveCatalog(catalog);
         }
 
-        public List<Catalog> CatalogLoadAll()
+        public virtual List<Catalog> CatalogLoadAll()
         {
             return CatalogManager.CatalogLoadAll();
         }
 
-        public Catalog GetCatalogById(int catalogId)
+        public virtual Catalog GetCatalogById(int catalogId)
         {
             return CatalogManager.GetCatalogById(catalogId);
         }
