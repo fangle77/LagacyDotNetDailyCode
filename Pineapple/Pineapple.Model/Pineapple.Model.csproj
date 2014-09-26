@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Catalog.cs" />
+    <Compile Include="Mapping.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="CategoryItem.cs" />
     <Compile Include="Navigation.cs" />
