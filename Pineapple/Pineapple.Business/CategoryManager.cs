@@ -28,6 +28,12 @@ namespace Pineapple.Business
             return CategoryData.LoadCategoriesByCatalogId(catalogId);
         }
 
+        public List<Category> LoadCategoriesByCategoryIds(IEnumerable<int> categoryIds)
+        {
+            if (categoryIds == null || categoryIds.Count() == 0) return null;
+            return CategoryData.LoadCategoriesByCategoryIds(categoryIds);
+        }
+
         public virtual bool DeleteCategory(int categoryId)
         {
             return CategoryData.DeleteCategory(categoryId);

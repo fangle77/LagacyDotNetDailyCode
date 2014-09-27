@@ -11,6 +11,7 @@ namespace Pineapple.Data
         Category SaveCategory(Category category);
         Category GetCategoryById(int categoryId);
         List<Category> LoadCategoriesByCatalogId(int catalogId);
+        List<Category> LoadCategoriesByCategoryIds(IEnumerable<int> categoryIds);
         bool DeleteCategory(int categoryId);
 
         CategoryItem SaveCategoryItem(CategoryItem categoryItem);

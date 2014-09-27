@@ -27,5 +27,11 @@ namespace Pineapple.Business
         {
             return CatalogData.GetCatalogById(catalogId);
         }
+
+        public List<Catalog> LoadCatalogsByIdCatalogIds(IEnumerable<int> catalogIds)
+        {
+            if (catalogIds == null || catalogIds.Count() == 0) return null;
+            return CatalogData.LoadCatalogsByIdCatalogIds(catalogIds);
+        }
     }
 }

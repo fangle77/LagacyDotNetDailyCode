@@ -53,5 +53,15 @@ namespace Pineapple.Data.Sqlite
                 return cnn.Execute("Delete from Catalog where CatalogId=@CatalogId", new { CatalogId = catalogId }) > 0;
             }
         }
+
+
+        public List<Catalog> LoadCatalogsByIdCatalogIds(IEnumerable<int> catalogIds)
+        {
+            string ids = string.Join(",", catalogIds).TrimEnd(',');
+            using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            {
+                return cnn.Query<Catalog>(typeof(Catalog).GetSelectSql("CatalogId in {@CatalogIds}"), new { CatalogIds = ids }).ToList();
+            }
+        }
     }
 }

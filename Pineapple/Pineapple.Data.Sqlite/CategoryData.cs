@@ -50,6 +50,15 @@ namespace Pineapple.Data.Sqlite
             }
         }
 
+        public List<Category> LoadCategoriesByCategoryIds(IEnumerable<int> categoryIds)
+        {
+            string ids = string.Join(",", categoryIds).TrimEnd(',');
+            using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            {
+                return cnn.Query<Category>(typeof(Category).GetSelectSql("CategoryId in(@CategoryIds)"), new { CategoryIds = ids }).ToList();
+            }
+        }
+
         public bool DeleteCategory(int categoryId)
         {
             using (var cnn = SqLiteBaseRepository.DbConnection())

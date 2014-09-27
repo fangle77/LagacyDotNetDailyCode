@@ -242,6 +242,10 @@
       <Project>{96d9e5d1-800e-4082-ae8c-a04b6daa34a4}</Project>
       <Name>Pineapple.Service</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Pineapple.View\Pineapple.View.csproj">
+      <Project>{c00cdf33-af60-46ee-b198-5178f04662ce}</Project>
+      <Name>Pineapple.View</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

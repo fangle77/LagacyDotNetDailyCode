@@ -10,7 +10,8 @@ namespace Pineapple.Data
     {
         Navigation SaveNavigation(Navigation navigation);
         Navigation GetNavigationById(int navigationId);
-        List<Navigation> LoadNavigationByCatalogId(int catalogId); 
+        List<Navigation> LoadNavigationByCatalogId(int catalogId);
+        List<Navigation> LoadNavigationByNavigationIds(IEnumerable<int> navigationIds);
         bool DeleteNavigation(int navigationId);
     }
 }

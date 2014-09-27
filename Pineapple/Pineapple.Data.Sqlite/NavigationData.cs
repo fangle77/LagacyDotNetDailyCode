@@ -47,9 +47,18 @@ namespace Pineapple.Data.Sqlite
             }
         }
 
+        public List<Navigation> LoadNavigationByNavigationIds(IEnumerable<int> navigationIds)
+        {
+            string ids = string.Join(",", navigationIds).TrimEnd(',');
+            using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            {
+                return cnn.Query<Navigation>(typeof(Navigation).GetSelectSql("NavigationId in(@NavigationIds)"), new { NavigationIds = ids }).ToList();
+            }
+        }
+
         public bool DeleteNavigation(int navigationId)
         {
-            using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            using (var cnn = SqLiteBaseRepository.DbConnection())
             {
                 return cnn.Execute("delete from Navigation where NavigationId=@NavigationId", new { NavigationId = navigationId }) > 0;
             }

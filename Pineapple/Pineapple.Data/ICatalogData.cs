@@ -7,6 +7,7 @@ namespace Pineapple.Data
     {
         Catalog SaveCatalog(Catalog catalog);
         List<Catalog> CatalogLoadAll();
+        List<Catalog> LoadCatalogsByIdCatalogIds(IEnumerable<int> catalogIds);
         Catalog GetCatalogById(int catalogId);
         bool Delete(int catalogId);
     }

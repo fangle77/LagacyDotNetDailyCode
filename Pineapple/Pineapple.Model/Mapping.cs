@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 
 namespace Pineapple.Model
@@ -26,11 +27,27 @@ namespace Pineapple.Model
             ValueName = valueName;
         }
 
-        private readonly List<MappingItem<TKey, TValue>> _items = new List<MappingItem<TKey, TValue>>();
-        private readonly HashSet<string> _existKeyValue = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        private List<MappingItem<TKey, TValue>> _items;
+        private HashSet<string> _existKeyValue;
+
+        private HashSet<string> ExistKeyValue
+        {
+            get { return (_existKeyValue = _existKeyValue ?? new HashSet<string>(StringComparer.OrdinalIgnoreCase)); }
+        }
+
         public List<MappingItem<TKey, TValue>> Items
         {
-            get { return _items; }
+            get { return (_items = _items ?? new List<MappingItem<TKey, TValue>>()); ; }
+        }
+
+        public List<TKey> Keys
+        {
+            get { return Items.ConvertAll(m => m.Key); }
+        }
+
+        public List<TValue> Values
+        {
+            get { return Items.ConvertAll(m => m.Value); }
         }
 
         public void AddItem(MappingItem<TKey, TValue> item)
@@ -38,9 +55,9 @@ namespace Pineapple.Model
             if (item != null)
             {
                 string code = string.Format("{0}_{1}", item.Key, item.Value);
-                if (!_existKeyValue.Contains(code))
+                if (!ExistKeyValue.Contains(code))
                 {
-                    _items.Add(item);
+                    Items.Add(item);
                     _existKeyValue.Add(code);
                 }
             }
