@@ -36,12 +36,8 @@ namespace Pineapple.Service
             view.Navigation = NavigationManager.GetNavigationById(navigationId);
             if (view.Navigation == null) return null;
 
-            var catalogMapping = NavigationManager.GetCatalogNavigationMappingByNavigationId(navigationId);
-            view.Catalogs = CatalogManager.LoadCatalogsByIdCatalogIds(catalogMapping.Keys);
-
-            var categoryMapping = NavigationManager.GetCategoryNavigationMappingByNavigationId(navigationId);
-            view.Categories = CategoryManager.LoadCategoriesByCategoryIds(categoryMapping.Keys);
-
+            view.Catalogs = CatalogManager.LoadCatalogByNavigationId(navigationId);
+            view.Categories = CategoryManager.LoadCategoriesByNavigationId(navigationId);
             return view;
         }
     }

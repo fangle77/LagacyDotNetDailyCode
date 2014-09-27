@@ -33,10 +33,7 @@ namespace Pineapple.Service
             view.Template = TemplateManager.GetTemplateById(templateId);
             if (view.Template == null) return null;
 
-            var mapping = TemplateManager.GetCategoryTemplateMappingByTemplateId(templateId);
-            if (mapping == null || mapping.Items.Count == 0) return view;
-
-            view.Categories = CategoryManager.LoadCategoriesByCategoryIds(mapping.Keys);
+            view.Categories = CategoryManager.LoadCategoriesByTemplateId(templateId);
             return view;
         }
     }

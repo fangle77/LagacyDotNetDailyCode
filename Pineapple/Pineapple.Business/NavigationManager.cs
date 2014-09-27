@@ -26,9 +26,21 @@ namespace Pineapple.Business
             return NavigationData.GetNavigationById(navigationId);
         }
 
-        public List<Navigation> LoadNavigationByCatalogId(int catalogId)
+        public List<Navigation> LoadNavigationsByCatalogId(int catalogId)
         {
             return NavigationData.LoadNavigationByCatalogId(catalogId);
+        }
+
+        public List<Navigation> LoadNavigationByNavigationIds(IEnumerable<int> navigationids)
+        {
+            if (navigationids == null || navigationids.Count() == 0) return null;
+            return NavigationData.LoadNavigationByNavigationIds(navigationids.Distinct());
+        }
+
+        public List<Navigation> LoadNavigationsByCategoryId(int categoryId)
+        {
+            var mapping = MappingData.GetMappingByKey(new CategoryNavigationMapping(), categoryId);
+            return LoadNavigationByNavigationIds(mapping.Values);
         }
 
         public bool DeleteNavigation(int navigationId)
@@ -40,16 +52,6 @@ namespace Pineapple.Business
                 MappingData.DeleteMappingByValue(new CategoryNavigationMapping(), navigationId);
             }
             return navigationDeleted;
-        }
-
-        public CatalogNavigationMapping GetCatalogNavigationMappingByNavigationId(int navigationId)
-        {
-            return (CatalogNavigationMapping)MappingData.GetMappingByValue(new CatalogNavigationMapping(), navigationId);
-        }
-
-        public CategoryNavigationMapping GetCategoryNavigationMappingByNavigationId(int navigationId)
-        {
-            return (CategoryNavigationMapping)MappingData.GetMappingByValue(new CategoryNavigationMapping(), navigationId);
         }
     }
 }

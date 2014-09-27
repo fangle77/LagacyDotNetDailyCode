@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Practices.Unity;
 using Pineapple.Business;
 using Pineapple.Model;
+using Pineapple.View;
 
 namespace Pineapple.Service
 {
@@ -12,6 +13,12 @@ namespace Pineapple.Service
     {
         [Dependency]
         public CatalogManager CatalogManager { protected get; set; }
+
+        [Dependency]
+        public CategoryManager CategoryManager { protected get; set; }
+
+        [Dependency]
+        public NavigationManager NavigationManager { protected get; set; }
 
         public virtual Catalog SaveCatalog(Catalog catalog)
         {
@@ -23,9 +30,15 @@ namespace Pineapple.Service
             return CatalogManager.CatalogLoadAll();
         }
 
-        public virtual Catalog GetCatalogById(int catalogId)
+        public virtual CatalogView GetCatalogById(int catalogId)
         {
-            return CatalogManager.GetCatalogById(catalogId);
+            CatalogView view = new CatalogView();
+            view.Catalog = CatalogManager.GetCatalogById(catalogId);
+            if (view.Catalog == null) return null;
+
+            view.Categories = CategoryManager.LoadCategoriesByCatalogId(catalogId);
+            view.Navigations = NavigationManager.LoadNavigationsByCatalogId(catalogId);
+            return view;
         }
     }
 }

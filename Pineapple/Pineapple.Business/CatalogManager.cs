@@ -13,6 +13,9 @@ namespace Pineapple.Business
         [Dependency]
         public ICatalogData CatalogData { protected get; set; }
 
+        [Dependency]
+        public IMappingData MappingData { protected get; set; }
+
         public virtual Catalog SaveCatalog(Catalog catalog)
         {
             return CatalogData.SaveCatalog(catalog);
@@ -31,7 +34,19 @@ namespace Pineapple.Business
         public List<Catalog> LoadCatalogsByIdCatalogIds(IEnumerable<int> catalogIds)
         {
             if (catalogIds == null || catalogIds.Count() == 0) return null;
-            return CatalogData.LoadCatalogsByIdCatalogIds(catalogIds);
+            return CatalogData.LoadCatalogsByIdCatalogIds(catalogIds.Distinct());
+        }
+
+        public List<Catalog> LoadCatalogByCategoryId(int categoryId)
+        {
+            var mapping = MappingData.GetMappingByValue(new CatalogCategoryMapping(), categoryId);
+            return LoadCatalogsByIdCatalogIds(mapping.Keys);
+        }
+
+        public List<Catalog> LoadCatalogByNavigationId(int navigationId)
+        {
+            var mapping = MappingData.GetMappingByValue(new CatalogNavigationMapping(), navigationId);
+            return LoadCatalogsByIdCatalogIds(mapping.Keys);
         }
     }
 }

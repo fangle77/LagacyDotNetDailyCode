@@ -31,11 +31,6 @@ namespace Pineapple.Business
             return TemplateData.LoadAllTemplate();
         }
 
-        public CategoryTemplateMapping GetCategoryTemplateMappingByTemplateId(int templateId)
-        {
-            return (CategoryTemplateMapping)MappingData.GetMappingByValue(new CategoryTemplateMapping(), templateId);
-        }
-
         public bool DeleteTemplate(int templateId)
         {
             bool templateDeleted = TemplateData.DeleteTemplate(templateId);
