@@ -85,6 +85,7 @@
     <Compile Include="TableAnalyser.cs" />
     <Compile Include="TaskUtility.cs" />
     <Compile Include="TextFinder.cs" />
+    <Compile Include="ThreadStaticTest.cs" />
     <Compile Include="UrlUtility.cs" />
     <Compile Include="XXXTest\MylistItem.cs" />
   </ItemGroup>

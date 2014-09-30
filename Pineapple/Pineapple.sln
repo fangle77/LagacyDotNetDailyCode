@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pineapple.Data.Sqlite", "Pi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pineapple.View", "Pineapple.View\Pineapple.View.csproj", "{C00CDF33-AF60-46EE-B198-5178F04662CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pineapple.Core.Web", "Pineapple.Core.Web\Pineapple.Core.Web.csproj", "{E5125552-1045-4C55-9DA8-8ABD73D22EFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{C00CDF33-AF60-46EE-B198-5178F04662CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C00CDF33-AF60-46EE-B198-5178F04662CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C00CDF33-AF60-46EE-B198-5178F04662CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5125552-1045-4C55-9DA8-8ABD73D22EFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5125552-1045-4C55-9DA8-8ABD73D22EFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5125552-1045-4C55-9DA8-8ABD73D22EFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5125552-1045-4C55-9DA8-8ABD73D22EFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

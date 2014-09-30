@@ -11,6 +11,16 @@ namespace Pineapple.Model
         public int MappingId { get; set; }
         public TKey Key { get; set; }
         public TValue Value { get; set; }
+
+        public MappingItem()
+        {
+
+        }
+        public MappingItem(TKey key, TValue value)
+        {
+            this.Key = key;
+            this.Value = value;
+        }
     }
 
     public class Mapping<TKey, TValue>

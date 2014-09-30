@@ -34,7 +34,6 @@ namespace Pineapple.Core.Cache
             throw new NotImplementedException();
         }
 
-
         public void Clear()
         {
             CacheObjects.Clear();

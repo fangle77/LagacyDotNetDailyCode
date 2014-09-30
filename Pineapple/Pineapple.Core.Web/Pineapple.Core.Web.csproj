@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{32DD754C-B0D0-4EA8-8BFA-7ABEC705E73A}</ProjectGuid>
+    <ProjectGuid>{E5125552-1045-4C55-9DA8-8ABD73D22EFC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Pineapple.Business</RootNamespace>
-    <AssemblyName>Pineapple.Business</AssemblyName>
+    <RootNamespace>Pineapple.Core.Web</RootNamespace>
+    <AssemblyName>Pineapple.Core.Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,11 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.Unity">
+    <Reference Include="Microsoft.Practices.Unity, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libraly\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception">
+      <HintPath>..\Libraly\Microsoft.Practices.Unity.Interception.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,26 +47,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CatalogManager.cs" />
-    <Compile Include="CategoryManager.cs" />
-    <Compile Include="MappingManager.cs" />
-    <Compile Include="NavigationManager.cs" />
+    <Compile Include="UrlRewrite\ControllerRouteRewrite.cs" />
+    <Compile Include="UrlRewrite\IUrlRewriteAdaptee.cs" />
+    <Compile Include="UrlRewrite\UrlRewriteAdaptor.cs" />
+    <Compile Include="Modules\UrlRewriteModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TemplateManager.cs" />
-    <Compile Include="VisitorManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Pineapple.Core\Pineapple.Core.csproj">
       <Project>{2957a855-c7f3-446f-bef6-6ccf5fc19a3e}</Project>
       <Name>Pineapple.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pineapple.Data\Pineapple.Data.csproj">
-      <Project>{00a9b7ad-9747-4f30-bcd5-7bf3ef29801d}</Project>
-      <Name>Pineapple.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Pineapple.Model\Pineapple.Model.csproj">
-      <Project>{8dbce0d3-acc5-49f3-ad7b-20f7a9cc80ae}</Project>
-      <Name>Pineapple.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

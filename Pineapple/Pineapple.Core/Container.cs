@@ -46,9 +46,7 @@ namespace Pineapple.Core
 
                     //unityContainer.RegisterType(type, new ContainerControlledLifetimeManager());
                     //Intercept.NewInstance(type,new VirtualMethodInterceptor(), )
-                    unityContainer.RegisterType(type, new ContainerControlledLifetimeManager()
-                        , new InterceptionBehavior<PolicyInjectionBehavior>()
-                        , new Interceptor<VirtualMethodInterceptor>());
+                    unityContainer.RegisterType(type, new ContainerControlledLifetimeManager());
                 }
             }
         }
@@ -68,10 +66,37 @@ namespace Pineapple.Core
                 {
                     if (intersTypes.ContainsKey(it.FullName))
                     {
-                        unityContainer.RegisterType(intersTypes[it.FullName], type,
-                            new ContainerControlledLifetimeManager()
-                            , new InterceptionBehavior<PolicyInjectionBehavior>()
-                            , new Interceptor<InterfaceInterceptor>());
+                        unityContainer.RegisterType(intersTypes[it.FullName], type, new ContainerControlledLifetimeManager());
+                    }
+                }
+            }
+        }
+
+        public static void RegisterAssemblyVirtualMethodInterceptor(Func<Type, bool> matchType, params string[] assemblyNames)
+        {
+            foreach (string assemblyName in assemblyNames)
+            {
+                Assembly assembly = Assembly.Load(assemblyName);
+                foreach (Type type in assembly.GetTypes())
+                {
+                    if (matchType(type))
+                    {
+                        AddVirtualMethodInterceptor(type);
+                    }
+                }
+            }
+        }
+
+        public static void RegisterAssemblyInterfaceInterceptor(Func<Type, bool> matchType, params string[] assemblyNames)
+        {
+            foreach (string assemblyName in assemblyNames)
+            {
+                Assembly assembly = Assembly.Load(assemblyName);
+                foreach (Type type in assembly.GetTypes())
+                {
+                    if (matchType(type))
+                    {
+                        AddInterfaceInterceptor(type);
                     }
                 }
             }
@@ -96,6 +121,16 @@ namespace Pineapple.Core
         {
             return (type.IsClass && !type.IsAbstract)
                    || unityContainer.IsRegistered(type);
+        }
+
+        public static void AddVirtualMethodInterceptor(Type type)
+        {
+            unityContainer.Configure<Interception>().SetInterceptorFor(type, new VirtualMethodInterceptor());
+        }
+
+        public static void AddInterfaceInterceptor(Type type)
+        {
+            unityContainer.Configure<Interception>().SetInterceptorFor(type, new InterfaceInterceptor());
         }
     }
 }

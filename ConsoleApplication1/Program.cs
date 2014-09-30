@@ -21,7 +21,7 @@ namespace ConsoleApplication1
         {
             RepeatRun(() =>
             {
-                ListDefaultSort.Test16();
+                ThreadStaticTest.RunTest();
             });
         }
 

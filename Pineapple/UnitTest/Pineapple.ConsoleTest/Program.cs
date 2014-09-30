@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.InterceptionExtension;
 using Pineapple.Core;
+using Pineapple.Service;
 
 namespace Pineapple.ConsoleTest
 {
@@ -12,7 +13,7 @@ namespace Pineapple.ConsoleTest
     {
         static void Main(string[] args)
         {
-            InitInjection();
+            ApplicationInitialService.RegisterContainer();
 
             //Core.ContainerTest.RegisterAssemblyTest();
             //Service.VisitorServiceTest.InjectionTest();
@@ -20,12 +21,6 @@ namespace Pineapple.ConsoleTest
 
             Console.WriteLine("\r\nFinish!");
             Console.Read();
-        }
-
-        private static void InitInjection()
-        {
-            Container.RegisterAssemblyInterface("Pineapple.Data", "Pineapple.Data.Sqlite");
-            Container.ResisterAssemblyType("Pineapple.Business", "Pineapple.Service");
         }
     }
 }
