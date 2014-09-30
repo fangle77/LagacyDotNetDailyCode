@@ -29,12 +29,15 @@ namespace Pineapple.ConsoleTest.Service
 
         public static void CacheInterceptorTest()
         {
-            var top = VisitorService.LoadLatestNVisitors(1);
-
             Visitor visitor = new Visitor() { VisitDate = DateTime.Now.ToString() };
             visitor = VisitorService.AddVisitor(visitor);
 
-            var top2 = VisitorService.LoadLatestNVisitors(1);
+            var top = VisitorService.LoadLatestNVisitors(2);
+
+            visitor = new Visitor() { VisitDate = DateTime.Now.ToString() };
+            visitor = VisitorService.AddVisitor(visitor);
+
+            var top2 = VisitorService.LoadLatestNVisitors(2);
 
             top.ForEach(Console.WriteLine);
             Console.WriteLine("==========");

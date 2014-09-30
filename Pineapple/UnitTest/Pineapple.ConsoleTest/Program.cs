@@ -15,6 +15,7 @@ namespace Pineapple.ConsoleTest
         {
             ApplicationInitialService.RegisterContainer();
 
+
             //Core.ContainerTest.RegisterAssemblyTest();
             //Service.VisitorServiceTest.InjectionTest();
             Service.VisitorServiceTest.CacheInterceptorTest();
