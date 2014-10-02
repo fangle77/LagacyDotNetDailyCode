@@ -8,7 +8,7 @@ using Pineapple.Service;
 
 namespace Pineapple.WebSite.Controllers.Manager
 {
-    public class VisitorController : Controller
+    public class VisitorController : ManagerController
     {
         //
         // GET: /Visitor/

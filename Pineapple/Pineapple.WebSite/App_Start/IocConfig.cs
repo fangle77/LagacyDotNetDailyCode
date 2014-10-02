@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Pineapple.Core;
+using Pineapple.Service;
 using Microsoft.Practices.Unity;
 
 namespace Pineapple.WebSite.App_Start
@@ -12,8 +13,7 @@ namespace Pineapple.WebSite.App_Start
     {
         public static void RegisterTypes()
         {
-            Container.RegisterAssemblyInterface("Pineapple.Data", "Pineapple.Data.Sqlite");
-            Container.ResisterAssemblyType("Pineapple.Business", "Pineapple.Service");
+            ApplicationInitialService.RegisterContainer();
 
             Container.UnityContainer.RegisterType<IControllerActivator, ControllerActivator>()
                 .RegisterType<IDependencyResolver, UnityDependencyResolver>();
