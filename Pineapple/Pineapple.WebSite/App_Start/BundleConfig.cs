@@ -37,6 +37,13 @@ namespace Pineapple.WebSite.App_Start
             //            "~/Content/themes/base/jquery.ui.datepicker.css",
             //            "~/Content/themes/base/jquery.ui.progressbar.css",
             //            "~/Content/themes/base/jquery.ui.theme.css"));
+
+            bundles.Add(new StyleBundle("~/Content/bundles/bootstrap/css").Include(
+                "~/Content/bootstrap-3.2.0/css/bootstrap.min.css",
+                "~/Content/bootstrap-3.2.0/css/bootstrap-theme.min.css"));
+
+            bundles.Add(new ScriptBundle("~/Content/bundles/bootstrap/js").Include(
+                "~/Content/bootstrap-3.2.0/js/bootstrap.min.js"));
         }
     }
 }

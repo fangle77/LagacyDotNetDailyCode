@@ -142,6 +142,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-3.2.0\css\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-3.2.0\css\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap-3.2.0\css\bootstrap.css" />
+    <Content Include="Content\bootstrap-3.2.0\css\bootstrap.min.css" />
+    <Content Include="Content\bootstrap-3.2.0\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\bootstrap-3.2.0\js\bootstrap.js" />
+    <Content Include="Content\bootstrap-3.2.0\js\bootstrap.min.js" />
     <Content Include="Content\css\jquery-ui.1.11.1\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
     <Content Include="Content\css\jquery-ui.1.11.1\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
     <Content Include="Content\css\jquery-ui.1.11.1\images\ui-bg_flat_10_000000_40x100.png" />
@@ -164,6 +171,11 @@
     <Content Include="Content\css\jquery-ui.1.11.1\jquery-ui.theme.min.css" />
     <Content Include="Content\js\jquery-1.11.1.js" />
     <Content Include="Content\js\jquery-1.11.1.min.js" />
+    <Content Include="Content\bootstrap-3.2.0\css\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-3.2.0\css\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-3.2.0\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-3.2.0\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\bootstrap-3.2.0\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Content\js\jquery-1.11.1.intellisense.js" />
     <Content Include="Content\js\jquery-ui-1.11.1.js" />
     <Content Include="Content\js\jquery-ui-1.11.1.min.js" />
@@ -195,6 +207,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\bundles\bootstrap\css\" />
+    <Folder Include="Content\bundles\bootstrap\js\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Pineapple.Core\Pineapple.Core.csproj">
