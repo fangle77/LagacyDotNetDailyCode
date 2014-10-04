@@ -1,11 +1,10 @@
 ﻿@using Pineapple.Model
-@model List<Pineapple.Model.Visitor>
+@model System.Collections.Generic.List<Pineapple.Model.Visitor>
 
 @{
     ViewBag.Title = "title";
     Layout = "~/Views/Manager/_Layout.cshtml";
 }
-
 <h2>title</h2>
 <ul>
     @foreach (Visitor visitor in ViewBag.Visitors)

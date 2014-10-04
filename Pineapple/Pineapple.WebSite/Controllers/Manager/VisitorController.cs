@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls.WebParts;
 using Microsoft.Practices.Unity;
 using Pineapple.Service;
 
@@ -18,7 +19,7 @@ namespace Pineapple.WebSite.Controllers.Manager
         public ActionResult Index()
         {
             ViewBag.Visitors = VisitorService.LoadLatestNVisitors(10);
-
+            
             return View("~/Views/Manager/Visitor/Index.cshtml");
         }
 
