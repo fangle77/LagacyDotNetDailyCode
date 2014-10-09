@@ -13,6 +13,8 @@ namespace Pineapple.Service
         [Dependency]
         public MappingManager MappingManager { protected get; set; }
 
+        #region Save
+
         private bool SaveMapping<T>(int key, int value) where T : Mapping<int, int>, new()
         {
             var mapping = new T();
@@ -45,5 +47,43 @@ namespace Pineapple.Service
         {
             return SaveMapping<CategoryTemplateMapping>(categoryId, templateId);
         }
+
+        #endregion
+
+        #region Delete
+
+        private bool DeleteMapping<T>(int key, int value) where T : Mapping<int, int>, new()
+        {
+            var mapping = new T();
+            mapping.AddItem(new MappingItem<int, int>(key, value));
+            return MappingManager.DeleteMapping(mapping);
+        }
+
+        public bool DeleteCatalogCategoryMapping(int catalogId, int categoryId)
+        {
+            return DeleteMapping<CatalogCategoryMapping>(catalogId, categoryId);
+        }
+
+        public bool DeleteCatalogNavigationMapping(int catalogId, int navigationId)
+        {
+            return DeleteMapping<CatalogNavigationMapping>(catalogId, navigationId);
+        }
+
+        public bool DeleteCategoryNavigationMapping(int categoryId, int navigationId)
+        {
+            return DeleteMapping<CategoryNavigationMapping>(categoryId, navigationId);
+        }
+
+        public bool DeleteCategoryItemMapping(int categoryId, int categoryItemId)
+        {
+            return DeleteMapping<CategoryItemMapping>(categoryId, categoryItemId);
+        }
+
+        public bool DeleteCategoryTemplateMapping(int categoryId, int templateId)
+        {
+            return DeleteMapping<CategoryTemplateMapping>(categoryId, templateId);
+        }
+
+        #endregion
     }
 }

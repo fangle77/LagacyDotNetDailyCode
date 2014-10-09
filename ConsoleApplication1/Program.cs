@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Util;
+using System.Data;
 
 
 namespace ConsoleApplication1
@@ -21,7 +22,15 @@ namespace ConsoleApplication1
         {
             RepeatRun(() =>
             {
-                ThreadStaticTest.RunTest();
+                DataTable dt = new DataTable();
+                dt.Columns.Add("a");
+                var dr = dt.NewRow();
+                dr[0] = 1;
+                dt.Rows.Add(dr);
+
+                Console.WriteLine(dr["a"]);
+                Console.WriteLine(dr.Table.Columns["b"]==null);
+
             });
         }
 

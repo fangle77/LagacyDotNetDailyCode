@@ -7,11 +7,10 @@ namespace Pineapple.Core.Cache
 {
     public interface ICache
     {
-        bool Contain(string key);
-        object Get(string key);
-        void Add(string key, object value);
-        void Remove(string key);
+        bool Contain(string group, string key);
+        object Get(string group, string key);
+        void Add(string group, string key, object value);
+        void Remove(string group, string key);
         void Clear();
-        List<string> CacheKeys { get; } 
     }
 }

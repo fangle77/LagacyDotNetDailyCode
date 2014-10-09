@@ -13,14 +13,23 @@ namespace Pineapple.ConsoleTest
     {
         static void Main(string[] args)
         {
-            ApplicationInitialService.RegisterContainer();
+            try
+            {
+                ApplicationInitialService.RegisterContainer();
 
 
-            //Core.ContainerTest.RegisterAssemblyTest();
-            //Service.VisitorServiceTest.InjectionTest();
-            Service.VisitorServiceTest.CacheInterceptorTest();
+                //Core.ContainerTest.RegisterAssemblyTest();
+                //Service.VisitorServiceTest.InjectionTest();
+                Service.VisitorServiceTest.CacheInterceptorTest();
 
-            Console.WriteLine("\r\nFinish!");
+                Console.WriteLine("\r\nFinish!");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
+            }
+
             Console.Read();
         }
     }

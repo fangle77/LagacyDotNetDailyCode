@@ -9,29 +9,28 @@ namespace Pineapple.Core.Cache
 
         public IMethodReturn Invoke(IMethodInvocation input, GetNextHandlerDelegate getNext)
         {
-            string cacheKey = GetCacheKey(input);
-            if (cacheKey == null) return getNext()(input, getNext);
+            var cacheAttr = GetAttribute(input);
+            if (cacheAttr == null) return getNext()(input, getNext);
 
-            if (localCache.Contain(cacheKey))
+            if (localCache.Contain(cacheAttr.Group, cacheAttr.CacheKey))
             {
-                return input.CreateMethodReturn(localCache.Get(cacheKey));
+                return input.CreateMethodReturn(localCache.Get(cacheAttr.Group, cacheAttr.CacheKey));
             }
             else
             {
                 var r = getNext()(input, getNext);
-                localCache.Add(cacheKey, r.ReturnValue);
+                localCache.Add(cacheAttr.Group, cacheAttr.CacheKey, r.ReturnValue);
                 return r;
             }
         }
 
-        private string GetCacheKey(IMethodInvocation input)
+        public int Order { get; set; }
+
+        private CacheAttribute GetAttribute(IMethodInvocation input)
         {
             var attr = Attribute.GetCustomAttributes(input.MethodBase, typeof(CacheAttribute));
             if (attr.Length == 0) return null;
-            var cacheAttribute = attr[0] as CacheAttribute;
-            return cacheAttribute != null ? cacheAttribute.CacheKey : null;
+            return attr[0] as CacheAttribute;
         }
-
-        public int Order { get; set; }
     }
 }

@@ -66,7 +66,7 @@ namespace Pineapple.Core
                 {
                     if (intersTypes.ContainsKey(it.FullName))
                     {
-                        unityContainer.RegisterType(intersTypes[it.FullName], type, new ContainerControlledLifetimeManager());
+                        unityContainer.RegisterType(intersTypes[it.FullName], type, new ContainerControlledLifetimeManager(), new InjectionMember[0]);
                     }
                 }
             }
@@ -119,8 +119,12 @@ namespace Pineapple.Core
 
         public static bool CanResolve(Type type)
         {
-            return (type.IsClass && !type.IsAbstract)
-                   || unityContainer.IsRegistered(type);
+            return type.IsClass || unityContainer.IsRegistered(type);
+        }
+
+        public static bool CanResolve(Type type, string nameToCheck)
+        {
+            return type.IsClass || unityContainer.IsRegistered(type, nameToCheck);
         }
 
         public static void AddVirtualMethodInterceptor(Type type)

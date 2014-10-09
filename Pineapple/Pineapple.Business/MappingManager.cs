@@ -17,5 +17,10 @@ namespace Pineapple.Business
         {
             return MappingData.SaveMapping(mapping);
         }
+
+        public bool DeleteMapping<TKey, TValue>(Mapping<TKey, TValue> mapping)
+        {
+            return MappingData.DeleteMapping(mapping);
+        }
     }
 }

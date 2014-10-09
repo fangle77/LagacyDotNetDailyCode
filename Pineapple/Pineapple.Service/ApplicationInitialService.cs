@@ -10,12 +10,19 @@ namespace Pineapple.Service
 {
     public class ApplicationInitialService
     {
-        private static readonly string DataDll = "Pineapple.Data";
-        private static readonly string DataSqliteDll = "Pineapple.Data.Sqlite";
-        private static readonly string BusinessDll = "Pineapple.Business";
-        private static readonly string ServiceDll = "Pineapple.Service";
+        private ApplicationInitialService(){}
+
+        private readonly string DataDll = "Pineapple.Data";
+        private readonly string DataSqliteDll = "Pineapple.Data.Sqlite";
+        private readonly string BusinessDll = "Pineapple.Business";
+        private readonly string ServiceDll = "Pineapple.Service";
 
         public static void RegisterContainer()
+        {
+            new ApplicationInitialService().InnerRegisterContainer();
+        }
+
+        private void InnerRegisterContainer()
         {
             Container.RegisterAssemblyInterface(DataDll, DataSqliteDll);
             Container.ResisterAssemblyType(BusinessDll, ServiceDll);
@@ -23,7 +30,7 @@ namespace Pineapple.Service
             RegisterCache();
         }
 
-        private static void RegisterCache()
+        private void RegisterCache()
         {
             var matchType = new Func<Type, bool>(type => type.GetMethods().Any(methodInfo => methodInfo.GetCustomAttributes(typeof(CacheAttribute), true).Length > 0));
 
