@@ -15,7 +15,7 @@ namespace Pineapple.ConsoleTest
         {
             try
             {
-                ApplicationInitialService.RegisterContainer();
+                ApplicationInitialService.Init();
 
 
                 //Core.ContainerTest.RegisterAssemblyTest();

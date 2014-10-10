@@ -10,20 +10,22 @@ namespace Pineapple.Service
 {
     public class ApplicationInitialService
     {
-        private ApplicationInitialService(){}
+        private ApplicationInitialService() { }
 
         private readonly string DataDll = "Pineapple.Data";
         private readonly string DataSqliteDll = "Pineapple.Data.Sqlite";
         private readonly string BusinessDll = "Pineapple.Business";
         private readonly string ServiceDll = "Pineapple.Service";
 
-        public static void RegisterContainer()
+        public static void Init()
         {
             new ApplicationInitialService().InnerRegisterContainer();
         }
 
         private void InnerRegisterContainer()
         {
+            CoreInitializer.Init();
+
             Container.RegisterAssemblyInterface(DataDll, DataSqliteDll);
             Container.ResisterAssemblyType(BusinessDll, ServiceDll);
 

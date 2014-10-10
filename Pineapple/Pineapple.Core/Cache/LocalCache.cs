@@ -40,15 +40,7 @@ namespace Pineapple.Core.Cache
             var cacheManager = GetCacheManagerByGroupName(group);
             if (cacheManager != null)
             {
-                LocalCachePolicy policy = GetCachePolicy(group);
-                if (policy != null && policy.AbsoluteExpirationTimeInSecond > 0)
-                {
-                    cacheManager.Add(key, value, CacheItemPriority.Normal, null, new AbsoluteTime(DateTime.Now.AddSeconds(policy.AbsoluteExpirationTimeInSecond)));
-                }
-                else
-                {
-                    cacheManager.Add(key, value);
-                }
+                cacheManager.Add(key, value);
             }
         }
 
@@ -80,15 +72,39 @@ namespace Pineapple.Core.Cache
             {
                 if (cacheManagers.ContainsKey(groupName))
                     return cacheManagers[groupName];
-                
-                var cfg = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                var localSections = cfg.Sections.Cast<ConfigurationSection>()
-                   .Where(s => s.SectionInformation.IsDeclared && s.SectionInformation.SectionName.Equals(CacheManagerSettings.SectionName, StringComparison.OrdinalIgnoreCase));
-                
+
+                InitCacheManagers();
+
+                if (cacheManagers.ContainsKey(groupName))
+                    return cacheManagers[groupName];
+
                 var cacheManager = EnterpriseLibraryContainer.Current.GetInstance<ICacheManager>();
                 if (cacheManager != null)
                     cacheManagers.Add(groupName, cacheManager);
                 return cacheManager;
+            }
+        }
+
+        private void InitCacheManagers()
+        {
+            if (cacheManagers.Count > 0) return;
+            var cfg = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var localSections = cfg.Sections.Cast<ConfigurationSection>()
+               .Where(s => s.SectionInformation.IsDeclared && s.SectionInformation.SectionName.Equals(CacheManagerSettings.SectionName, StringComparison.OrdinalIgnoreCase));
+
+            var section = ConfigurationManager.GetSection(CacheManagerSettings.SectionName) as CacheManagerSettings;
+            if (section == null) throw new ConfigurationException("Read section" + CacheManagerSettings.SectionName + " failed!");
+
+            foreach (var managerConfig in section.CacheManagers)
+            {
+                if (cacheManagers.ContainsKey(managerConfig.Name) == false)
+                {
+                    var cacheManager = EnterpriseLibraryContainer.Current.GetInstance<ICacheManager>(managerConfig.Name);
+                    if (cacheManager != null)
+                    {
+                        cacheManagers.Add(managerConfig.Name, cacheManager);
+                    }
+                }
             }
         }
     }

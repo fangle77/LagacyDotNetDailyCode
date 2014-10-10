@@ -78,9 +78,13 @@
   <ItemGroup>
     <Compile Include="Cache\CacheAttribute.cs" />
     <Compile Include="Cache\CacheCallHandler.cs" />
+    <Compile Include="Cache\CacheKeyAttribute.cs" />
+    <Compile Include="Cache\CacheMode.cs" />
+    <Compile Include="Cache\CacheType.cs" />
     <Compile Include="Cache\ICache.cs" />
     <Compile Include="Cache\LocalCache.cs" />
     <Compile Include="Container.cs" />
+    <Compile Include="CoreInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +93,7 @@
   <ItemGroup>
     <None Include="CoreConfig\CacheSetting.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
