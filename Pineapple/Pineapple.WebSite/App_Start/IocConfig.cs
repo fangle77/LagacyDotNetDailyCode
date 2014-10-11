@@ -13,7 +13,7 @@ namespace Pineapple.WebSite.App_Start
     {
         public static void RegisterTypes()
         {
-            ApplicationInitialService.RegisterContainer();
+            ApplicationInitialService.Init();
 
             Container.UnityContainer.RegisterType<IControllerActivator, ControllerActivator>()
                 .RegisterType<IDependencyResolver, UnityDependencyResolver>();

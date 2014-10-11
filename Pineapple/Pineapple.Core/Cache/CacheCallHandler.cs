@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
 using System.Text;
 using Microsoft.Practices.Unity.InterceptionExtension;
 
@@ -12,15 +14,16 @@ namespace Pineapple.Core.Cache
         {
             var cacheAttr = GetAttribute(input);
             if (cacheAttr == null) return getNext()(input, getNext);
+            string cacheKey = GetCacheKey(cacheAttr, input);
 
-            if (localCache.Contain(cacheAttr.Group, cacheAttr.CacheKey))
+            if (localCache.Contain(cacheAttr.Group, cacheKey))
             {
-                return input.CreateMethodReturn(localCache.Get(cacheAttr.Group, cacheAttr.CacheKey));
+                return input.CreateMethodReturn(localCache.Get(cacheAttr.Group, cacheKey));
             }
             else
             {
                 var r = getNext()(input, getNext);
-                localCache.Add(cacheAttr.Group, cacheAttr.CacheKey, r.ReturnValue);
+                localCache.Add(cacheAttr.Group, cacheKey, r.ReturnValue);
                 return r;
             }
         }
@@ -41,14 +44,33 @@ namespace Pineapple.Core.Cache
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("{0}", cacheAttribute.CacheKey);
 
-            int count = input.Inputs.Count;
-            for (int i = 0; i < count; i++)
+            var parameters = input.MethodBase.GetParameters();
+            int index = -1;
+            foreach (ParameterInfo parameterInfo in parameters)
             {
-                var param = input.Inputs.GetParameterInfo(i);
-                var keyAttrs = Attribute.GetCustomAttributes(param, typeof(CacheKeyAttribute));
-                if (keyAttrs.Length == 0) continue;
+                index++;
 
-                sb.AppendFormat("{0}:{1}",param.Name,param.MetadataToken);
+                var keyAttrs = Attribute.GetCustomAttribute(parameterInfo, typeof(CacheKeyAttribute));
+                if (keyAttrs == null) continue;
+
+                PropertyInfo[] propertyInfos =
+                    parameterInfo.ParameterType.GetProperties(BindingFlags.Public | BindingFlags.Instance |
+                                                      BindingFlags.GetProperty);
+
+                if (propertyInfos.Length == 0)
+                {
+                    sb.AppendFormat(";{0}={1}", parameterInfo.Name, input.Arguments[index]);
+                }
+                else if (propertyInfos.Length > 0)
+                {
+                    foreach (PropertyInfo property in propertyInfos)
+                    {
+                        if (property.GetCustomAttributes(typeof(CacheKeyAttribute), false).Length > 0)
+                        {
+                            sb.AppendFormat(";{0}={1}", property.Name, property.GetValue(input.Arguments[index], null));
+                        }
+                    }
+                }
             }
             return sb.ToString();
         }

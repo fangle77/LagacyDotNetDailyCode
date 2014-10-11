@@ -19,8 +19,7 @@ namespace Pineapple.WebSite.Controllers.Manager
         public ActionResult Index()
         {
             ViewBag.Visitors = VisitorService.LoadLatestNVisitors(10);
-            
-            return View("~/Views/Manager/Visitor/Index.cshtml");
+            return View("Visitor/Index.cshtml");
         }
 
         ////

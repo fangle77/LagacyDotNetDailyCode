@@ -11,7 +11,6 @@ namespace Pineapple.Data
     {
         Visitor AddVisitor(Visitor visitor);
 
-        [Cache("Visitor", "LatestN")]
         List<Visitor> LoadLatestNVisitors(int latestN);
 
         long GetTotalVisitors();

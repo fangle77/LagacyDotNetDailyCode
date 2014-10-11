@@ -88,9 +88,6 @@ namespace Pineapple.Core.Cache
         private void InitCacheManagers()
         {
             if (cacheManagers.Count > 0) return;
-            var cfg = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            var localSections = cfg.Sections.Cast<ConfigurationSection>()
-               .Where(s => s.SectionInformation.IsDeclared && s.SectionInformation.SectionName.Equals(CacheManagerSettings.SectionName, StringComparison.OrdinalIgnoreCase));
 
             var section = ConfigurationManager.GetSection(CacheManagerSettings.SectionName) as CacheManagerSettings;
             if (section == null) throw new ConfigurationException("Read section" + CacheManagerSettings.SectionName + " failed!");

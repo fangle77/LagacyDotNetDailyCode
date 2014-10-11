@@ -42,6 +42,10 @@ namespace Pineapple.ConsoleTest.Service
             top.ForEach(Console.WriteLine);
             Console.WriteLine("==========");
             top2.ForEach(Console.WriteLine);
+            Console.WriteLine("==========");
+            VisitorService.LoadLatestNVisitors(3).ForEach(Console.WriteLine);
+            Console.WriteLine("==========");
+            VisitorService.LoadLatestNVisitors(3).ForEach(Console.WriteLine);
         }
     }
 }

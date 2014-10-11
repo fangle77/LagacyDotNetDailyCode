@@ -31,6 +31,6 @@ namespace Pineapple.Core.Cache
 
         public CacheType CacheType { get; private set; }
 
-        public string CacheKey { get { return Group + Name; } }
+        public string CacheKey { get { return Group + ";" + Name; } }
     }
 }

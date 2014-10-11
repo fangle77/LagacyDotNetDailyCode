@@ -5,3 +5,5 @@ _ReSharper*/
 _UpgradeReport*/
 /Pineapple/UpgradeLog.htm
 /Pineapple/UpgradeLog.XML
+/Pineapple/Pineapple.WebSite/Properties/PublishProfiles/*.pubxml
+/Pineapple/Pineapple.WebSite/Properties/PublishProfiles/Pineaplle.pubxml.user
