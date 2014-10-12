@@ -86,10 +86,9 @@
     <Compile Include="Container.cs" />
     <Compile Include="CoreInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\StringExtention.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Util\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="CoreConfig\CacheSetting.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

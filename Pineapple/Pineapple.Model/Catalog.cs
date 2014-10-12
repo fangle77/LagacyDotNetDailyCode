@@ -9,7 +9,7 @@
         public string Description { get; set; }
         public string Icon { get; set; }
         public string Logo { get; set; }
-        public string CorpyRight { get; set; }
+        public string CopyRight { get; set; }
         public string ICP { get; set; }
         public string Status { get; set; }
     }

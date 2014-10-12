@@ -134,6 +134,7 @@
     <Compile Include="App_Start\IocConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Manager\CatalogController.cs" />
     <Compile Include="Controllers\Manager\ManagerController.cs" />
     <Compile Include="Controllers\Manager\VisitorController.cs" />
     <Compile Include="Global.asax.cs">
@@ -209,6 +210,8 @@
     <Content Include="Views\Manager\_Layout.cshtml" />
     <None Include="Properties\PublishProfiles\Pineaplle.pubxml" />
     <Content Include="Views\Manager\Catalog\Index.cshtml" />
+    <Content Include="Views\Manager\Catalog\Detail.cshtml" />
+    <Content Include="Views\Manager\Catalog\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

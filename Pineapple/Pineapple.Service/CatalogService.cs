@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using Microsoft.Practices.Unity;
 using Pineapple.Business;
 using Pineapple.Model;
 using Pineapple.View;
+using Pineapple.Core.Util;
 
 namespace Pineapple.Service
 {
@@ -23,6 +25,20 @@ namespace Pineapple.Service
         public virtual Catalog SaveCatalog(Catalog catalog)
         {
             return CatalogManager.SaveCatalog(catalog);
+        }
+
+        public virtual Catalog SaveCatalog(NameValueCollection collection)
+        {
+            Catalog catalog = new Catalog();
+            catalog.CatalogId = collection["CatalogId"].ToInt();
+            catalog.CatalogCode = collection["CatalogCode"];
+            catalog.CatalogName = collection["CatalogName"];
+            catalog.CopyRight = collection["Copyright"];
+            catalog.Description = collection["Description"];
+            catalog.ICP = collection["ICP"];
+            catalog.Icon = collection["Icon"];
+            catalog.Logo = collection["Logo"];
+            return SaveCatalog(catalog);
         }
 
         public virtual List<Catalog> CatalogLoadAll()
