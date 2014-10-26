@@ -18,6 +18,8 @@ namespace Pineapple.WebSite.App_Start
             Container.UnityContainer.RegisterType<IControllerActivator, ControllerActivator>()
                 .RegisterType<IDependencyResolver, UnityDependencyResolver>();
 
+            Container.RegisterType<ModelMetadataProvider, DataAnnotationsModelMetadataProvider>();
+
             DependencyResolver.SetResolver(new UnityDependencyResolver());
         }
     }

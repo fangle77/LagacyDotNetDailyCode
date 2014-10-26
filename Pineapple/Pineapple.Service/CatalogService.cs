@@ -50,7 +50,7 @@ namespace Pineapple.Service
         {
             CatalogView view = new CatalogView();
             view.Catalog = CatalogManager.GetCatalogById(catalogId);
-            if (view.Catalog == null) return null;
+            if (view.Catalog == null) return view;
 
             view.Categories = CategoryManager.LoadCategoriesByCatalogId(catalogId);
             view.Navigations = NavigationManager.LoadNavigationsByCatalogId(catalogId);

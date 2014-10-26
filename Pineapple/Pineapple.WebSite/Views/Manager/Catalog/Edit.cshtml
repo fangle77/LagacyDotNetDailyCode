@@ -1,55 +1,57 @@
 ﻿@{
-    var catalog = @ViewBag.Catalog;
-    var action = catalog == null ? "/Manager/Catalog/Create" : "/Manager/Catalog/Edit";
-    var catalogId = catalog == null? "": catalog.CatalogId.ToString();
+    var catalogView = @ViewBag.CatalogView;
+    var catalog = catalogView.Catalog;
+    var action = catalogView.IsEmpty ? "/Manager/Catalog/Create" : "/Manager/Catalog/Edit/" + catalog.CatalogId;
+    var catalogId = catalogView.IsEmpty ? "" : catalog.CatalogId.ToString();
 }
 <form id="form1" class="form-horizontal" role="form"  action="@action" method="post">
     <div class="form-group">
         <label class="col-sm-2 control-label">CatalogId:</label>
         <div class="col-sm-10">
             <span>@catalogId</span>
+            <input type="hidden" name="CatalogId" value="@catalogId"/>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">CatalogCode:</label>
         <div class="col-sm-10">
-            <input type="text" class="col-sm-10 form-control" name="CatalogCode" placeholder="input Catalog Code..." />
+            <input type="text" class="col-sm-10 form-control" name="CatalogCode" value="@catalog.CatalogCode" placeholder="input Catalog Code..." />
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">CatalogName:</label>
         <div class="col-sm-10">
-            <input type="text" class="col-sm-10 form-control" name="CatalogName" placeholder="input Catalog Name..." />
+            <input type="text" class="col-sm-10 form-control" name="CatalogName" value="@catalog.CatalogName"  placeholder="input Catalog Name..." />
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">Copyright:</label>
         <div class="col-sm-10">
-            <input type="text" class="col-sm-10 form-control" name="Copyright" placeholder="input Copyright..." />
+            <input type="text" class="col-sm-10 form-control" name="CopyRight" value="@catalog.CopyRight"  placeholder="input Copyright..." />
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">Description:</label>
         <div class="col-sm-10">
-            <textarea rows="5" cols="" class="col-sm-10 form-control" name="Description" placeholder="input Description..."></textarea>
+            <textarea rows="5" cols="" class="col-sm-10 form-control" name="Description" placeholder="input Description...">@catalog.Description</textarea>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">ICP:</label>
         <div class="col-sm-10">
-            <input type="text" class="col-sm-10 form-control" name="ICP" placeholder="input ICP..." />
+            <input type="text" class="col-sm-10 form-control" name="ICP" value="@catalog.ICP"  placeholder="input ICP..." />
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">Icon:</label>
         <div class="col-sm-10">
-            <input type="text" class="col-sm-10 form-control" name="Icon" placeholder="input Icon..." />
+            <input type="text" class="col-sm-10 form-control" name="Icon" value="@catalog.Icon"  placeholder="input Icon..." />
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">Logo:</label>
         <div class="col-sm-10">
-            <input type="text" class="col-sm-10 form-control" name="Logo" placeholder="input Logo..." />
+            <input type="text" class="col-sm-10 form-control" name="Logo" value="@catalog.Logo"  placeholder="input Logo..." />
         </div>
     </div>
     <div class="form-group">

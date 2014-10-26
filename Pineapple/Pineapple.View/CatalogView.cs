@@ -8,6 +8,13 @@ namespace Pineapple.View
 {
     public class CatalogView
     {
+        public static CatalogView EmptyView
+        {
+            get { return new CatalogView() { Catalog = new Catalog(), IsEmpty = true }; }
+        }
+
+        public bool IsEmpty { get; set; }
+
         public Catalog Catalog { get; set; }
 
         public List<Category> Categories { get; set; }

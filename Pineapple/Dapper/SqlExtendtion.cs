@@ -45,10 +45,10 @@ namespace Dapper
 
                 if (propertyInfo.GetValue(model, BindingFlags.Default, null, null, null) == null) continue;
 
-                sql.AppendFormat("{0} = @{0}", propertyInfo.Name);
+                sql.AppendFormat("{0} = @{0}, ", propertyInfo.Name);
             }
-
-            sql.AppendFormat("where {0} = @{0}; ", keyField);
+            sql = sql.Remove(sql.Length - 2, 2);
+            sql.AppendFormat(" where {0} = @{0}; ", keyField);
             return sql.ToString();
         }
 

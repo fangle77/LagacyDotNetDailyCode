@@ -102,6 +102,11 @@ namespace Pineapple.Core
             }
         }
 
+        public static void RegisterType<TFrom, TTo>() where TTo : TFrom
+        {
+            unityContainer.RegisterType<TFrom, TTo>(new ContainerControlledLifetimeManager());
+        }
+
         public static T Resolve<T>()
         {
             return unityContainer.Resolve<T>();

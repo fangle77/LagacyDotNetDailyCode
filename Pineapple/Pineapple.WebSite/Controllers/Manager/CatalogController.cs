@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Microsoft.Practices.Unity;
 using Pineapple.Service;
 using Pineapple.Model;
+using Pineapple.View;
 
 namespace Pineapple.WebSite.Controllers.Manager
 {
@@ -44,6 +45,7 @@ namespace Pineapple.WebSite.Controllers.Manager
 
         public ActionResult Create()
         {
+            ViewBag.CatalogView = CatalogView.EmptyView;
             ViewBag.Title = "Create New Catalog";
             return View("Edit.cshtml");
         }
@@ -72,7 +74,7 @@ namespace Pineapple.WebSite.Controllers.Manager
         public ActionResult Edit(int id)
         {
             ViewBag.Title = "Edit Catalog";
-            ViewBag.Catalog = CatalogService.GetCatalogById(id);
+            ViewBag.CatalogView = CatalogService.GetCatalogById(id);
             return View("Edit.cshtml");
         }
 
@@ -89,8 +91,7 @@ namespace Pineapple.WebSite.Controllers.Manager
             }
             catch
             {
-                ViewBag.Title = "Edit Catalog";
-                return View("Edit.cshtml");
+                return RedirectToAction("Edit", 2);
             }
         }
 
