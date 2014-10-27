@@ -33,6 +33,7 @@ namespace Pineapple.Service
             catalog.CatalogId = collection["CatalogId"].ToInt();
             catalog.CatalogCode = collection["CatalogCode"];
             catalog.CatalogName = collection["CatalogName"];
+            catalog.Title = collection["Title"];
             catalog.CopyRight = collection["Copyright"];
             catalog.Description = collection["Description"];
             catalog.ICP = collection["ICP"];

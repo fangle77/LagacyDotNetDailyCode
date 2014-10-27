@@ -68,6 +68,7 @@
     <Compile Include="ApplicationInitialService.cs" />
     <Compile Include="CatalogService.cs" />
     <Compile Include="CategoryService.cs" />
+    <Compile Include="ManagerNavigationService.cs" />
     <Compile Include="MappingService.cs" />
     <Compile Include="NavigationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -212,6 +212,7 @@
     <Content Include="Views\Manager\Catalog\Index.cshtml" />
     <Content Include="Views\Manager\Catalog\Detail.cshtml" />
     <Content Include="Views\Manager\Catalog\Edit.cshtml" />
+    <Content Include="Views\Manager\LeftNavigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
+using Pineapple.Service;
+using Microsoft.Practices.Unity;
 
 namespace Pineapple.WebSite.Controllers.Manager
 {
     public abstract class ManagerController : Controller
     {
+        [Dependency]
+        public ManagerNavigationService ManagerNavigationService { protected get; set; }
+
         protected string Master { get { return "~/Views/Manager/_Layout.cshtml"; } }
 
         protected abstract string ManagerName
@@ -22,7 +27,13 @@ namespace Pineapple.WebSite.Controllers.Manager
 
         protected new ViewResult View(string viewName)
         {
+            BuildLeftNavigation();
             return base.View(AddManageBase(viewName), Master);
+        }
+
+        protected void BuildLeftNavigation()
+        {
+            ViewBag.Navigations = ManagerNavigationService.LoadManagerNavigatoin(ManagerName);
         }
     }
 }

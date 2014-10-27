@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="CatalogView.cs" />
     <Compile Include="CategoryView.cs" />
+    <Compile Include="ManagerNavigation.cs" />
     <Compile Include="NavigationView.cs" />
     <Compile Include="TemplateView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
