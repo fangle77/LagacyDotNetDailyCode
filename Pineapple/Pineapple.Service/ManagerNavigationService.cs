@@ -24,5 +24,20 @@ namespace Pineapple.Service
 
             return list;
         }
+
+        public List<BreadCrumb> BuildBreadCrumbs(string controller, string action)
+        {
+            var list = new List<BreadCrumb>();
+            list.Add(new BreadCrumb() { Text = "Overview", Link = "/Manager/Overview" });
+            if (!string.IsNullOrEmpty(controller) && !"Overview".Equals(controller, StringComparison.OrdinalIgnoreCase))
+            {
+                list.Add(new BreadCrumb() { Text = controller, Link = "/Manager/" + controller });
+            }
+            if (!string.IsNullOrEmpty(action) && !"Index".Equals(action, StringComparison.OrdinalIgnoreCase))
+            {
+                list.Add(new BreadCrumb() { Text = action, Link = string.Empty, Active = "active" });
+            }
+            return list;
+        }
     }
 }

@@ -28,12 +28,20 @@ namespace Pineapple.WebSite.Controllers.Manager
         protected new ViewResult View(string viewName)
         {
             BuildLeftNavigation();
+            BuildBreadCrumb();
             return base.View(AddManageBase(viewName), Master);
         }
 
         protected void BuildLeftNavigation()
         {
             ViewBag.Navigations = ManagerNavigationService.LoadManagerNavigatoin(ManagerName);
+        }
+
+        protected void BuildBreadCrumb()
+        {
+            string controller = (string)RouteData.Values["controller"];
+            string action = (string)RouteData.Values["action"];
+            ViewBag.BreadCrumbs = ManagerNavigationService.BuildBreadCrumbs(controller, action);
         }
     }
 }

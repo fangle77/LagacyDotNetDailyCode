@@ -1,0 +1,6 @@
+﻿<ol class="breadcrumb">
+    @foreach (var bread in ViewBag.BreadCrumbs)
+    {
+        <li><a href="@bread.Link" class="@bread.Active">@bread.Text</a></li>
+    }
+</ol>
