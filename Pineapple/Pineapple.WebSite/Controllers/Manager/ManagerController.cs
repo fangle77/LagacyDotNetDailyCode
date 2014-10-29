@@ -22,7 +22,7 @@ namespace Pineapple.WebSite.Controllers.Manager
 
         protected string AddManageBase(string viewName)
         {
-            return string.Format("~/Views/Manager/{0}{1}{2}", ManagerName, string.IsNullOrEmpty(ManagerName) ? string.Empty : "/", viewName);
+            return string.Format("~/Views/Manager/{0}{1}{2}.cshtml", ManagerName, string.IsNullOrEmpty(ManagerName) ? string.Empty : "/", viewName);
         }
 
         protected new ViewResult View(string viewName)

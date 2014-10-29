@@ -20,6 +20,11 @@ namespace Pineapple.Service
         [Dependency]
         public NavigationManager NavigationManager { protected get; set; }
 
+        public List<Category> LoadAllCategories()
+        {
+            return CategoryManager.LoadAllCategories();
+        }
+
         public virtual Category SaveCategory(Category category)
         {
             return CategoryManager.SaveCategory(category);
@@ -49,7 +54,7 @@ namespace Pineapple.Service
         {
             CategoryView view = new CategoryView();
             view.Category = CategoryManager.GetCategoryById(categoryId);
-            if (view.Category == null) return null;
+            if (view.Category == null) return CategoryView.EmptyView;
 
             view.Catalogs = CatalogManager.LoadCatalogByCategoryId(categoryId);
             view.Navigations = NavigationManager.LoadNavigationsByCategoryId(categoryId);

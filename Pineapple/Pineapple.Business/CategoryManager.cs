@@ -26,6 +26,11 @@ namespace Pineapple.Business
             return CategoryData.GetCategoryById(categoryId);
         }
 
+        public virtual List<Category> LoadAllCategories()
+        {
+            return CategoryData.LoaddAllCategories();
+        } 
+
         public virtual List<Category> LoadCategoriesByCatalogId(int catalogId)
         {
             return CategoryData.LoadCategoriesByCatalogId(catalogId);

@@ -135,6 +135,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Manager\CatalogController.cs" />
+    <Compile Include="Controllers\Manager\CategoryController.cs" />
     <Compile Include="Controllers\Manager\ManagerController.cs" />
     <Compile Include="Controllers\Manager\VisitorController.cs" />
     <Compile Include="Global.asax.cs">

@@ -18,5 +18,15 @@ namespace Pineapple.View
         public List<Navigation> Navigations { get; set; }
 
         public List<Template> Templates { get; set; }
+
+        public static CategoryView EmptyView
+        {
+            get
+            {
+                return new CategoryView() { Category = new Category(), IsEmpty = true };
+            }
+        }
+
+        public bool IsEmpty { get; set; }
     }
 }
