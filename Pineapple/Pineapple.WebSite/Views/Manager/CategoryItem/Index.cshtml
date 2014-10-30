@@ -11,8 +11,7 @@
             <th>Title</th>
             <th>SubTitle</th>
             <th>Time</th>
-            <th>DisplayText</th>
-            <th>Image</th>
+            <th>Content</th>
             <th>DisplayOrder</th>
             <th class="width-200">Opration</th>
         </tr>
@@ -25,12 +24,11 @@
             <th>@categoryItem.Title</th>
             <th>@categoryItem.SubTitle</th>
             <th>@categoryItem.Time</th>
-            <th>@categoryItem.DisplayText</th>
-            <th>@categoryItem.Image</th>
+            <th>@categoryItem.Content</th>
             <th>@categoryItem.DisplayOrder</th>
             <td>
-                <a href="/Manager/Category/Edit/@categoryItem.CategoryId" class="glyphicon glyphicon-edit">Edit</a>
-                <a href="/Manager/Category/Delete/@categoryItem.CategoryId" class="glyphicon glyphicon-minus-sign">Delete</a>
+                <a href="/Manager/CategoryItem/Edit/@categoryItem.CategoryItemId" class="glyphicon glyphicon-edit">Edit</a>
+                <a href="/Manager/CategoryItem/Delete/@categoryItem.CategoryItemId" class="glyphicon glyphicon-minus-sign">Delete</a>
             </td>
         </tr>
     }

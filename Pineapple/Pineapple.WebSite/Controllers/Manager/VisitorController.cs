@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls.WebParts;
 using Microsoft.Practices.Unity;
+using Pineapple.Model;
 using Pineapple.Service;
 
 namespace Pineapple.WebSite.Controllers.Manager
@@ -18,8 +19,9 @@ namespace Pineapple.WebSite.Controllers.Manager
 
         public ActionResult Index()
         {
+            VisitorService.AddVisitor(new Visitor() { VisitDate = DateTime.Now.ToString() });
             ViewBag.Visitors = VisitorService.LoadLatestNVisitors(10);
-            return View("Index.cshtml");
+            return View("Index");
         }
 
         ////

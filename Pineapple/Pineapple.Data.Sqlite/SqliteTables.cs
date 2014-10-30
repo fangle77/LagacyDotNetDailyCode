@@ -12,10 +12,13 @@ namespace Pineapple.Data.Sqlite
                 CatalogCode TEXT,
                 CatalogName TEXT,
                 Title       TEXT,
+                ContentType TEXT,
+                Keywords    TEXT,
                 Description TEXT,
                 Icon        TEXT,
                 Logo        TEXT,
-                CopyRight   TEXT,
+                CopyrightTime TEXT,
+                Copyright   TEXT,
                 ICP         TEXT,
                 Status      TEXT
             )";
@@ -25,23 +28,22 @@ namespace Pineapple.Data.Sqlite
             (
                 CategoryId      INTEGER primary key AUTOINCREMENT,
                 CategoryName    TEXT,
-                Description     TEXT,
-                ParentId        INTEGER,
-                DisplayOrder    INTEGER,
                 DisplayName     TEXT,
                 SubDisplayName  TEXT
+                Description     TEXT,
+                ParentId        INTEGER,
+                DisplayOrder    INTEGER
             )";
 
         private string CategoryItem =
             @"Create Table CategoryItem
             (
                 CategoryItemId  INTEGER primary key AUTOINCREMENT,
-                DisplayOrder    INTEGER,
                 Title           TEXT,
                 SubTitle        TEXT,
                 Time            TEXT,
-                DisplayText     TEXT,
-                Image           TEXT
+                Content         TEXT,
+                DisplayOrder    INTEGER
             )";
 
         private string Template =
@@ -56,11 +58,11 @@ namespace Pineapple.Data.Sqlite
             @"Create Table Navigation
             (
                 NavigationId    INTEGER primary key AUTOINCREMENT,
-                DisplayOrder    INTEGER,
                 NavigationName  TEXT,
                 DisplayText     TEXT,
                 SubText         TEXT,
-                ParentId        INTEGER
+                ParentId        INTEGER,
+                DisplayOrder    INTEGER
             )";
 
         #endregion

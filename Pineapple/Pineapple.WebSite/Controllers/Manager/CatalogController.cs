@@ -56,7 +56,9 @@ namespace Pineapple.WebSite.Controllers.Manager
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
-            CatalogService.SaveCatalog(collection);
+            var catalog = new Catalog();
+            TryUpdateModel(catalog);
+            CatalogService.SaveCatalog(catalog);
             return RedirectToAction("Index");
         }
 
@@ -67,7 +69,7 @@ namespace Pineapple.WebSite.Controllers.Manager
         {
             ViewBag.Title = "Edit Catalog";
             ViewBag.CatalogView = CatalogService.GetCatalogById(id);
-            return View("Edit.cshtml");
+            return View("Edit");
         }
 
         //
@@ -76,7 +78,9 @@ namespace Pineapple.WebSite.Controllers.Manager
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            CatalogService.SaveCatalog(collection);
+            var catalog = new Catalog();
+            TryUpdateModel(catalog);
+            CatalogService.SaveCatalog(catalog);
             return RedirectToAction("Index");
         }
 

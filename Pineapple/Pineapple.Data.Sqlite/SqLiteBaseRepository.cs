@@ -21,7 +21,7 @@ namespace Pineapple.Data.Sqlite
 
         internal static SQLiteConnection DbReadOnlyConnection()
         {
-            var cnn = new SQLiteConnection(string.Format("Data Source={0};Pooling=True;Read Only=True;", DbFile));
+            var cnn = new SQLiteConnection(string.Format("Data Source={0};Pooling=True;", DbFile));
             cnn.Open();
             return cnn;
         }

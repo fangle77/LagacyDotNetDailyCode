@@ -27,21 +27,6 @@ namespace Pineapple.Service
             return CatalogManager.SaveCatalog(catalog);
         }
 
-        public virtual Catalog SaveCatalog(NameValueCollection collection)
-        {
-            Catalog catalog = new Catalog();
-            catalog.CatalogId = collection["CatalogId"].ToInt();
-            catalog.CatalogCode = collection["CatalogCode"];
-            catalog.CatalogName = collection["CatalogName"];
-            catalog.Title = collection["Title"];
-            catalog.CopyRight = collection["Copyright"];
-            catalog.Description = collection["Description"];
-            catalog.ICP = collection["ICP"];
-            catalog.Icon = collection["Icon"];
-            catalog.Logo = collection["Logo"];
-            return SaveCatalog(catalog);
-        }
-
         public virtual List<Catalog> CatalogLoadAll()
         {
             return CatalogManager.CatalogLoadAll();

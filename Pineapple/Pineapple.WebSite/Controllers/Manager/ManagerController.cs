@@ -8,6 +8,7 @@ using Microsoft.Practices.Unity;
 
 namespace Pineapple.WebSite.Controllers.Manager
 {
+    [ValidateInput(false)]
     public abstract class ManagerController : Controller
     {
         [Dependency]
