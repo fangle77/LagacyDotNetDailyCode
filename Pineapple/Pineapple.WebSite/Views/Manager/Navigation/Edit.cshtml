@@ -1,0 +1,50 @@
+﻿@{
+    var TemplateView = @ViewBag.NavigationView;
+    var navigation = navigationView.Navigation;
+    var action = navigationView.IsEmpty ? "/Manager/Navigation/Create" : "/Manager/Navigation/Edit/" + navigation.NavigationId;
+    var navigationId = navigationView.IsEmpty ? "" : navigation.NavigationId.ToString();
+}
+<form id="form1" class="form-horizontal" role="form"  action="@action" method="post">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">NavigationId:</label>
+        <div class="col-sm-10">
+            <span>@navigationId</span>
+            <input type="hidden" name="NavigationId" value="@navigationId"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">NavigationName:</label>
+        <div class="col-sm-10">
+            <input type="text" class="col-sm-10 form-control" name="NavigationName" value="@navigation.NavigationName" placeholder="input Navigation Name..." />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">DisplayText:</label>
+        <div class="col-sm-10">
+            <input type="text" class="col-sm-10 form-control" name="DisplayText" value="@navigation.DisplayText"  placeholder="input Display Text..." />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">SubText:</label>
+        <div class="col-sm-10">
+            <input type="text" class="col-sm-10 form-control" name="SubText" value="@navigation.SubText"  placeholder="input SubText..." />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">ParentId:</label>
+        <div class="col-sm-10">
+            <input type="text" class="col-sm-10 form-control" name="ParentId" value="@navigation.ParentId"  placeholder="input ParentId..." />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">DisplayOrder:</label>
+        <div class="col-sm-10">
+            <input type="text" class="col-sm-10 form-control" name="DisplayOrder" value="@navigation.DisplayOrder"  placeholder="input DisplayOrder..." />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </div>
+</form>

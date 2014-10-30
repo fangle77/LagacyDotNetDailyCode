@@ -24,6 +24,11 @@ namespace Pineapple.Service
         {
             return NavigationManager.SaveNavigation(navigation);
         }
+        
+        public List<Navigation> LoadAllNavigations()
+        {
+            return NavigationManager.LoadAllNavigations();
+        }
 
         public bool DeleteNavigation(int navigationId)
         {

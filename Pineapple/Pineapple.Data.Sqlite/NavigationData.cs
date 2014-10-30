@@ -37,6 +37,14 @@ namespace Pineapple.Data.Sqlite
                 return cnn.Query<Navigation>(typeof(Navigation).GetSelectSql("NavigationId=@NavigationId"), new { NavigationId = navigationId }).FirstOrDefault();
             }
         }
+        
+        public List<Navigation> LoadAllNavigations()
+        {
+        	using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            {
+                return cnn.Query<Navigation>(@"select n.* from Navigation as n ").ToList();
+            }
+        }
 
         public List<Navigation> LoadNavigationByCatalogId(int catalogId)
         {

@@ -14,7 +14,5 @@ namespace Pineapple.Model
         public int? DisplayOrder { get; set; }
         public string DisplayName { get; set; }
         public string SubDisplayName { get; set; }
-
-        public List<CategoryItem> CategoryItems { get; set; }
     }
 }

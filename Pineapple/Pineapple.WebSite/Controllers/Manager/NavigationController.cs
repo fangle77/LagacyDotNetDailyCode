@@ -10,82 +10,84 @@ using Pineapple.Service;
 
 namespace Pineapple.WebSite.Controllers.Manager
 {
-    public class CategoryController : ManagerController
+    public class NavigationController : ManagerController
     {
         [Dependency]
-        public CategoryService CategoryService { protected get; set; }
+        public NavigationService NavigationService { protected get; set; }
 
         protected override string ManagerName
         {
-            get { return "Category"; }
+            get { return "Navigation"; }
         }
 
         //
-        // GET: /Category/
+        // GET: /Navigation/
 
         public ActionResult Index()
         {
-            ViewBag.Categorys = CategoryService.LoadAllCategories();
+        	ViewBag.Navigations = NavigationService.LoadAllNavigations();
             return View("Index");
         }
 
         //
-        // GET: /Category/Details/5
+        // GET: /Navigation/Details/5
 
         public ActionResult Details(int id)
         {
-            ViewBag.CategoryView = CategoryService.GetCategoryViewByCategryid(id);
+        	ViewBag.Title = "Navigation Detail";
+        	ViewBag.NavigationView = NavigationService.GetNavigationView(id);
             return View("Detail");
         }
 
         //
-        // GET: /Category/Create
+        // GET: /Navigation/Create
 
         public ActionResult Create()
         {
-        	ViewBag.Title = "Create New Category";
-            ViewBag.CategoryView = CategoryView.EmptyView;
+        	ViewBag.Title = "Create New Navigation";
+            ViewBag.NavigationView = NavigationView.EmtpyView;
             return View("Edit");
         }
 
         //
-        // POST: /Category/Create
+        // POST: /Navigation/Create
 
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
-            var category = new Category();
-            TryUpdateModel(category);
-            CategoryService.SaveCategory(category);
+            var navigation = new Navigation();
+            TryUpdateModel(navigation);
+            NavigationService.SaveNavigation(navigation);
             return RedirectToAction("Index");
         }
 
         //
-        // GET: /Category/Edit/5
+        // GET: /Navigation/Edit/5
 
         public ActionResult Edit(int id)
         {
-        	ViewBag.Title = "Edit Category";
-            ViewBag.CategoryView = CategoryService.GetCategoryViewByCategryid(id);
+        	ViewBag.Title = "Edit Navigation";
+            ViewBag.NavigationView = NavigationService.GetNavigationView(id);
             return View("Edit");
         }
 
         //
-        // POST: /Category/Edit/5
+        // POST: /Navigation/Edit/5
+
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            var category = new Category();
-            TryUpdateModel(category);
-            CategoryService.SaveCategory(category);
+            var navigation = new Navigation();
+            TryUpdateModel(navigation);
+            NavigationService.SaveNavigation(navigation);
             return RedirectToAction("Index");
         }
 
         //
-        // GET: /Category/Delete/5
+        // GET: /Navigation/Delete/5
         public ActionResult Delete(int id)
         {
-        	CategoryService.DeleteCategory(id);
+        	NavigationService.DeleteNavigation(id);
             return RedirectToAction("Index");
         }
     }

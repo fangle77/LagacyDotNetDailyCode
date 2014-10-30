@@ -10,82 +10,84 @@ using Pineapple.Service;
 
 namespace Pineapple.WebSite.Controllers.Manager
 {
-    public class CategoryController : ManagerController
+    public class TemplateController : ManagerController
     {
         [Dependency]
-        public CategoryService CategoryService { protected get; set; }
+        public TemplateService TemplateService { protected get; set; }
 
         protected override string ManagerName
         {
-            get { return "Category"; }
+            get { return "Template"; }
         }
 
         //
-        // GET: /Category/
+        // GET: /Template/
 
         public ActionResult Index()
         {
-            ViewBag.Categorys = CategoryService.LoadAllCategories();
+        	ViewBag.Templates = TemplateService.LoadAllTemplates();
             return View("Index");
         }
 
         //
-        // GET: /Category/Details/5
+        // GET: /Template/Details/5
 
         public ActionResult Details(int id)
         {
-            ViewBag.CategoryView = CategoryService.GetCategoryViewByCategryid(id);
+        	ViewBag.Title = "Template Detail";
+        	ViewBag.TemplateView = TemplateService.GetTemplateView(id);
             return View("Detail");
         }
 
         //
-        // GET: /Category/Create
+        // GET: /Template/Create
 
         public ActionResult Create()
         {
-        	ViewBag.Title = "Create New Category";
-            ViewBag.CategoryView = CategoryView.EmptyView;
+        	ViewBag.Title = "Create New Template";
+            ViewBag.TemplateView = TemplateView.EmptyView;
             return View("Edit");
         }
 
         //
-        // POST: /Category/Create
+        // POST: /Template/Create
 
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
-            var category = new Category();
-            TryUpdateModel(category);
-            CategoryService.SaveCategory(category);
+            var template = new Template();
+            TryUpdateModel(template);
+            TemplateService.SaveTemplate(template);
             return RedirectToAction("Index");
         }
 
         //
-        // GET: /Category/Edit/5
+        // GET: /Template/Edit/5
 
         public ActionResult Edit(int id)
         {
-        	ViewBag.Title = "Edit Category";
-            ViewBag.CategoryView = CategoryService.GetCategoryViewByCategryid(id);
+        	ViewBag.Title = "Edit Template";
+            ViewBag.TemplateView = TemplateService.GetTemplateView(id);
             return View("Edit");
         }
 
         //
-        // POST: /Category/Edit/5
+        // POST: /Template/Edit/5
+
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            var category = new Category();
-            TryUpdateModel(category);
-            CategoryService.SaveCategory(category);
+            var template = new Template();
+            TryUpdateModel(template);
+            TemplateService.SaveTemplate(template);
             return RedirectToAction("Index");
         }
 
         //
-        // GET: /Category/Delete/5
+        // GET: /Template/Delete/5
         public ActionResult Delete(int id)
         {
-        	CategoryService.DeleteCategory(id);
+        	TemplateService.DeleteTemplate(id);
             return RedirectToAction("Index");
         }
     }

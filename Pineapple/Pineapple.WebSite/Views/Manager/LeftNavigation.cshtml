@@ -1,5 +1,5 @@
 ﻿<ul class="nav nav-sidebar">
-    @foreach (var nav in ViewBag.Navigations)
+    @foreach (var nav in @ViewBag.LeftNavigations)
     {
         <li class="@nav.Active"><a href="@nav.Link">@nav.Text</a></li>
     }

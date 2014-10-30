@@ -34,7 +34,7 @@ namespace Pineapple.WebSite.Controllers.Manager
 
         protected void BuildLeftNavigation()
         {
-            ViewBag.Navigations = ManagerNavigationService.LoadManagerNavigatoin(ManagerName);
+            ViewBag.LeftNavigations = ManagerNavigationService.LoadManagerNavigatoin(ManagerName);
         }
 
         protected void BuildBreadCrumb()

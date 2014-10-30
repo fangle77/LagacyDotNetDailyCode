@@ -138,6 +138,9 @@
     <Compile Include="Controllers\Manager\CategoryController.cs" />
     <Compile Include="Controllers\Manager\CategoryItemController.cs" />
     <Compile Include="Controllers\Manager\ManagerController.cs" />
+    <Compile Include="Controllers\Manager\NavigationController.cs" />
+    <Compile Include="Controllers\Manager\OverviewController.cs" />
+    <Compile Include="Controllers\Manager\TemplateController.cs" />
     <Compile Include="Controllers\Manager\VisitorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -222,6 +225,13 @@
     <None Include="Views\Manager\Category\Detail.cshtml" />
     <None Include="Views\Manager\Category\Edit.cshtml" />
     <None Include="Views\Manager\Category\Index.cshtml" />
+    <None Include="Views\Manager\Index.cshtml" />
+    <None Include="Views\Manager\Navigation\Detail.cshtml" />
+    <None Include="Views\Manager\Navigation\Edit.cshtml" />
+    <None Include="Views\Manager\Navigation\Index.cshtml" />
+    <None Include="Views\Manager\Template\Detail.cshtml" />
+    <None Include="Views\Manager\Template\Edit.cshtml" />
+    <None Include="Views\Manager\Template\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -229,6 +239,8 @@
     <Folder Include="Content\bundles\bootstrap\js\" />
     <Folder Include="Views\Manager\Category" />
     <Folder Include="Views\Manager\CategoryItem" />
+    <Folder Include="Views\Manager\Navigation" />
+    <Folder Include="Views\Manager\Template" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Pineapple.Core\Pineapple.Core.csproj">

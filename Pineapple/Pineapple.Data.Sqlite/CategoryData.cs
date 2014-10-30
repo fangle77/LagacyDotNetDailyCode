@@ -112,7 +112,7 @@ namespace Pineapple.Data.Sqlite
         {
             using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
             {
-                return cnn.Query<CategoryItem>(@"select c.* from CategoryItem as c inner join CatalogItemMapping as cm on c.CategoryItemId=cm.CategoryItemId
+                return cnn.Query<CategoryItem>(@"select c.* from CategoryItem as c inner join CategoryItemMapping as cm on c.CategoryItemId=cm.CategoryItemId
                 where cm.CategoryId = @CategoryId", new { CategoryId = categoryId }).ToList();
             }
         }

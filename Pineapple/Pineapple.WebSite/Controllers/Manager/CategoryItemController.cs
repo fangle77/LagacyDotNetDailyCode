@@ -21,7 +21,7 @@ namespace Pineapple.WebSite.Controllers.Manager
         }
 
         //
-        // GET: /Category/
+        // GET: /CategoryItem/
 
         public ActionResult Index()
         {
@@ -30,7 +30,7 @@ namespace Pineapple.WebSite.Controllers.Manager
         }
 
         //
-        // GET: /Category/Details/5
+        // GET: /CategoryItem/Details/5
 
         public ActionResult Details(int id)
         {
@@ -39,7 +39,7 @@ namespace Pineapple.WebSite.Controllers.Manager
         }
 
         //
-        // GET: /Category/Create
+        // GET: /CategoryItem/Create
 
         public ActionResult Create()
         {
@@ -49,7 +49,7 @@ namespace Pineapple.WebSite.Controllers.Manager
         }
 
         //
-        // POST: /Category/Create
+        // POST: /CategoryItem/Create
 
         [HttpPost]
         public ActionResult Create(FormCollection collection)
@@ -61,7 +61,7 @@ namespace Pineapple.WebSite.Controllers.Manager
         }
 
         //
-        // GET: /Category/Edit/5
+        // GET: /CategoryItem/Edit/5
 
         public ActionResult Edit(int id)
         {
@@ -73,7 +73,7 @@ namespace Pineapple.WebSite.Controllers.Manager
         }
 
         //
-        // POST: /Category/Edit/5
+        // POST: /CategoryItem/Edit/5
 
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
@@ -84,30 +84,12 @@ namespace Pineapple.WebSite.Controllers.Manager
             return RedirectToAction("Index");
         }
 
-        ////
-        //// GET: /Category/Delete/5
-
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        ////
-        //// POST: /Category/Delete/5
-
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        //
+        // GET: /CategoryItem/Delete/5
+        public ActionResult Delete(int id)
+        {
+        	CategoryService.DeleteCategoryItems(new int[]{id});
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -13,5 +13,15 @@ namespace Pineapple.View
         public List<Catalog> Catalogs { get; set; }
 
         public List<Category> Categories { get; set; }
+        
+        public bool IsEmpty { get; set; }
+        
+        public static NavigationView EmtpyView
+        {
+        	get
+        	{
+        		return new NavigationView() {Navigation = new Navigation(), IsEmpty = true };
+        	}
+        }
     }
 }

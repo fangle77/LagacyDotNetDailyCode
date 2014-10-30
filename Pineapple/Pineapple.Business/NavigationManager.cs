@@ -25,6 +25,11 @@ namespace Pineapple.Business
         {
             return NavigationData.GetNavigationById(navigationId);
         }
+        
+        public List<Navigation> LoadAllNavigations()
+        {
+            return NavigationData.LoadAllNavigations();
+        }
 
         public List<Navigation> LoadNavigationsByCatalogId(int catalogId)
         {

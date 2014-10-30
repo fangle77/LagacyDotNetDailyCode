@@ -17,6 +17,11 @@ namespace Pineapple.Service
         [Dependency]
         public CategoryManager CategoryManager { protected get; set; }
 
+        public List<Template> LoadAllTemplates()
+        {
+            return TemplateManager.LoadAllTemplate();
+        }
+        
         public Template SaveTemplate(Template template)
         {
             return TemplateManager.SaveTemplate(template);
