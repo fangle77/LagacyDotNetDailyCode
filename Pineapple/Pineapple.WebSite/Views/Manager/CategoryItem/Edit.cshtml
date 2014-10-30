@@ -1,0 +1,55 @@
+﻿@{
+    var categoryItem = @ViewBag.CategoryItem;
+    var action = categoryItem.CategoryItemId==null ? "/Manager/Category/Create" : "/Manager/Category/Edit/" + categoryItem.CategoryItemId;
+    var categoryItemId = categoryItem.CategoryItemId==null ? "" : categoryItem.CategoryItemId.ToString();
+}
+<form id="form1" class="form-horizontal" role="form"  action="@action" method="post">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">CategoryId:</label>
+        <div class="col-sm-10">
+            <span>@categoryItemId</span>
+            <input type="hidden" name="CategoryItemId" value="@categoryItemId"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Title:</label>
+        <div class="col-sm-10">
+            <input type="text" class="col-sm-10 form-control" name="Title" value="@categoryItem.Title" placeholder="input Title..." />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">SubTitle:</label>
+        <div class="col-sm-10">
+            <input type="text" class="col-sm-10 form-control" name="SubTitle" value="@categoryItem.SubTitle"  placeholder="input SubTitle..." />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Time:</label>
+        <div class="col-sm-10">
+            <input type="text" class="col-sm-10 form-control" name="Time" value="@categoryItem.Time"  placeholder="input Time..." />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">DisplayText:</label>
+        <div class="col-sm-10">
+            <textarea rows="5" cols="" class="col-sm-10 form-control" name="DisplayText" placeholder="input DisplayText...">@categoryItem.DisplayText</textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Image:</label>
+        <div class="col-sm-10">
+            <input type="text" class="col-sm-10 form-control" name="Image" value="@categoryItem.Image"  placeholder="input Image..." />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">DisplayOrder:</label>
+        <div class="col-sm-10">
+            <input type="text" class="col-sm-10 form-control" name="DisplayOrder" value="@categoryItem.DisplayOrder"  placeholder="input DisplayOrder..." />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </div>
+</form>

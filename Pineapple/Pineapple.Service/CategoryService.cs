@@ -40,6 +40,11 @@ namespace Pineapple.Service
             return CategoryManager.SaveCategoryItem(categoryItem);
         }
 
+        public List<CategoryItem> LoadAllCategoryItems()
+        {
+            return CategoryManager.LoadAllCategoryItems();
+        }
+
         public virtual CategoryItem GetCategoryItemById(int categoryItemId)
         {
             return CategoryManager.GetCategoryItemById(categoryItemId);

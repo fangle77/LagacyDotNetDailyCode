@@ -10,14 +10,14 @@ using Pineapple.Service;
 
 namespace Pineapple.WebSite.Controllers.Manager
 {
-    public class CategoryController : ManagerController
+    public class CategoryItemController : ManagerController
     {
         [Dependency]
         public CategoryService CategoryService { protected get; set; }
 
         protected override string ManagerName
         {
-            get { return "Category"; }
+            get { return "CategoryItem"; }
         }
 
         //
@@ -25,7 +25,7 @@ namespace Pineapple.WebSite.Controllers.Manager
 
         public ActionResult Index()
         {
-            ViewBag.Categorys = CategoryService.LoadAllCategories();
+            ViewBag.CategoryItems = CategoryService.LoadAllCategoryItems();
             return View("Index");
         }
 
@@ -34,7 +34,7 @@ namespace Pineapple.WebSite.Controllers.Manager
 
         public ActionResult Details(int id)
         {
-            ViewBag.CategoryView = CategoryService.GetCategoryViewByCategryid(id);
+            ViewBag.CategoryItem = CategoryService.GetCategoryItemById(id);
             return View("Detail");
         }
 
@@ -43,8 +43,8 @@ namespace Pineapple.WebSite.Controllers.Manager
 
         public ActionResult Create()
         {
-        	ViewBag.Title = "Create New Category";
-            ViewBag.CategoryView = CategoryView.EmptyView;
+        	ViewBag.Title = "Create New Category Item";
+        	ViewBag.CategoryItem = new CategoryItem();
             return View("Edit");
         }
 
@@ -54,9 +54,9 @@ namespace Pineapple.WebSite.Controllers.Manager
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
-            var category = new Category();
-            TryUpdateModel(category);
-            CategoryService.SaveCategory(category);
+            var categoryItem = new CategoryItem();
+            TryUpdateModel(categoryItem);
+            CategoryService.SaveCategoryItem(categoryItem);
             return RedirectToAction("Index");
         }
 
@@ -65,8 +65,10 @@ namespace Pineapple.WebSite.Controllers.Manager
 
         public ActionResult Edit(int id)
         {
-        	ViewBag.Title = "Edit Category";
-            ViewBag.CategoryView = CategoryService.GetCategoryViewByCategryid(id);
+        	ViewBag.Title = "Edit Category Item";
+            var item = CategoryService.GetCategoryItemById(id);
+            if(item == null) item = new CategoryItem();
+            ViewBag.CategoryItem = item;
             return View("Edit");
         }
 
@@ -76,9 +78,9 @@ namespace Pineapple.WebSite.Controllers.Manager
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            var category = new Category();
-            TryUpdateModel(category);
-            CategoryService.SaveCategory(category);
+            var categoryItem = new CategoryItem();
+            TryUpdateModel(categoryItem);
+            CategoryService.SaveCategoryItem(categoryItem);
             return RedirectToAction("Index");
         }
 

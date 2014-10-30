@@ -136,6 +136,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Manager\CatalogController.cs" />
     <Compile Include="Controllers\Manager\CategoryController.cs" />
+    <Compile Include="Controllers\Manager\CategoryItemController.cs" />
     <Compile Include="Controllers\Manager\ManagerController.cs" />
     <Compile Include="Controllers\Manager\VisitorController.cs" />
     <Compile Include="Global.asax.cs">
@@ -215,11 +216,19 @@
     <Content Include="Views\Manager\Catalog\Edit.cshtml" />
     <Content Include="Views\Manager\LeftNavigation.cshtml" />
     <Content Include="Views\Manager\BreadCrumb.cshtml" />
+    <None Include="Views\Manager\CategoryItem\Detail.cshtml" />
+    <None Include="Views\Manager\CategoryItem\Edit.cshtml" />
+    <None Include="Views\Manager\CategoryItem\Index.cshtml" />
+    <None Include="Views\Manager\Category\Detail.cshtml" />
+    <None Include="Views\Manager\Category\Edit.cshtml" />
+    <None Include="Views\Manager\Category\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\bundles\bootstrap\css\" />
     <Folder Include="Content\bundles\bootstrap\js\" />
+    <Folder Include="Views\Manager\Category" />
+    <Folder Include="Views\Manager\CategoryItem" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Pineapple.Core\Pineapple.Core.csproj">

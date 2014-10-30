@@ -100,6 +100,14 @@ namespace Pineapple.Data.Sqlite
             }
         }
 
+        public  List<CategoryItem> LoadAllCategoryItems()
+        {
+        	using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            {
+                return cnn.Query<CategoryItem>(@"select c.* from CategoryItem as c").ToList();
+            }
+        }
+        
         public List<CategoryItem> LoadCategoryItemsByCategoryId(int categoryId)
         {
             using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
