@@ -18,7 +18,7 @@ namespace Dapper
 
             foreach (var property in properties)
             {
-                if (!property.CanRead) continue;
+                if (!property.CanRead || !property.CanWrite) continue;
                 if (ignores.Contains(property.Name)) continue;
 
                 fileds.AppendFormat("{0},", property.Name);
@@ -73,7 +73,7 @@ namespace Dapper
 
         private static PropertyInfo[] FilterProperties(Type type)
         {
-            var pros = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            var pros = type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.GetProperty | BindingFlags.SetProperty);
             return pros;
         }
     }

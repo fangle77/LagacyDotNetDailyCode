@@ -28,10 +28,11 @@ namespace Pineapple.Data.Sqlite
 
         internal static void InitDataBase()
         {
-            if (!File.Exists(DbFile))
-            {
-                CreateDatabase();
-            }
+            //if (!File.Exists(DbFile))
+            //{
+            //    CreateDatabase();
+            //}
+            CreateDatabase();
         }
 
         private static void CreateDatabase()
@@ -39,7 +40,7 @@ namespace Pineapple.Data.Sqlite
             using (var cnn = DbConnection())
             {
                 cnn.Execute(
-                    @"create table Visitor
+                    @"Create table if not exists Visitor
               (
                  ID                                  integer primary key AUTOINCREMENT,
                  VisitDate                           varchar(30) not null

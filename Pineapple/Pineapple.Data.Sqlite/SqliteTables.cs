@@ -6,7 +6,7 @@ namespace Pineapple.Data.Sqlite
     {
         #region Tables
         private string Catalog =
-            @"Create Table Catalog
+            @"Create table if not exists Catalog
             (
                 CatalogId   INTEGER primary key AUTOINCREMENT,
                 CatalogCode TEXT,
@@ -24,7 +24,7 @@ namespace Pineapple.Data.Sqlite
             )";
 
         private string Category =
-            @"Create Table Category
+            @"Create table if not exists Category
             (
                 CategoryId      INTEGER primary key AUTOINCREMENT,
                 CategoryName    TEXT,
@@ -36,7 +36,7 @@ namespace Pineapple.Data.Sqlite
             )";
 
         private string CategoryItem =
-            @"Create Table CategoryItem
+            @"Create table if not exists CategoryItem
             (
                 CategoryItemId  INTEGER primary key AUTOINCREMENT,
                 Title           TEXT,
@@ -47,7 +47,7 @@ namespace Pineapple.Data.Sqlite
             )";
 
         private string Template =
-            @" Create Table Template
+            @" Create table if not exists Template
             (
                 TemplateId      INTEGER primary key AUTOINCREMENT,
                 TemplateName    TEXT,
@@ -55,7 +55,7 @@ namespace Pineapple.Data.Sqlite
             )";
 
         private string Navigation =
-            @"Create Table Navigation
+            @"Create table if not exists Navigation
             (
                 NavigationId    INTEGER primary key AUTOINCREMENT,
                 NavigationName  TEXT,
@@ -65,12 +65,26 @@ namespace Pineapple.Data.Sqlite
                 DisplayOrder    INTEGER
             )";
 
+        private string Attachment =
+            @"Create table if not exists Attachment
+            (
+                AttachmentId    INTEGER primary key AUTOINCREMENT,
+                OriginName      TEXT,
+                FileName        TEXT,
+                Path            TEXT,
+                ContentType     TEXT,
+                Type            TEXT,
+                Size            INT,
+                Alt             TEXT,
+                Version         INT
+            )";
+
         #endregion
 
         #region Mappings
 
         private string CatalogNavigationMapping =
-            @" Create Table CatalogNavigationMapping
+            @" Create table if not exists CatalogNavigationMapping
             (
                 MappingId       INTEGER primary key AUTOINCREMENT,
                 CatalogId       INTEGER,
@@ -78,7 +92,7 @@ namespace Pineapple.Data.Sqlite
             )";
 
         private string CatalogCategoryMapping =
-           @" Create Table CatalogCategoryMapping
+           @" Create table if not exists CatalogCategoryMapping
             (
                 MappingId       INTEGER primary key AUTOINCREMENT,
                 CatalogId       INTEGER,
@@ -86,7 +100,7 @@ namespace Pineapple.Data.Sqlite
             )";
 
         private string CategoryNavigationMapping =
-            @" Create Table CategoryNavigationMapping
+            @" Create table if not exists CategoryNavigationMapping
             (
                 MappingId       INTEGER primary key AUTOINCREMENT,
                 CategoryId      INTEGER,
@@ -94,7 +108,7 @@ namespace Pineapple.Data.Sqlite
             )";
 
         private string CategoryItemMapping =
-           @" Create Table CategoryItemMapping
+           @" Create table if not exists CategoryItemMapping
             (
                 MappingId       INTEGER primary key AUTOINCREMENT,
                 CategoryId      INTEGER,
@@ -102,7 +116,7 @@ namespace Pineapple.Data.Sqlite
             )";
 
         private string CategoryTemplateMapping =
-          @" Create Table CategoryTemplateMapping
+          @" Create table if not exists CategoryTemplateMapping
             (
                 MappingId       INTEGER primary key AUTOINCREMENT,
                 CategoryId      INTEGER,
@@ -125,6 +139,7 @@ namespace Pineapple.Data.Sqlite
                 cnn.Execute(CategoryItemMapping);
                 cnn.Execute(CategoryNavigationMapping);
                 cnn.Execute(CategoryTemplateMapping);
+                cnn.Execute(Attachment);
             }
         }
     }

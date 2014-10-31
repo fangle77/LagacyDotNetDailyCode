@@ -13,12 +13,13 @@ namespace Pineapple.Service
         public List<ManagerNavigation> LoadManagerNavigatoin(string activeName)
         {
             var list = new List<ManagerNavigation>();
-            list.Add(new ManagerNavigation() { Name = "Overview", Link = "/Manager/Overview", Text = "Overview" });
+            list.Add(new ManagerNavigation() { Name = "Overview", Link = "/Manager", Text = "Overview" });
             list.Add(new ManagerNavigation() { Name = "Catalog", Link = "/Manager/Catalog", Text = "Catalog" });
             list.Add(new ManagerNavigation() { Name = "Category", Link = "/Manager/Category", Text = "Category" });
             list.Add(new ManagerNavigation() { Name = "CategoryItem", Link = "/Manager/CategoryItem", Text = "CategoryItem" });
             list.Add(new ManagerNavigation() { Name = "Navigation", Link = "/Manager/Navigation", Text = "Navigation" });
             list.Add(new ManagerNavigation() { Name = "Template", Link = "/Manager/Template", Text = "Template" });
+            list.Add(new ManagerNavigation() { Name = "Attachment", Link = "/Manager/Attachment", Text = "Attachment" });
 
             if (string.IsNullOrEmpty(activeName)) activeName = "Overview";
 
@@ -31,7 +32,7 @@ namespace Pineapple.Service
         public List<BreadCrumb> BuildBreadCrumbs(string controller, string action)
         {
             var list = new List<BreadCrumb>();
-            list.Add(new BreadCrumb() { Text = "Overview", Link = "/Manager/Overview" });
+            list.Add(new BreadCrumb() { Text = "Overview", Link = "/Manager" });
             if (!string.IsNullOrEmpty(controller) && !"Overview".Equals(controller, StringComparison.OrdinalIgnoreCase))
             {
                 list.Add(new BreadCrumb() { Text = controller, Link = "/Manager/" + controller });

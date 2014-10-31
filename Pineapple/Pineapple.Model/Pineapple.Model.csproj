@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attachment.cs" />
     <Compile Include="Catalog.cs" />
     <Compile Include="Mapping.cs" />
     <Compile Include="Category.cs" />

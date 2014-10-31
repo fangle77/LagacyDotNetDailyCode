@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationInitialService.cs" />
+    <Compile Include="AttachmentService.cs" />
     <Compile Include="CatalogService.cs" />
     <Compile Include="CategoryService.cs" />
     <Compile Include="ManagerNavigationService.cs" />
