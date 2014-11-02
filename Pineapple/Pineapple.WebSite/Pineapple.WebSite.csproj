@@ -197,6 +197,7 @@
     <Content Include="Content\js\knockout-2.1.0.debug.js" />
     <Content Include="Content\js\knockout-2.1.0.js" />
     <Content Include="Content\js\modernizr-2.5.3.js" />
+    <Content Include="Content\js\pineaaple.jquery.fileupload.js" />
     <Content Include="Content\js\_references.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
@@ -220,6 +221,7 @@
     <Content Include="Views\Manager\Catalog\Edit.cshtml" />
     <Content Include="Views\Manager\LeftNavigation.cshtml" />
     <Content Include="Views\Manager\BreadCrumb.cshtml" />
+    <Content Include="Views\Manager\Attachment\Index.cshtml" />
     <None Include="Views\Manager\Attachment\Upload.cshtml" />
     <None Include="Views\Manager\CategoryItem\Detail.cshtml" />
     <None Include="Views\Manager\CategoryItem\Edit.cshtml" />
@@ -239,11 +241,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\bundles\bootstrap\css\" />
     <Folder Include="Content\bundles\bootstrap\js\" />
-    <Folder Include="Views\Manager\Category" />
-    <Folder Include="Views\Manager\CategoryItem" />
-    <Folder Include="Views\Manager\Navigation" />
-    <Folder Include="Views\Manager\Attachment" />
-    <Folder Include="Views\Manager\Template" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Pineapple.Core\Pineapple.Core.csproj">

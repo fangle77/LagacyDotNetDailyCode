@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Attachment";
+}
+@Styles.Render("~/Content/jqueryfileupload/css")
+@Scripts.Render("~/Content/jqueryfileupload/js")
+
+@using Pineapple.Model
+
+@RenderPage("Upload.cshtml");
+
+<div id="imageContainer">
+    @foreach (Attachment attachment in @ViewBag.Attachments)
+    {
+        if (attachment.IsImage)
+        {
+        <span>
+            <a href="javascript:void(0);">
+                <img data-original="@attachment.UrlPath" alt="@attachment.Alt" style="width:160px;display: block;" class="img-rounded"/>
+                <span attachmentId="@attachment.AttachmentId">
+                    <a href="javascript:void(0);" class="btn-link">Copy Url</a>
+                    <a href="javascript:void(0);" class="btn-link">Copy Image Element</a>
+                    <a href="javascript:void(0);" class="btn-link">Delete</a>
+                </span>
+            </a>
+        </span>
+        }
+        else
+        {
+        <span class="col-md-2">
+            <a href="@attachment.UrlPath">@attachment.OriginName  (@attachment.Size)</a>
+        </span>
+        }
+    }
+</div>

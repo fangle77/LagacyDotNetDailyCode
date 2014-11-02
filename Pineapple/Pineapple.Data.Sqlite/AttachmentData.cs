@@ -43,7 +43,7 @@ namespace Pineapple.Data.Sqlite
         {
             using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
             {
-                return cnn.Query<Attachment>(typeof(Attachment).GetSelectSql()).ToList<Attachment>();
+                return cnn.Query<Attachment>(typeof(Attachment).GetSelectSql(null, SelectIgnore)).ToList<Attachment>();
             }
         }
 

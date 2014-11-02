@@ -27,7 +27,8 @@ namespace Pineapple.WebSite.Controllers.Manager
 		
 		public ActionResult Index()
 		{
-			return View("Upload");
+		    ViewBag.Attachments = AttachmentService.LoadAllAttachment();
+			return View("Index");
 		}
 		
 		[HttpPost]

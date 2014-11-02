@@ -52,13 +52,13 @@ namespace Pineapple.WebSite.App_Start
                 "~/Content/bootstrap-3.2.0/js/bootstrap.js"));
             
             bundles.Add(new ScriptBundle("~/Content/jqueryfileupload/js")
-                      .Include("~/Content/js/jquery-ui-{version}.js")
-                      .Include("~/Content/js/jquery.iframe-transport.js")
-                      .Include("~/Content/js/jquery.fileupload.js")
+                      .Include("~/Content/js/jquery.lazyload.js")
                       .Include("~/Content/js/pineaaple.jquery.fileupload.js"));
             
             bundles.Add(new StyleBundle("~/Content/jqueryfileupload/css")
-                        .Include("~/Content/css/jquery.fileupload.css"));
+                        .Include("~/Content/css/jquery.fileupload.css")
+                        //.Include("~/Content/css/jquery.fileupload-ui.css")
+                        );
         }
     }
 }
