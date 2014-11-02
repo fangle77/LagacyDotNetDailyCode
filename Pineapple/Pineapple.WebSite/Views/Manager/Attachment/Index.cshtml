@@ -8,21 +8,19 @@
 
 @RenderPage("Upload.cshtml");
 
-<div id="imageContainer">
+<div id="attachmentContainer">
     @foreach (Attachment attachment in @ViewBag.Attachments)
     {
         if (attachment.IsImage)
         {
-        <span>
-            <a href="javascript:void(0);">
-                <img data-original="@attachment.UrlPath" alt="@attachment.Alt" style="width:160px;display: block;" class="img-rounded"/>
-                <span attachmentId="@attachment.AttachmentId">
-                    <a href="javascript:void(0);" class="btn-link">Copy Url</a>
-                    <a href="javascript:void(0);" class="btn-link">Copy Image Element</a>
-                    <a href="javascript:void(0);" class="btn-link">Delete</a>
-                </span>
-            </a>
-        </span>
+        <a href="@attachment.UrlPath" title="@attachment.OriginName" class="img-gallry">
+            <img data-original="@attachment.UrlPath" alt="@attachment.Alt" src="" style="width:160px;" class="img-rounded"/>
+        </a>
+        <div class="hide img-operation">
+            <a href="javascript:void(0);">Copy Element</a>
+            <a href="javascript:void(0);">Copy Url</a>
+            <a href="/Manager/Attachment/Delete/@attachment.AttachmentId" class="glyphicon glyphicon-minus-sign">Delete</a>
+        </div>
         }
         else
         {

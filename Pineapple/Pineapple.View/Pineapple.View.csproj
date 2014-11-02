@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionResponse.cs" />
     <Compile Include="CatalogView.cs" />
     <Compile Include="CategoryView.cs" />
     <Compile Include="ManagerNavigation.cs" />

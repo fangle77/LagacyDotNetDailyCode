@@ -106,3 +106,10 @@ body {
 .width-200{
   width:200px;
 }
+
+.img-operation {
+    position: relative;
+    z-index: 100;
+    top: -20px;
+    background-color: #ffffff;
+}

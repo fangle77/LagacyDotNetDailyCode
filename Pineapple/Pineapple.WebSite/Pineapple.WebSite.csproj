@@ -139,6 +139,7 @@
     <Compile Include="Controllers\Manager\CategoryController.cs" />
     <Compile Include="Controllers\Manager\CategoryItemController.cs" />
     <Compile Include="Controllers\Manager\ManagerController.cs" />
+    <Compile Include="Controllers\Manager\MappingController.cs" />
     <Compile Include="Controllers\Manager\NavigationController.cs" />
     <Compile Include="Controllers\Manager\OverviewController.cs" />
     <Compile Include="Controllers\Manager\TemplateController.cs" />

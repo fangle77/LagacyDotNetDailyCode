@@ -53,11 +53,11 @@ namespace Pineapple.WebSite.App_Start
             
             bundles.Add(new ScriptBundle("~/Content/jqueryfileupload/js")
                       .Include("~/Content/js/jquery.lazyload.js")
+                      .Include("~/Content/js/jquery.magnific-popup.js")
                       .Include("~/Content/js/pineaaple.jquery.fileupload.js"));
             
             bundles.Add(new StyleBundle("~/Content/jqueryfileupload/css")
-                        .Include("~/Content/css/jquery.fileupload.css")
-                        //.Include("~/Content/css/jquery.fileupload-ui.css")
+                        .Include("~/Content/css/magnific-popup.css")
                         );
         }
     }
