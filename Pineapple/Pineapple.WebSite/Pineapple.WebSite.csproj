@@ -231,6 +231,12 @@
     <None Include="Views\Manager\Category\Edit.cshtml" />
     <None Include="Views\Manager\Category\Index.cshtml" />
     <None Include="Views\Manager\Index.cshtml" />
+    <None Include="Views\Manager\Mapping\Catalog-Category.cshtml" />
+    <None Include="Views\Manager\Mapping\Catalog-Navigation.cshtml" />
+    <None Include="Views\Manager\Mapping\Category-CategoryItem.cshtml" />
+    <None Include="Views\Manager\Mapping\Category-Navigation.cshtml" />
+    <None Include="Views\Manager\Mapping\Category-Template.cshtml" />
+    <None Include="Views\Manager\Mapping\Index.cshtml" />
     <None Include="Views\Manager\Navigation\Detail.cshtml" />
     <None Include="Views\Manager\Navigation\Edit.cshtml" />
     <None Include="Views\Manager\Navigation\Index.cshtml" />
@@ -242,6 +248,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\bundles\bootstrap\css\" />
     <Folder Include="Content\bundles\bootstrap\js\" />
+    <Folder Include="Views\Manager\Mapping" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Pineapple.Core\Pineapple.Core.csproj">

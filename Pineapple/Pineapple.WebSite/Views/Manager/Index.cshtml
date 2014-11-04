@@ -1,11 +1,15 @@
 ﻿@{
     ViewBag.Title = "Overview";
 }
-<h2>@ViewBag.Title</h2>
 
-<ul>
+
 @foreach(var nav in @ViewBag.LeftNavigations)
 {
-	<li><a href="@nav.Link">@nav.Text</a></li>
+	<a href="@nav.Link" >
+	    <div class="col-sm-6 col-md-3">
+		    <div class="thumbnail tile tile-medium tile-peter-river col-md-3">
+				<h3 class="tile-text">@nav.Text</h3>
+			</div>
+		</div>
+	</a>
 }
-</ul>

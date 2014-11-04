@@ -3,103 +3,55 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Pineapple.Model;
+using Pineapple.Service;
+using Pineapple.View;
 
 namespace Pineapple.WebSite.Controllers.Manager
 {
-    public class MappingController : Controller
+    public class MappingController : ManagerController
     {
-        //
-        // GET: /Mapping/
 
+    	public MappingService MappingService { protected get; set; }
+    	
+    	protected override string ManagerName
+        {
+    	 	get { return "Mapping"; }
+        }
+    	
         public ActionResult Index()
         {
-            return View();
+            return View("Index");
         }
-
-        //
-        // GET: /Mapping/Details/5
-
-        public ActionResult Details(int id)
+        
+        [ActionName("Catalog-Category")]
+        public ActionResult CatalogCategory()
         {
-            return View();
+        	return View("Catalog-Category");
         }
-
-        //
-        // GET: /Mapping/Create
-
-        public ActionResult Create()
+        
+        [ActionName("Catalog-Navigation")]
+        public ActionResult CatalogNavigation()
         {
-            return View();
+        	return View("Catalog-Navigation");
         }
-
-        //
-        // POST: /Mapping/Create
-
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        
+        [ActionName("Category-Navigation")]
+        public ActionResult CategoryNavigation()
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+        	return View("Category-Navigation");
         }
-
-        //
-        // GET: /Mapping/Edit/5
-
-        public ActionResult Edit(int id)
+        
+        [ActionName("Category-Template")]
+        public ActionResult CategoryTemplate()
         {
-            return View();
+        	return View("Category-Template");
         }
-
-        //
-        // POST: /Mapping/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        
+        [ActionName("Category-CategoryItem")]
+        public ActionResult CategoryCategoryItem()
         {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /Mapping/Delete/5
-
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /Mapping/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+        	return View("Category-CategoryItem");
         }
     }
 }

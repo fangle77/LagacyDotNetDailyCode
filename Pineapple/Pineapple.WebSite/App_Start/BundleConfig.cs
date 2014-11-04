@@ -39,8 +39,10 @@ namespace Pineapple.WebSite.App_Start
             //            "~/Content/themes/base/jquery.ui.theme.css"));
 
             bundles.Add(new StyleBundle("~/Content/bootstrap/css").Include(
-                "~/Content/bootstrap-3.2.0/css/bootstrap.css",
-                "~/Content/bootstrap-3.2.0/css/bootstrap-theme.css"));
+                "~/Content/bootstrap-3.2.0/css/bootstrap.css"
+                , "~/Content/bootstrap-3.2.0/css/bootstrap-theme.css"
+                , "~/Content/metro-bootstrap/css/metro-bootstrap.css"
+                , "~/Content/metro-bootstrap/css/font-awesome.css"));
 
             bundles.Add(new StyleBundle("~/Content/dashboard/css")
                         .Include("~/Content/css/dashboard.css"));

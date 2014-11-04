@@ -20,6 +20,7 @@ namespace Pineapple.Service
             list.Add(new ManagerNavigation() { Name = "Navigation", Link = "/Manager/Navigation", Text = "Navigation" });
             list.Add(new ManagerNavigation() { Name = "Template", Link = "/Manager/Template", Text = "Template" });
             list.Add(new ManagerNavigation() { Name = "Attachment", Link = "/Manager/Attachment", Text = "Attachment" });
+            list.Add(new ManagerNavigation() { Name = "Mapping", Link = "/Manager/Mapping", Text = "Mapping" });
 
             if (string.IsNullOrEmpty(activeName)) activeName = "Overview";
 
