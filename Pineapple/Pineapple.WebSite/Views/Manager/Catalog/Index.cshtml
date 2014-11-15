@@ -2,7 +2,7 @@
     ViewBag.Title = "Catalogs";
 }
 
-<table class="table table-striped table-hover table-bordered">
+<table class="@ViewBag.TableClass">
     <caption>Catalog List (<a href="/Manager/Catalog/Create" class="glyphicon glyphicon-plus-sign">Add</a>)</caption>
     <thead>
         <tr>
@@ -23,27 +23,27 @@
         </tr>
     </thead>
     <tbody>
-    @foreach(var catalog in @ViewBag.Catalogs)
-    {
-        <tr>
-            <th>@catalog.CatalogId</th>
-            <th>@catalog.CatalogCode</th>
-            <th>@catalog.CatalogName</th>
-            <th>@catalog.Title</th>
-            <th>@catalog.ContentType</th>
-            <th>@catalog.Keywords</th>
-            <th>@catalog.Description</th>
-            <th>@catalog.Icon</th>
-            <th>@catalog.Logo</th>
-            <th>@catalog.CopyrightTime</th>
-            <th>@catalog.Copyright</th>
-            <th>@catalog.ICP</th>
-            <th>@catalog.Status</th>
-            <td>
-                <a href="/Manager/Catalog/Edit/@catalog.CatalogId" class="glyphicon glyphicon-edit">Edit</a>
-                <a href="/Manager/Catalog/Delete/@catalog.CatalogId" class="glyphicon glyphicon-minus-sign">Delete</a>
-            </td>
-        </tr>
-    }
+        @foreach (var catalog in @ViewBag.Catalogs)
+        {
+            <tr>
+                <td>@catalog.CatalogId</td>
+                <td>@catalog.CatalogCode</td>
+                <td>@catalog.CatalogName</td>
+                <td>@Helpers.TdWrap(@catalog.Title)</td>
+                <td>@catalog.ContentType</td>
+                <td>@Helpers.TdWrap(@catalog.Keywords)</td>
+                <td>@Helpers.TdWrap(@catalog.Description)</td>
+                <td>@Helpers.TdWrap(@catalog.Icon)</td>
+                <td>@Helpers.TdWrap(@catalog.Logo)</td>
+                <td>@Helpers.TdWrap(@catalog.CopyrightTime)</td>
+                <td>@Helpers.TdWrap(@catalog.Copyright)</td>
+                <td>@Helpers.TdWrap(@catalog.ICP)</td>
+                <td>@Helpers.TdWrap(@catalog.Status)</td>
+                <td>
+                    <a href="/Manager/Catalog/Edit/@catalog.CatalogId" class="glyphicon glyphicon-edit">Edit</a>
+                    <a href="/Manager/Catalog/Delete/@catalog.CatalogId" class="glyphicon glyphicon-minus-sign">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

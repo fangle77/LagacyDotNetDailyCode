@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Templates";
 }
-<table class="table table-striped table-hover table-bordered">
+<table class="@ViewBag.TableClass">
     <caption>template List (<a href="/Manager/Template/Create" class="glyphicon glyphicon-plus-sign">Add</a>)</caption>
     <thead>
         <tr>
@@ -15,9 +15,9 @@
     @foreach(var template in @ViewBag.Templates)
     {
         <tr>
-            <th>@template.TemplateId</th>
-            <th>@template.TemplateName</th>
-            <th>@template.ViewFile</th>
+            <td>@template.TemplateId</td>
+            <td>@template.TemplateName</td>
+            <td>@template.ViewFile</td>
             <td>
                 <a href="/Manager/Template/Edit/@template.TemplateId" class="glyphicon glyphicon-edit">Edit</a>
                 <a href="/Manager/Template/Delete/@template.TemplateId" class="glyphicon glyphicon-minus-sign">Delete</a>

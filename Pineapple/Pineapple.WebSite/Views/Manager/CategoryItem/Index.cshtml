@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Category Items";
 }
-<table class="table table-striped table-hover table-bordered">
+<table class="@ViewBag.TableClass">
     <caption>category List (<a href="/Manager/CategoryItem/Create" class="glyphicon glyphicon-plus-sign">Add</a>)</caption>
     <thead>
         <tr>
@@ -18,12 +18,12 @@
     @foreach(var categoryItem in @ViewBag.CategoryItems)
     {
         <tr>
-            <th>@categoryItem.CategoryItemId</th>
-            <th>@categoryItem.Title</th>
-            <th>@categoryItem.SubTitle</th>
-            <th>@categoryItem.Time</th>
-            <th>@categoryItem.Content</th>
-            <th>@categoryItem.DisplayOrder</th>
+            <td>@categoryItem.CategoryItemId</td>
+            <td>@Helpers.TdWrap(@categoryItem.Title)</td>
+            <td>@Helpers.TdWrap(@categoryItem.SubTitle)</td>
+            <td>@Helpers.TdWrap(@categoryItem.Time)</td>
+            <td>@Helpers.TdWrap(@categoryItem.Content)</td>
+            <td>@categoryItem.DisplayOrder</td>
             <td>
                 <a href="/Manager/CategoryItem/Edit/@categoryItem.CategoryItemId" class="glyphicon glyphicon-edit">Edit</a>
                 <a href="/Manager/CategoryItem/Delete/@categoryItem.CategoryItemId" class="glyphicon glyphicon-minus-sign">Delete</a>

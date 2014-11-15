@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Categorys";
 }
-<table class="table table-striped table-hover table-bordered">
+<table class="@ViewBag.TableClass">
     <caption>category List (<a href="/Manager/Category/Create" class="glyphicon glyphicon-plus-sign">Add</a>)</caption>
     <thead>
         <tr>
@@ -16,21 +16,21 @@
         </tr>
     </thead>
     <tbody>
-    @foreach(var category in @ViewBag.Categorys)
-    {
-        <tr>
-            <th>@category.CategoryId</th>
-            <th>@category.CategoryName</th>
-            <th>@category.DisplayName</th>
-            <th>@category.SubDisplayName</th>
-            <th>@category.Description</th>
-            <th>@category.ParentId</th>
-            <th>@category.DisplayOrder</th>
-            <td>
-                <a href="/Manager/Category/Edit/@category.CategoryId" class="glyphicon glyphicon-edit">Edit</a>
-                <a href="/Manager/Category/Delete/@category.CategoryId" class="glyphicon glyphicon-minus-sign">Delete</a>
-            </td>
-        </tr>
-    }
+        @foreach (var category in @ViewBag.Categorys)
+        {
+            <tr>
+                <td>@category.CategoryId</td>
+                <td>@category.CategoryName</td>
+                <td>@Helpers.TdWrap(@category.DisplayName)</td>
+                <td>@Helpers.TdWrap(@category.SubDisplayName)</td>
+                <td>@Helpers.TdWrap(@category.Description)</td>
+                <td>@category.ParentId</td>
+                <td>@category.DisplayOrder</td>
+                <td>
+                    <a href="/Manager/Category/Edit/@category.CategoryId" class="glyphicon glyphicon-edit">Edit</a>
+                    <a href="/Manager/Category/Delete/@category.CategoryId" class="glyphicon glyphicon-minus-sign">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

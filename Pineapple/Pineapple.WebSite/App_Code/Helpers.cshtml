@@ -1,0 +1,8 @@
+﻿@helper TdWrap(object input)
+{
+    string content = string.Format("{0}", input);
+    string subContent = content;
+    if (content.Length > 15) { subContent = content.Substring(0, 15) + "..."; }
+    
+    <div class="truncate-content">@subContent<div class="hidden origin-content">@content</div></div>
+}

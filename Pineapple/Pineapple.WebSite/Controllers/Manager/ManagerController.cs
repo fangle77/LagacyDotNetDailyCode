@@ -26,11 +26,19 @@ namespace Pineapple.WebSite.Controllers.Manager
             return string.Format("~/Views/Manager/{0}{1}{2}.cshtml", ManagerName, string.IsNullOrEmpty(ManagerName) ? string.Empty : "/", viewName);
         }
 
-        protected new ViewResult View(string viewName)
+        protected new ActionResult View(string viewName)
         {
-            BuildLeftNavigation();
+            BuildCommonVariable();
             BuildBreadCrumb();
-            return base.View(AddManageBase(viewName), Master);
+            if (IsAjaxRequest())
+            {
+                return base.View(viewName);
+            }
+            else
+            {
+                BuildLeftNavigation();
+                return base.View(AddManageBase(viewName), Master);
+            }
         }
 
         protected void BuildLeftNavigation()
@@ -43,6 +51,19 @@ namespace Pineapple.WebSite.Controllers.Manager
             string controller = (string)RouteData.Values["controller"];
             string action = (string)RouteData.Values["action"];
             ViewBag.BreadCrumbs = ManagerNavigationService.BuildBreadCrumbs(controller, action);
+        }
+
+        protected bool IsAjaxRequest()
+        {
+            //X-Requested-With:XMLHttpRequest
+            var xmlHeaders = HttpContext.Request.Headers.GetValues("X-Requested-With");
+            return xmlHeaders != null &&
+                   xmlHeaders.Any(x => x.IndexOf("XMLHttpRequest", StringComparison.OrdinalIgnoreCase) >= 0);
+        }
+
+        private void BuildCommonVariable()
+        {
+            ViewBag.TableClass = "table table-hover table-bordered";
         }
     }
 }

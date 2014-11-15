@@ -178,6 +178,8 @@
     <Content Include="Content\css\jquery-ui.1.11.1\jquery-ui.structure.min.css" />
     <Content Include="Content\css\jquery-ui.1.11.1\jquery-ui.theme.css" />
     <Content Include="Content\css\jquery-ui.1.11.1\jquery-ui.theme.min.css" />
+    <Content Include="Content\css\magnific-popup.css" />
+    <Content Include="Content\js\dashboard.js" />
     <Content Include="Content\js\jquery-1.11.1.js" />
     <Content Include="Content\js\jquery-1.11.1.min.js" />
     <Content Include="Content\bootstrap-3.2.0\css\bootstrap-theme.css.map" />
@@ -188,6 +190,10 @@
     <None Include="Content\js\jquery-1.11.1.intellisense.js" />
     <Content Include="Content\js\jquery-ui-1.11.1.js" />
     <Content Include="Content\js\jquery-ui-1.11.1.min.js" />
+    <Content Include="Content\js\jquery.lazyload.js" />
+    <Content Include="Content\js\jquery.lazyload.min.js" />
+    <Content Include="Content\js\jquery.magnific-popup.js" />
+    <Content Include="Content\js\jquery.magnific-popup.min.js" />
     <Content Include="Content\js\jquery.unobtrusive-ajax.js" />
     <Content Include="Content\js\jquery.unobtrusive-ajax.min.js" />
     <None Include="Content\js\jquery.validate-vsdoc.js" />
@@ -243,12 +249,12 @@
     <None Include="Views\Manager\Template\Detail.cshtml" />
     <None Include="Views\Manager\Template\Edit.cshtml" />
     <None Include="Views\Manager\Template\Index.cshtml" />
+    <Content Include="App_Code\Helpers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\bundles\bootstrap\css\" />
     <Folder Include="Content\bundles\bootstrap\js\" />
-    <Folder Include="Views\Manager\Mapping" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Pineapple.Core\Pineapple.Core.csproj">

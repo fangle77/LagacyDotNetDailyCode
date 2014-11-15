@@ -113,3 +113,9 @@ body {
     top: -20px;
     background-color: #ffffff;
 }
+
+.table tr td{
+    height : 30px;
+    line-height : 30px;
+    overflow:hidden;
+}
