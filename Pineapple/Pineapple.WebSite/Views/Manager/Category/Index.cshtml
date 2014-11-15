@@ -1,6 +1,20 @@
 ﻿@{
     ViewBag.Title = "Categorys";
 }
+@if (@ViewBag.Catalogs.Count > 0)
+{
+    <div>
+        @{
+    string allClass = @ViewBag.CatalogId == 0 ? "active" : "";
+            <a class="@allClass" href="/Manager/Category">All Categories</a>
+        }
+        @foreach (var catalog in @ViewBag.Catalogs)
+        {
+            string active = @ViewBag.CatalogId == catalog.CatalogId ? "class=\"active\"" : string.Empty;
+            <a @active href="/Manager/Category?catalog=@catalog.CatalogId">@catalog.CatalogName<span>(@catalog.CatalogCode)</span></a>
+        }
+    </div>
+}
 <table class="@ViewBag.TableClass">
     <caption>category List (<a href="/Manager/Category/Create" class="glyphicon glyphicon-plus-sign">Add</a>)</caption>
     <thead>

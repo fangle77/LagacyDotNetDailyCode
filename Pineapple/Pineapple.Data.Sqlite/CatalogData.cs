@@ -60,7 +60,7 @@ namespace Pineapple.Data.Sqlite
             string ids = string.Join(",", catalogIds).TrimEnd(',');
             using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
             {
-                return cnn.Query<Catalog>(typeof(Catalog).GetSelectSql("CatalogId in {@CatalogIds}"), new { CatalogIds = ids }).ToList();
+                return cnn.Query<Catalog>(typeof(Catalog).GetSelectSql("CatalogId in (@CatalogIds)"), new { CatalogIds = ids }).ToList();
             }
         }
     }

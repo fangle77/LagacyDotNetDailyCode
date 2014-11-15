@@ -20,6 +20,11 @@ namespace Pineapple.Service
         [Dependency]
         public NavigationManager NavigationManager { protected get; set; }
 
+        public List<Category> LoadAllCategoriesByCatalogId(int catalogId)
+        {
+            return CategoryManager.LoadCategoriesByCatalogId(catalogId);
+        }
+
         public List<Category> LoadAllCategories()
         {
             return CategoryManager.LoadAllCategories();

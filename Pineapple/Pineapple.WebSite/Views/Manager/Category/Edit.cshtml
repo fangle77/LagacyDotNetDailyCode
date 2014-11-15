@@ -1,10 +1,20 @@
-﻿@{
+﻿@using Pineapple.Model
+@{
     var categoryView = @ViewBag.CategoryView;
     var category = categoryView.Category;
     var action = categoryView.IsEmpty ? "/Manager/Category/Create" : "/Manager/Category/Edit/" + category.CategoryId;
     var categoryId = categoryView.IsEmpty ? "" : category.CategoryId.ToString();
+
+    var catalog = (categoryView.Catalogs == null || categoryView.Catalogs.Count == 0) ? new Catalog() : categoryView.Catalogs[0];
 }
 <form id="form1" class="form-horizontal" role="form"  action="@action" method="post">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">CatalogId:</label>
+        <div class="col-sm-10">
+            <input type="text" class="col-sm-5 form-control" name="catalogId" value="@catalog.CatalogId" placeholder="input Catalog Id..." />
+             <span>@catalog.CatalogName</span>
+        </div>
+    </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">CategoryId:</label>
         <div class="col-sm-10">

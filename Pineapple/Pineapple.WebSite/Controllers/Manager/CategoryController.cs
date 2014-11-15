@@ -15,6 +15,12 @@ namespace Pineapple.WebSite.Controllers.Manager
         [Dependency]
         public CategoryService CategoryService { protected get; set; }
 
+        [Dependency]
+        public MappingService MappingService { protected get; set; }
+
+        [Dependency]
+        public CatalogService CatalogService { protected get; set; }
+
         protected override string ManagerName
         {
             get { return "Category"; }
@@ -25,7 +31,17 @@ namespace Pineapple.WebSite.Controllers.Manager
 
         public ActionResult Index()
         {
-            ViewBag.Categorys = CategoryService.LoadAllCategories();
+            int catalogid = 0;
+            if (int.TryParse(base.Request.QueryString["catalog"], out catalogid) && catalogid > 0)
+            {
+                ViewBag.Categorys = CategoryService.LoadAllCategoriesByCatalogId(catalogid);
+            }
+            else
+            {
+                ViewBag.Categorys = CategoryService.LoadAllCategories();
+            }
+            ViewBag.Catalogs = CatalogService.CatalogLoadAll();
+            ViewBag.CatalogId = catalogid;
             return View("Index");
         }
 
@@ -43,7 +59,7 @@ namespace Pineapple.WebSite.Controllers.Manager
 
         public ActionResult Create()
         {
-        	ViewBag.Title = "Create New Category";
+            ViewBag.Title = "Create New Category";
             ViewBag.CategoryView = CategoryView.EmptyView;
             return View("Edit");
         }
@@ -65,7 +81,7 @@ namespace Pineapple.WebSite.Controllers.Manager
 
         public ActionResult Edit(int id)
         {
-        	ViewBag.Title = "Edit Category";
+            ViewBag.Title = "Edit Category";
             ViewBag.CategoryView = CategoryService.GetCategoryViewByCategryid(id);
             return View("Edit");
         }
@@ -78,6 +94,13 @@ namespace Pineapple.WebSite.Controllers.Manager
             var category = new Category();
             TryUpdateModel(category);
             CategoryService.SaveCategory(category);
+
+            int catalogId = 1;
+            if (int.TryParse(collection["catalogId"], out catalogId) && category.CategoryId != null)
+            {
+                MappingService.SaveCatalogCategoryMapping(catalogId, category.CategoryId.Value);
+            }
+
             return RedirectToAction("Index");
         }
 
@@ -85,7 +108,7 @@ namespace Pineapple.WebSite.Controllers.Manager
         // GET: /Category/Delete/5
         public ActionResult Delete(int id)
         {
-        	CategoryService.DeleteCategory(id);
+            CategoryService.DeleteCategory(id);
             return RedirectToAction("Index");
         }
     }

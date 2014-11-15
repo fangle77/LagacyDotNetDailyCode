@@ -15,6 +15,8 @@ namespace Pineapple.Business
 
         public Mapping<TKey, TValue> SaveMapping<TKey, TValue>(Mapping<TKey, TValue> mapping)
         {
+            mapping.Items.ForEach(item => item.MappingId = 0);
+            MappingData.DeleteMapping(mapping);
             return MappingData.SaveMapping(mapping);
         }
 
