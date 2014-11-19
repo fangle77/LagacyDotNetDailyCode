@@ -22,15 +22,14 @@ namespace ConsoleApplication1
         {
             RepeatRun(() =>
             {
-                DataTable dt = new DataTable();
-                dt.Columns.Add("a");
-                var dr = dt.NewRow();
-                dr[0] = 1;
-                dt.Rows.Add(dr);
-
-                Console.WriteLine(dr["a"]);
-                Console.WriteLine(dr.Table.Columns["b"]==null);
-
+                Console.WriteLine(1.CompareTo(2));
+                List<int> list = new List<int>(5);
+                for(int i=0;i<5;i++) list.Add(i);
+                list.Sort((i1,i2)=>
+                              {
+                                  return -1;
+                              });
+                list.ForEach(Console.WriteLine);
             });
         }
 

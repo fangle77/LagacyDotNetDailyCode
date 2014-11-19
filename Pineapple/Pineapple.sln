@@ -1,6 +1,15 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+# SharpDevelop 4.4
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{A24FCB0B-198A-4BFE-991F-2A14B909F809}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pineapple.Core.Test", "UnitTest\Pineapple.Core.Test\Pineapple.Core.Test.csproj", "{CA56F12A-FFAF-4001-BD06-126210DD9458}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pineapple.ConsoleTest", "UnitTest\Pineapple.ConsoleTest\Pineapple.ConsoleTest.csproj", "{B72ABFE5-0E70-4E06-A2B3-9A0799B066E7}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pineapple.Business", "Pineapple.Business\Pineapple.Business.csproj", "{32DD754C-B0D0-4EA8-8BFA-7ABEC705E73A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pineapple.Core", "Pineapple.Core\Pineapple.Core.csproj", "{2957A855-C7F3-446F-BEF6-6CCF5FC19A3E}"
@@ -12,12 +21,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pineapple.Service", "Pineapple.Service\Pineapple.Service.csproj", "{96D9E5D1-800E-4082-AE8C-A04B6DAA34A4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pineapple.WebSite", "Pineapple.WebSite\Pineapple.WebSite.csproj", "{45048224-C98F-46D8-832A-BCED11476C33}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{A24FCB0B-198A-4BFE-991F-2A14B909F809}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pineapple.Core.Test", "UnitTest\Pineapple.Core.Test\Pineapple.Core.Test.csproj", "{CA56F12A-FFAF-4001-BD06-126210DD9458}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pineapple.ConsoleTest", "UnitTest\Pineapple.ConsoleTest\Pineapple.ConsoleTest.csproj", "{B72ABFE5-0E70-4E06-A2B3-9A0799B066E7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper", "Dapper\Dapper.csproj", "{B01E3FE2-201D-4C7D-A489-0A3DB676AAC5}"
 EndProject

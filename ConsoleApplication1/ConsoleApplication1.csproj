@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithm\Class1.cs" />
+    <Compile Include="SelectUnionBuilder.cs" />
     <Compile Include="EncryptDeEncrypt.cs" />
     <Compile Include="FileCounter.cs" />
     <Compile Include="FileFinder.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReferenceFinder.cs" />
+    <Compile Include="SearchSql.cs" />
     <Compile Include="Similar.cs" />
     <Compile Include="SplitVSReg.cs" />
     <Compile Include="StringResolver.cs" />
