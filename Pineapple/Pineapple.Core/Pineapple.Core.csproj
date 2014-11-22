@@ -78,8 +78,10 @@
   <ItemGroup>
     <Compile Include="Cache\CacheAttribute.cs" />
     <Compile Include="Cache\CacheCallHandler.cs" />
+    <Compile Include="Cache\CacheConstants.cs" />
     <Compile Include="Cache\CacheKeyAttribute.cs" />
     <Compile Include="Cache\CacheMode.cs" />
+    <Compile Include="Cache\CacheProxy.cs" />
     <Compile Include="Cache\CacheType.cs" />
     <Compile Include="Cache\ICache.cs" />
     <Compile Include="Cache\LocalCache.cs" />

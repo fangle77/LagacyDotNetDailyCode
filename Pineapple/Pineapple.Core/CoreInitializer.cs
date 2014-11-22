@@ -11,6 +11,7 @@ namespace Pineapple.Core
     {
         public static void Init()
         {
+            Container.UnityContainer.RegisterType<ICache, LocalCache>(CacheConstants.LocalCache, new ContainerControlledLifetimeManager());
             Container.UnityContainer.RegisterType<CacheCallHandler>(new ContainerControlledLifetimeManager());
         }
     }

@@ -12,16 +12,17 @@ namespace Pineapple.Core.Cache
             return container.Resolve<CacheCallHandler>();
         }
 
-        public CacheAttribute(string group, string name)
+        public CacheAttribute(string group, string name, CacheMode cacheMode)
         {
             Group = group;
             Name = name;
+            this.CacheMode = cacheMode;
+            this.CacheType = CacheType.Fetch;
         }
 
-        public CacheAttribute(string group, string name, CacheType cacheType)
+        public CacheAttribute(string group, string name, CacheMode cacheMode, CacheType cacheType)
+            : this(group, name, cacheMode)
         {
-            Group = group;
-            Name = name;
             CacheType = cacheType;
         }
 
@@ -30,6 +31,8 @@ namespace Pineapple.Core.Cache
         public string Name { get; private set; }
 
         public CacheType CacheType { get; private set; }
+
+        public CacheMode CacheMode { get; private set; }
 
         public string CacheKey { get { return Group + ";" + Name; } }
     }

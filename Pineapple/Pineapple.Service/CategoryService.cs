@@ -72,5 +72,15 @@ namespace Pineapple.Service
 
             return view;
         }
+
+        public virtual List<CategoryItem> LoadCategoryItemsByCategoryId(int categoryId)
+        {
+            return CategoryManager.LoadCategoryItemsByCategoryId(categoryId);
+        }
+
+        public Category GetCategoryByCategoryItemId(int categoryItemId)
+        {
+            return CategoryManager.GetCategoryByCategoryItemId(categoryItemId);
+        }
     }
 }

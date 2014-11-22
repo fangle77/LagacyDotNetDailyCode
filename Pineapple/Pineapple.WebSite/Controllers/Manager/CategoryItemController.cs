@@ -15,6 +15,9 @@ namespace Pineapple.WebSite.Controllers.Manager
         [Dependency]
         public CategoryService CategoryService { protected get; set; }
 
+        [Dependency]
+        public MappingService MappingService { protected get; set; }
+
         protected override string ManagerName
         {
             get { return "CategoryItem"; }
@@ -25,7 +28,17 @@ namespace Pineapple.WebSite.Controllers.Manager
 
         public ActionResult Index()
         {
-            ViewBag.CategoryItems = CategoryService.LoadAllCategoryItems();
+            ViewBag.Categories = CategoryService.LoadAllCategories();
+            int categoryId = 0;
+            if (int.TryParse(base.Request.QueryString["category"], out categoryId) && categoryId > 0)
+            {
+                ViewBag.CategoryItems = CategoryService.LoadCategoryItemsByCategoryId(categoryId);
+            }
+            else
+            {
+                ViewBag.CategoryItems = CategoryService.LoadAllCategoryItems();
+            }
+            ViewBag.CategoryId = categoryId;
             return View("Index");
         }
 
@@ -35,6 +48,7 @@ namespace Pineapple.WebSite.Controllers.Manager
         public ActionResult Details(int id)
         {
             ViewBag.CategoryItem = CategoryService.GetCategoryItemById(id);
+            ViewBag.Category = CategoryService.GetCategoryByCategoryItemId(id);
             return View("Detail");
         }
 
@@ -43,8 +57,8 @@ namespace Pineapple.WebSite.Controllers.Manager
 
         public ActionResult Create()
         {
-        	ViewBag.Title = "Create New Category Item";
-        	ViewBag.CategoryItem = new CategoryItem();
+            ViewBag.Title = "Create New Category Item";
+            ViewBag.CategoryItem = new CategoryItem();
             return View("Edit");
         }
 
@@ -57,6 +71,8 @@ namespace Pineapple.WebSite.Controllers.Manager
             var categoryItem = new CategoryItem();
             TryUpdateModel(categoryItem);
             CategoryService.SaveCategoryItem(categoryItem);
+            SaveCategoryItemMapping(categoryItem.CategoryItemId, collection);
+
             return RedirectToAction("Index");
         }
 
@@ -65,10 +81,13 @@ namespace Pineapple.WebSite.Controllers.Manager
 
         public ActionResult Edit(int id)
         {
-        	ViewBag.Title = "Edit Category Item";
+            ViewBag.Title = "Edit Category Item";
             var item = CategoryService.GetCategoryItemById(id);
-            if(item == null) item = new CategoryItem();
+            if (item == null) item = new CategoryItem();
             ViewBag.CategoryItem = item;
+
+            ViewBag.Category = CategoryService.GetCategoryByCategoryItemId(id);
+
             return View("Edit");
         }
 
@@ -81,14 +100,26 @@ namespace Pineapple.WebSite.Controllers.Manager
             var categoryItem = new CategoryItem();
             TryUpdateModel(categoryItem);
             CategoryService.SaveCategoryItem(categoryItem);
+
+            SaveCategoryItemMapping(categoryItem.CategoryItemId, collection);
+
             return RedirectToAction("Index");
+        }
+
+        private void SaveCategoryItemMapping(int? categoryItemId, FormCollection collection)
+        {
+            int categoryId = 0;
+            if (int.TryParse(collection["CategoryId"], out categoryId) && categoryItemId != null)
+            {
+                MappingService.SaveCategoryItemMapping(categoryId, categoryItemId.Value);
+            }
         }
 
         //
         // GET: /CategoryItem/Delete/5
         public ActionResult Delete(int id)
         {
-        	CategoryService.DeleteCategoryItems(new int[]{id});
+            CategoryService.DeleteCategoryItems(new int[] { id });
             return RedirectToAction("Index");
         }
     }

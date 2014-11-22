@@ -1,6 +1,20 @@
 ﻿@{
     ViewBag.Title = "Category Items";
 }
+@if (@ViewBag.Categories.Count > 0)
+{
+    <div>
+        @{
+    string allClass = @ViewBag.CategoryId == 0 ? "active" : "";
+            <a class="@allClass" href="/Manager/CategoryItem">All CategoryItems</a>
+        }
+        @foreach (var category in @ViewBag.Categories)
+        {
+            string active = @ViewBag.CatalogId == category.CategoryId ? "class=\"active\"" : string.Empty;
+            <a @active href="/Manager/CategoryItem?category=@category.CategoryId">@category.DisplayName<span>(@category.CategoryName)</span></a>
+        }
+    </div>
+}
 <table class="@ViewBag.TableClass">
     <caption>category List (<a href="/Manager/CategoryItem/Create" class="glyphicon glyphicon-plus-sign">Add</a>)</caption>
     <thead>
@@ -15,20 +29,20 @@
         </tr>
     </thead>
     <tbody>
-    @foreach(var categoryItem in @ViewBag.CategoryItems)
-    {
-        <tr>
-            <td>@categoryItem.CategoryItemId</td>
-            <td>@Helpers.TdWrap(@categoryItem.Title)</td>
-            <td>@Helpers.TdWrap(@categoryItem.SubTitle)</td>
-            <td>@Helpers.TdWrap(@categoryItem.Time)</td>
-            <td>@Helpers.TdWrap(@categoryItem.Content)</td>
-            <td>@categoryItem.DisplayOrder</td>
-            <td>
-                <a href="/Manager/CategoryItem/Edit/@categoryItem.CategoryItemId" class="glyphicon glyphicon-edit">Edit</a>
-                <a href="/Manager/CategoryItem/Delete/@categoryItem.CategoryItemId" class="glyphicon glyphicon-minus-sign">Delete</a>
-            </td>
-        </tr>
-    }
+        @foreach (var categoryItem in @ViewBag.CategoryItems)
+        {
+            <tr>
+                <td>@categoryItem.CategoryItemId</td>
+                <td>@Helpers.TdWrap(@categoryItem.Title)</td>
+                <td>@Helpers.TdWrap(@categoryItem.SubTitle)</td>
+                <td>@Helpers.TdWrap(@categoryItem.Time)</td>
+                <td>@Helpers.TdWrap(@categoryItem.Content)</td>
+                <td>@categoryItem.DisplayOrder</td>
+                <td>
+                    <a href="/Manager/CategoryItem/Edit/@categoryItem.CategoryItemId" class="glyphicon glyphicon-edit">Edit</a>
+                    <a href="/Manager/CategoryItem/Delete/@categoryItem.CategoryItemId" class="glyphicon glyphicon-minus-sign">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

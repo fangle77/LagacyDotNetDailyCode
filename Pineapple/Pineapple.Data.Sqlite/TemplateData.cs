@@ -45,7 +45,7 @@ namespace Pineapple.Data.Sqlite
         {
             using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
             {
-                return cnn.Execute("delete from Template where Template=@Template", new { Template = templateId }) > 0;
+                return cnn.Execute("delete from Template where TemplateId=@TemplateId", new { TemplateId = templateId }) > 0;
             }
         }
     }

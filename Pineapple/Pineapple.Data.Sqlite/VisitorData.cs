@@ -20,7 +20,7 @@ namespace Pineapple.Data.Sqlite
             }
         }
 
-        [Cache("Visitor", "LatestN")]
+        [Cache("Visitor", "LatestN", CacheMode.Local)]
         public virtual List<Visitor> LoadLatestNVisitors([CacheKey]int latestN)
         {
             using (var cnn = SqLiteBaseRepository.DbConnection())

@@ -73,6 +73,9 @@ namespace Pineapple.WebSite.Controllers.Manager
             var category = new Category();
             TryUpdateModel(category);
             CategoryService.SaveCategory(category);
+
+            SaveCatalogCategoryMapping(category.CategoryId, collection);
+
             return RedirectToAction("Index");
         }
 
@@ -95,13 +98,18 @@ namespace Pineapple.WebSite.Controllers.Manager
             TryUpdateModel(category);
             CategoryService.SaveCategory(category);
 
-            int catalogId = 1;
-            if (int.TryParse(collection["catalogId"], out catalogId) && category.CategoryId != null)
-            {
-                MappingService.SaveCatalogCategoryMapping(catalogId, category.CategoryId.Value);
-            }
+            SaveCatalogCategoryMapping(category.CategoryId, collection);
 
             return RedirectToAction("Index");
+        }
+
+        private void SaveCatalogCategoryMapping(int? categoryId, FormCollection collection)
+        {
+            int catalogId = 0;
+            if (int.TryParse(collection["catalogId"], out catalogId) && categoryId != null)
+            {
+                MappingService.SaveCatalogCategoryMapping(catalogId, categoryId.Value);
+            }
         }
 
         //

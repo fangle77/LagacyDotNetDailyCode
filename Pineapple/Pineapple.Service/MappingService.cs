@@ -25,11 +25,13 @@ namespace Pineapple.Service
 
         public bool SaveCatalogCategoryMapping(int catalogId, int categoryId)
         {
+            MappingManager.DeleteMappingByValue(new CatalogCategoryMapping(), categoryId);
             return SaveMapping<CatalogCategoryMapping>(catalogId, categoryId);
         }
 
         public bool SaveCatalogNavigationMapping(int catalogId, int navigationId)
         {
+            MappingManager.DeleteMappingByValue(new CatalogNavigationMapping(), navigationId);
             return SaveMapping<CatalogNavigationMapping>(catalogId, navigationId);
         }
 
@@ -40,6 +42,7 @@ namespace Pineapple.Service
 
         public bool SaveCategoryItemMapping(int categoryId, int categoryItemId)
         {
+            MappingManager.DeleteMappingByValue(new CategoryItemMapping(), categoryItemId);
             return SaveMapping<CategoryItemMapping>(categoryId, categoryItemId);
         }
 

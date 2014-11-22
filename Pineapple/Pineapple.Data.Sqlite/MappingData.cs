@@ -36,8 +36,14 @@ namespace Pineapple.Data.Sqlite
         {
             using (var cnn = SqLiteBaseRepository.DbConnection())
             {
-                string delteFormat = "delete from {0} where {1}=@Key and {2}=@Value";
-                int total = mapping.Items.Sum(item => cnn.Execute(string.Format(delteFormat, mapping.MappingName, mapping.KeyName, mapping.ValueName), item));
+                int total = 0;
+                foreach (var item in mapping.Items)
+                {
+                    int i = cnn.Execute(string.Format("delete from {0} where {1}=@Key and {2}=@Value"
+                         , mapping.MappingName, mapping.KeyName, mapping.ValueName),
+                         new { Key = item.Key, Value = item.Value });
+                    total += i;
+                }
                 return total > 0;
             }
         }
@@ -46,8 +52,7 @@ namespace Pineapple.Data.Sqlite
         {
             using (var cnn = SqLiteBaseRepository.DbConnection())
             {
-                string deleteFromat = "delete from {0} where {1}=@Key";
-                int total = mapping.Items.Sum(item => cnn.Execute(string.Format(deleteFromat, mapping.MappingName, mapping.KeyName)));
+                int total = cnn.Execute(string.Format("delete from {0} where {1}=@Key", mapping.MappingName, mapping.KeyName), new { Key = key });
                 return total > 0;
             }
         }
@@ -56,8 +61,7 @@ namespace Pineapple.Data.Sqlite
         {
             using (var cnn = SqLiteBaseRepository.DbConnection())
             {
-                string deleteFromat = "delete from {0} where {1}=@Value";
-                int total = mapping.Items.Sum(item => cnn.Execute(string.Format(deleteFromat, mapping.MappingName, mapping.ValueName)));
+                int total = cnn.Execute(string.Format("delete from {0} where {1}=@Value", mapping.MappingName, mapping.ValueName), new { Value = value });
                 return total > 0;
             }
         }

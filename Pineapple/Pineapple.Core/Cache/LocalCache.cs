@@ -90,7 +90,7 @@ namespace Pineapple.Core.Cache
             if (cacheManagers.Count > 0) return;
 
             var section = ConfigurationManager.GetSection(CacheManagerSettings.SectionName) as CacheManagerSettings;
-            if (section == null) throw new ConfigurationException("Read section" + CacheManagerSettings.SectionName + " failed!");
+            if (section == null) throw new ConfigurationErrorsException("Read section" + CacheManagerSettings.SectionName + " failed!");
 
             foreach (var managerConfig in section.CacheManagers)
             {

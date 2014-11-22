@@ -1,5 +1,5 @@
 ﻿@{
-    var TemplateView = @ViewBag.NavigationView;
+    var navigationView = @ViewBag.NavigationView;
     var navigation = navigationView.Navigation;
     var action = navigationView.IsEmpty ? "/Manager/Navigation/Create" : "/Manager/Navigation/Edit/" + navigation.NavigationId;
     var navigationId = navigationView.IsEmpty ? "" : navigation.NavigationId.ToString();

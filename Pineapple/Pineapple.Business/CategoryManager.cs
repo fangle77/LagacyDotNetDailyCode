@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Practices.Unity;
+using Pineapple.Core.Cache;
 using Pineapple.Model;
 using Pineapple.Data;
 
@@ -29,7 +30,7 @@ namespace Pineapple.Business
         public virtual List<Category> LoadAllCategories()
         {
             return CategoryData.LoaddAllCategories();
-        } 
+        }
 
         public virtual List<Category> LoadCategoriesByCatalogId(int catalogId)
         {
@@ -77,7 +78,7 @@ namespace Pineapple.Business
             return CategoryData.GetCategoryItemById(categoryItemId);
         }
 
-        public  List<CategoryItem> LoadAllCategoryItems()
+        public List<CategoryItem> LoadAllCategoryItems()
         {
             return CategoryData.LoadAllCategoryItems();
         }
@@ -99,6 +100,16 @@ namespace Pineapple.Business
                 }
             }
             return itemDelted;
+        }
+
+        public Category GetCategoryByCategoryItemId(int categoryItemId)
+        {
+            var mapping = MappingData.GetMappingByValue(new CategoryItemMapping(), categoryItemId);
+            if (mapping != null && mapping.Items != null && mapping.Items.Count > 0)
+            {
+                return GetCategoryById(mapping.Items[0].Key);
+            }
+            return new Category();
         }
     }
 }

@@ -2,13 +2,15 @@
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.InterceptionExtension;
 
 namespace Pineapple.Core.Cache
 {
     public class CacheCallHandler : ICallHandler
     {
-        LocalCache localCache = new LocalCache();
+        [Dependency]
+        public CacheProxy CacheProxy { private get; set; }
 
         public IMethodReturn Invoke(IMethodInvocation input, GetNextHandlerDelegate getNext)
         {
@@ -16,16 +18,26 @@ namespace Pineapple.Core.Cache
             if (cacheAttr == null) return getNext()(input, getNext);
             string cacheKey = GetCacheKey(cacheAttr, input);
 
-            if (localCache.Contain(cacheAttr.Group, cacheKey))
+            ICache cacheHandler = CacheProxy.GetCacheHandler(cacheAttr.CacheMode);
+
+            switch (cacheAttr.CacheType)
             {
-                return input.CreateMethodReturn(localCache.Get(cacheAttr.Group, cacheKey));
+                case CacheType.Fetch:
+                    if (cacheHandler.Contain(cacheAttr.Group, cacheKey))
+                    {
+                        return input.CreateMethodReturn(cacheHandler.Get(cacheAttr.Group, cacheKey));
+                    }
+                    else
+                    {
+                        var r = getNext()(input, getNext);
+                        cacheHandler.Add(cacheAttr.Group, cacheKey, r.ReturnValue);
+                        return r;
+                    }
+                case CacheType.Clear:
+                    cacheHandler.Remove(cacheAttr.Group, cacheKey);
+                    return getNext()(input, getNext);
             }
-            else
-            {
-                var r = getNext()(input, getNext);
-                localCache.Add(cacheAttr.Group, cacheKey, r.ReturnValue);
-                return r;
-            }
+            return getNext()(input, getNext);
         }
 
         public int Order { get; set; }
