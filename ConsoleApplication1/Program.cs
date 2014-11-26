@@ -22,6 +22,8 @@ namespace ConsoleApplication1
         {
             RepeatRun(() =>
             {
+			
+			//"[^"]+",?|[^,]{0,},?
                 Console.WriteLine(1.CompareTo(2));
                 List<int> list = new List<int>(5);
                 for(int i=0;i<5;i++) list.Add(i);
