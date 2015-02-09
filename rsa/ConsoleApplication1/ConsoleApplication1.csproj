@@ -53,6 +53,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="PemConverter.cs" />
     <Compile Include="RSACryptoServiceProviderExtension.cs" />
     <Compile Include="RSACryptoServiceProviderExtensionDemo.cs" />
     <Compile Include="TestBC.cs" />

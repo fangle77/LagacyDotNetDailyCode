@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Thinhunan.Cnblogs.Com.RSAUtility;
 
 namespace ConsoleApplication1
 {
@@ -11,7 +12,9 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             //RSACryptoServiceProviderExtensionDemo.Main1(args);
-            TestBC.Main1(args);
+            //TestBC.Main1(args);
+            PemConverterTest.Test();
+            Console.Read();
             return; 
 
             string x = @"MIICXgIBAAKBgQDwIqfvxEjqHu8048x4wJ5EId6ASAbWdH5fzgHxvew5kXqECMNc
