@@ -59,6 +59,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithm\Class1.cs" />
+    <Compile Include="CacheTimeStatistics.cs" />
+    <Compile Include="ObjectExternal.cs" />
     <Compile Include="SelectUnionBuilder.cs" />
     <Compile Include="EncryptDeEncrypt.cs" />
     <Compile Include="FileCounter.cs" />
@@ -80,6 +82,7 @@
     <Compile Include="ReferenceFinder.cs" />
     <Compile Include="SearchSql.cs" />
     <Compile Include="Similar.cs" />
+    <Compile Include="SplitString.cs" />
     <Compile Include="SplitVSReg.cs" />
     <Compile Include="StringResolver.cs" />
     <Compile Include="SVNVersion.cs" />
@@ -88,7 +91,10 @@
     <Compile Include="TaskUtility.cs" />
     <Compile Include="TextFinder.cs" />
     <Compile Include="ThreadStaticTest.cs" />
+    <Compile Include="TimeUtility.cs" />
     <Compile Include="UrlUtility.cs" />
+    <Compile Include="XmlTest\AppConfigTest.cs" />
+    <Compile Include="XMLUtility.cs" />
     <Compile Include="XXXTest\MylistItem.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +103,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="XmlTest\AppsVersion.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

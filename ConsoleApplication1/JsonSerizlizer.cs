@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using System.Web.Script.Serialization;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 
 namespace ConsoleApplication1
 {
@@ -25,12 +27,40 @@ namespace ConsoleApplication1
             serializer.Serialize(new StringWriter(sb), obj);
             return sb.ToString();
         }
+
+        public static void Deserializ()
+        {
+            string input = "{\"OrderId\":2901412,\"TradeStatus\":\"TRADE_FISNISHED\",\"InnerObj\":{\"abc\":1,\"def\":false}}";
+            //input = "";
+            //input = "OrderId=1123123&tradeStatus =TRADE_STATUS";
+            var obj = JsonConvert.DeserializeObject<dynamic>(input);
+            //Console.WriteLine(obj["OrderId"]);
+            //Console.WriteLine(obj["TradeStatus"]);
+
+            var jobject = obj as JObject;
+           foreach(var x in jobject.Properties())
+           {
+               Console.WriteLine(x.Name);
+               string xv = x.Value.ToString();
+               Console.WriteLine(xv);
+               Console.WriteLine(x.Value.ToString());
+           }
+
+            Console.WriteLine(obj is IDictionary<string, object>);
+            Console.WriteLine(obj is ExpandoObject);
+
+            Console.WriteLine(obj);
+        }
     }
 
     class JsonSerializerTest
     {
         public static void SerializeTest(object obj)
         {
+            JsonSerizlizer.Deserializ();
+
+            return;
+
             string ms = JsonSerizlizer.SerializeWithMs(obj);
             string nt = JsonSerizlizer.SerializeWithNewton(obj);
 

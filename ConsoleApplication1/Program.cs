@@ -18,24 +18,18 @@ namespace ConsoleApplication1
 {
     class Program
     {
-        static void Main(string[] args)
+
+        static void TestAction()
         {
-            RepeatRun(() =>
-            {
-			
-			//"[^"]+",?|[^,]{0,},?
-                Console.WriteLine(1.CompareTo(2));
-                List<int> list = new List<int>(5);
-                for(int i=0;i<5;i++) list.Add(i);
-                list.Sort((i1,i2)=>
-                              {
-                                  return -1;
-                              });
-                list.ForEach(Console.WriteLine);
-            });
+            JsonSerializerTest.SerializeTest(null);
+
         }
 
-        static void RepeatRun(Action action)
+
+
+
+
+        static void Main(string[] args)
         {
             string q = string.Empty;
             while (!"q".Equals(q, StringComparison.OrdinalIgnoreCase))
@@ -43,11 +37,11 @@ namespace ConsoleApplication1
                 DateTime TimeStart = DateTime.Now;
                 Console.WriteLine("start " + TimeStart.ToString("HH:mm:ss fff"));
 
-                action();
+                TestAction();
 
-                Console.WriteLine("done, " + DateTime.Now.Subtract(TimeStart).TotalMilliseconds);
+                Console.WriteLine("done, {0} ms", DateTime.Now.Subtract(TimeStart).TotalMilliseconds);
 
-                Console.Write("input q to exit:");
+                Console.Write("input q to exit:\r\n");
                 q = Console.ReadLine().Trim();
             }
         }
