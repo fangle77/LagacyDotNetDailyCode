@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{00A9B7AD-9747-4F30-BCD5-7BF3EF29801D}</ProjectGuid>
+    <ProjectGuid>{D4A0267C-6E17-42A6-A677-A7B6FF0BD9C4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Pineapple.Data</RootNamespace>
-    <AssemblyName>Pineapple.Data</AssemblyName>
+    <RootNamespace>Pineapple.UnitTest</RootNamespace>
+    <AssemblyName>Pineapple.UnitTest</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -29,27 +29,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.Unity.Interception">
-      <HintPath>..\Libraly\Microsoft.Practices.Unity.Interception.dll</HintPath>
+    <Reference Include="log4net">
+      <HintPath>..\Libraly\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\Libraly\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\Libraly\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -60,26 +48,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IAttachmentData.cs" />
-    <Compile Include="ICatalogData.cs" />
-    <Compile Include="ICategoryData.cs" />
-    <Compile Include="IMappingData.cs" />
-    <Compile Include="INavigationData.cs" />
-    <Compile Include="INoSqlData.cs" />
-    <Compile Include="ITemplateData.cs" />
-    <Compile Include="IVisitorData.cs" />
+    <Compile Include="BaseTest.cs" />
+    <Compile Include="Data\NoSqlTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Pineapple.Core\Pineapple.Core.csproj">
+    <Content Include="log4net.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Pineapple.Core.Web\Pineapple.Core.Web.csproj">
+      <Project>{e5125552-1045-4c55-9da8-8abd73d22efc}</Project>
+      <Name>Pineapple.Core.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Pineapple.Core\Pineapple.Core.csproj">
       <Project>{2957a855-c7f3-446f-bef6-6ccf5fc19a3e}</Project>
       <Name>Pineapple.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Pineapple.Model\Pineapple.Model.csproj">
+    <ProjectReference Include="..\..\Pineapple.Data.Sqlite\Pineapple.Data.Sqlite.csproj">
+      <Project>{6e301021-ffbe-430e-ae30-743ef4a250ff}</Project>
+      <Name>Pineapple.Data.Sqlite</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Pineapple.Data\Pineapple.Data.csproj">
+      <Project>{00a9b7ad-9747-4f30-bcd5-7bf3ef29801d}</Project>
+      <Name>Pineapple.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Pineapple.Model\Pineapple.Model.csproj">
       <Project>{8dbce0d3-acc5-49f3-ad7b-20f7a9cc80ae}</Project>
       <Name>Pineapple.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -71,6 +71,7 @@
     <Compile Include="CategoryData.cs" />
     <Compile Include="MappingData.cs" />
     <Compile Include="NavigationData.cs" />
+    <Compile Include="NoSqlData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqLiteBaseRepository.cs" />
     <Compile Include="SqliteDapperExtention.cs" />
@@ -99,6 +100,8 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(TargetDir)" "$(SolutionDir)Pineapple.WebSite\bin"
+
+copy "$(TargetDir)" "$(SolutionDir)UnitTest\Pineapple.UnitTest\$(OutDir)"
 
 copy "$(TargetDir)" "$(SolutionDir)UnitTest\Pineapple.ConsoleTest\$(OutDir)"
 </PostBuildEvent>

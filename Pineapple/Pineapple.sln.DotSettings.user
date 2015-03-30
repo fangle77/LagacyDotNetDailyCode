@@ -1,7 +1,7 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:Boolean x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=65CD4584873A44CF96B161F59A8ED2E5/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=65CD4584873A44CF96B161F59A8ED2E5/Name/@EntryValue">RegisterAssemblyTest #3</s:String>
-	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=65CD4584873A44CF96B161F59A8ED2E5/XmlSerializedElements/@EntryValue">&lt;Session&gt;&lt;Elements /&gt;&lt;/Session&gt;</s:String>
+	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=65CD4584873A44CF96B161F59A8ED2E5/XmlSerializedElements/@EntryValue">&lt;Session&gt;&lt;Elements&gt;&lt;UnitTestElement Provider="nUnit" Id="Pineapple.UnitTest.Data.NoSqlTest" type="NUnitTestFixtureElement" Project="D4A0267C-6E17-42A6-A677-A7B6FF0BD9C4" /&gt;&lt;UnitTestElement Provider="nUnit" Id="Pineapple.UnitTest.Data.NoSqlTest.NosqlTest" ParentId="Pineapple.UnitTest.Data.NoSqlTest" type="NUnitTestElement" TypeName="Pineapple.UnitTest.Data.NoSqlTest" MethodName="NosqlTest" Project="D4A0267C-6E17-42A6-A677-A7B6FF0BD9C4" /&gt;&lt;/Elements&gt;&lt;/Session&gt;</s:String>
 	
 	
 	
