@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Algorithm\Class1.cs" />
     <Compile Include="CacheTimeStatistics.cs" />
+    <Compile Include="DynamicTest.cs" />
     <Compile Include="ObjectExternal.cs" />
     <Compile Include="SelectUnionBuilder.cs" />
     <Compile Include="EncryptDeEncrypt.cs" />

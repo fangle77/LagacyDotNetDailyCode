@@ -20,11 +20,22 @@ namespace Pineapple.UnitTest.Data
         [Test]
         public void NosqlTest()
         {
+            logger.Info("start test");
+
             var nosql = Container.Resolve<INoSqlData>();
-            nosql.CreateNoSqlData("CompanyBasic");
+            nosql = nosql.CreateNoSqlData("CompanyInfo");
+
             nosql.Save("Name", "xmlycm");
+            logger.Info("start test22");
             var m = nosql.LoadDynamicModel();
+            logger.Info("start test111");
             Assert.IsTrue(m.Name == "xmlycm");
+        }
+
+        [Test]
+        public void LogTest()
+        {
+            logger.Info("console out put log.");
         }
     }
 }

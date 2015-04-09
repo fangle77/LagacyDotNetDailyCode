@@ -7,13 +7,16 @@ using Dapper;
 using Pineapple.Core.Dyanamic;
 using Pineapple.Model;
 using System.Linq;
+using log4net;
 
 namespace Pineapple.Data.Sqlite
 {
     public class NoSqlData : INoSqlData
     {
-        private string keyColumn = "key";
-        private string valueColumn = "value";
+        private readonly ILog logger = LogManager.GetLogger(typeof(NoSqlData));
+
+        private string keyColumn = "Name";
+        private string valueColumn = "Content";
 
         public string TableName { get; set; }
 
@@ -31,19 +34,24 @@ namespace Pineapple.Data.Sqlite
 
         public bool Save(string key, string value)
         {
+            logger.Info("TableName=" + TableName);
+
             using (var cnn = SqLiteBaseRepository.DbConnection())
             {
-                int i = cnn.Query<int>(string.Format("select count(1) from {0} where {1}=@Key", TableName, keyColumn)
+                logger.Info(cnn);
+                logger.Info(string.Format("select count({1}) from {0} where {1}='@Key'", TableName, keyColumn));
+
+                int i = cnn.Query<int>(string.Format("select count({1}) from {0} where {1}='@Key'", TableName, keyColumn)
                     , new { Key = key }).FirstOrDefault();
                 int rows = 0;
                 if (i > 0)
                 {
-                    rows = cnn.Execute(string.Format("Update {0} set {2}=@Value where {1}=@Key", TableName, keyColumn, valueColumn)
+                    rows = cnn.Execute(string.Format("Update {0} set {2}='@Value' where {1}='@Key'", TableName, keyColumn, valueColumn)
                         , new { Key = key, Value = value });
                 }
                 else
                 {
-                    rows = cnn.Execute(string.Format("Insert into {0}({1},{2}) values(@Key,@Value)", TableName, keyColumn, valueColumn)
+                    rows = cnn.Execute(string.Format("Insert into {0}({1},{2}) values('@Key','@Value')", TableName, keyColumn, valueColumn)
                         , new { Key = key, Value = value });
                 }
                 return rows > 0;
@@ -54,7 +62,7 @@ namespace Pineapple.Data.Sqlite
         {
             using (var cnn = SqLiteBaseRepository.DbConnection())
             {
-                int i = cnn.Execute(string.Format("delete from {0} where {1}=@Key", TableName, keyColumn)
+                int i = cnn.Execute(string.Format("delete from {0} where {1}='@Key'", TableName, keyColumn)
                     , new { Key = key });
                 return i > 0;
             }
@@ -64,11 +72,11 @@ namespace Pineapple.Data.Sqlite
         {
             using (var cnn = SqLiteBaseRepository.DbConnection())
             {
-                var obj = cnn.Query<dynamic>("select {1} as Key, {2} as Value from {0}", TableName).ToList();
+                var obj = cnn.Query<dynamic>("select {1} as Name, {2} as Content from {0}", TableName).ToList();
                 dynamic dModel = new DynamicModel();
                 foreach (var o in obj)
                 {
-                    dModel.Set(o.Key, o.Value);
+                    dModel.Set(o.Name, o.Content);
                 }
                 return dModel;
             }

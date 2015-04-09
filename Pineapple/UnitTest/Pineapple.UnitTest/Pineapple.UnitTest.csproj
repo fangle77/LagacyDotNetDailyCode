@@ -29,6 +29,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net">
       <HintPath>..\Libraly\log4net.dll</HintPath>
@@ -51,11 +59,18 @@
     <Compile Include="BaseTest.cs" />
     <Compile Include="Data\NoSqlTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\VisitorServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="log4net.xml" />
+    <Content Include="log4net.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Pineapple.Business\Pineapple.Business.csproj">
+      <Project>{32dd754c-b0d0-4ea8-8bfa-7abec705e73a}</Project>
+      <Name>Pineapple.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Pineapple.Core.Web\Pineapple.Core.Web.csproj">
       <Project>{e5125552-1045-4c55-9da8-8abd73d22efc}</Project>
       <Name>Pineapple.Core.Web</Name>
@@ -75,6 +90,10 @@
     <ProjectReference Include="..\..\Pineapple.Model\Pineapple.Model.csproj">
       <Project>{8dbce0d3-acc5-49f3-ad7b-20f7a9cc80ae}</Project>
       <Name>Pineapple.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Pineapple.Service\Pineapple.Service.csproj">
+      <Project>{96d9e5d1-800e-4082-ae8c-a04b6daa34a4}</Project>
+      <Name>Pineapple.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

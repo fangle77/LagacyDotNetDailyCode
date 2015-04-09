@@ -125,6 +125,18 @@ namespace Pineapple.Data.Sqlite
 
         #endregion
 
+        #region NoSql
+
+        private string CompanyInfo =
+            @" Create table if not exists CompanyInfo
+            (
+                Id       INTEGER primary key AUTOINCREMENT,
+                Name     TEXT,
+                Content    TEXT
+            )";
+
+        #endregion
+
         public void CreateTables()
         {
             using (var cnn = SqLiteBaseRepository.DbConnection())
@@ -140,6 +152,7 @@ namespace Pineapple.Data.Sqlite
                 cnn.Execute(CategoryNavigationMapping);
                 cnn.Execute(CategoryTemplateMapping);
                 cnn.Execute(Attachment);
+                cnn.Execute(CompanyInfo);
             }
         }
     }
