@@ -27,7 +27,7 @@ namespace Pineapple.Data.Sqlite
 
         public Template GetTemplateById(int templateId)
         {
-            using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            using (var cnn = SqLiteBaseRepository.DbConnection())
             {
                 return cnn.Query<Template>(typeof(Template).GetSelectSql("TemplateId=@TemplateId"), new { TemplateId = templateId }).FirstOrDefault();
             }
@@ -35,7 +35,7 @@ namespace Pineapple.Data.Sqlite
 
         public List<Template> LoadAllTemplate()
         {
-            using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            using (var cnn = SqLiteBaseRepository.DbConnection())
             {
                 return cnn.Query<Template>(typeof(Template).GetSelectSql()).ToList();
             }
@@ -43,7 +43,7 @@ namespace Pineapple.Data.Sqlite
 
         public bool DeleteTemplate(int templateId)
         {
-            using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            using (var cnn = SqLiteBaseRepository.DbConnection())
             {
                 return cnn.Execute("delete from Template where TemplateId=@TemplateId", new { TemplateId = templateId }) > 0;
             }

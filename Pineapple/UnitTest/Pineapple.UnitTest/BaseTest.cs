@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using Pineapple.Core;
+using Pineapple.Service;
 using Rhino.Mocks;
 using log4net;
 using log4net.Config;
@@ -25,6 +26,8 @@ namespace Pineapple.UnitTest
             logger = LogManager.GetLogger(this.GetType());
 
             mock = new MockRepository();
+
+            ApplicationInitialService.Init();
 
             DoPrepare();
         }

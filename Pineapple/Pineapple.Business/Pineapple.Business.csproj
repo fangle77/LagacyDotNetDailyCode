@@ -70,6 +70,7 @@
     <Compile Include="AttachmentManager.cs" />
     <Compile Include="CatalogManager.cs" />
     <Compile Include="CategoryManager.cs" />
+    <Compile Include="CompanyInfoManager.cs" />
     <Compile Include="MappingManager.cs" />
     <Compile Include="NavigationManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

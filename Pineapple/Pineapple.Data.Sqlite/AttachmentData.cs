@@ -41,7 +41,7 @@ namespace Pineapple.Data.Sqlite
 
         public List<Attachment> LoadAllAttachment()
         {
-            using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            using (var cnn = SqLiteBaseRepository.DbConnection())
             {
                 return cnn.Query<Attachment>(typeof(Attachment).GetSelectSql(null, SelectIgnore)).ToList<Attachment>();
             }
@@ -50,7 +50,7 @@ namespace Pineapple.Data.Sqlite
 
         public Attachment GetAttachmentById(int attachmentId)
         {
-            using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            using (var cnn = SqLiteBaseRepository.DbConnection())
             {
                 return cnn.Query<Attachment>(typeof(Attachment).GetSelectSql("AttachmentId=@AttachmentId", SelectIgnore), new { AttachmentId = attachmentId }).FirstOrDefault();
             }
@@ -58,7 +58,7 @@ namespace Pineapple.Data.Sqlite
 
         public Attachment GetAttachmentByName(string originName)
         {
-            using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            using (var cnn = SqLiteBaseRepository.DbConnection())
             {
                 return cnn.Query<Attachment>(typeof(Attachment).GetSelectSql("OriginName=@OriginName", SelectIgnore), new { OriginName = originName }).FirstOrDefault();
             }

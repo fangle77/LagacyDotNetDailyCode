@@ -43,6 +43,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libraly\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\Libraly\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -138,6 +141,7 @@
     <Compile Include="Controllers\Manager\CatalogController.cs" />
     <Compile Include="Controllers\Manager\CategoryController.cs" />
     <Compile Include="Controllers\Manager\CategoryItemController.cs" />
+    <Compile Include="Controllers\Manager\CompanyInfoController.cs" />
     <Compile Include="Controllers\Manager\ManagerController.cs" />
     <Compile Include="Controllers\Manager\MappingController.cs" />
     <Compile Include="Controllers\Manager\NavigationController.cs" />
@@ -187,6 +191,7 @@
     <Content Include="Content\bootstrap-3.2.0\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-3.2.0\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\bootstrap-3.2.0\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="Config\log4net.config" />
     <None Include="Content\js\jquery-1.11.1.intellisense.js" />
     <Content Include="Content\js\jquery-ui-1.11.1.js" />
     <Content Include="Content\js\jquery-ui-1.11.1.min.js" />
@@ -236,6 +241,7 @@
     <None Include="Views\Manager\Category\Detail.cshtml" />
     <None Include="Views\Manager\Category\Edit.cshtml" />
     <None Include="Views\Manager\Category\Index.cshtml" />
+    <None Include="Views\Manager\CompanyInfo\Index.cshtml" />
     <None Include="Views\Manager\Index.cshtml" />
     <None Include="Views\Manager\Mapping\Catalog-Category.cshtml" />
     <None Include="Views\Manager\Mapping\Catalog-Navigation.cshtml" />
@@ -255,6 +261,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\bundles\bootstrap\css\" />
     <Folder Include="Content\bundles\bootstrap\js\" />
+    <Folder Include="Config" />
+    <Folder Include="Views\Manager\CompanyInfo" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Pineapple.Core\Pineapple.Core.csproj">

@@ -25,7 +25,7 @@ namespace Pineapple.WebSite.Controllers.Manager
         {
             return string.Format("~/Views/Manager/{0}{1}{2}.cshtml", ManagerName, string.IsNullOrEmpty(ManagerName) ? string.Empty : "/", viewName);
         }
-
+     
         protected new ActionResult View(string viewName)
         {
             BuildCommonVariable();

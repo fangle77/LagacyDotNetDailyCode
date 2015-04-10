@@ -72,6 +72,7 @@
     <Compile Include="AttachmentService.cs" />
     <Compile Include="CatalogService.cs" />
     <Compile Include="CategoryService.cs" />
+    <Compile Include="CompanyInfoService.cs" />
     <Compile Include="ManagerNavigationService.cs" />
     <Compile Include="MappingService.cs" />
     <Compile Include="NavigationService.cs" />

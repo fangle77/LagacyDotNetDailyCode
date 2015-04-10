@@ -13,23 +13,21 @@ namespace Pineapple.UnitTest.Data
     {
         protected override void DoPrepare()
         {
-            Container.RegisterAssemblyInterface("Pineapple.Data", "Pineapple.Data.Sqlite");
-
         }
 
         [Test]
         public void NosqlTest()
         {
-            logger.Info("start test");
-
             var nosql = Container.Resolve<INoSqlData>();
             nosql = nosql.CreateNoSqlData("CompanyInfo");
 
             nosql.Save("Name", "xmlycm");
-            logger.Info("start test22");
             var m = nosql.LoadDynamicModel();
-            logger.Info("start test111");
             Assert.IsTrue(m.Name == "xmlycm");
+
+            nosql.Save("Name", "xmlycm2");
+            m = nosql.LoadDynamicModel();
+            Assert.IsTrue(m.Name == "xmlycm2");
         }
 
         [Test]

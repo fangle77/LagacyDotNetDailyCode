@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Pineapple.WebSite")]
-[assembly: AssemblyCopyright("Bowen.Zhang版权所有(C)  2014")]
+[assembly: AssemblyCopyright("Bowen.Zhang版权所有(C)  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -32,7 +32,7 @@ namespace Pineapple.Data.Sqlite
 
         public List<Catalog> CatalogLoadAll()
         {
-            using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            using (var cnn = SqLiteBaseRepository.DbConnection())
             {
                 return cnn.Query<Catalog>(typeof(Catalog).GetSelectSql()).ToList<Catalog>();
             }
@@ -40,7 +40,7 @@ namespace Pineapple.Data.Sqlite
 
         public Catalog GetCatalogById(int catalogId)
         {
-            using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            using (var cnn = SqLiteBaseRepository.DbConnection())
             {
                 return cnn.Query<Catalog>(typeof(Catalog).GetSelectSql("CatalogId=@CatalogId"), new { CatalogId = catalogId }).FirstOrDefault();
             }
@@ -58,7 +58,7 @@ namespace Pineapple.Data.Sqlite
         public List<Catalog> LoadCatalogsByIdCatalogIds(IEnumerable<int> catalogIds)
         {
             string ids = string.Join(",", catalogIds).TrimEnd(',');
-            using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            using (var cnn = SqLiteBaseRepository.DbConnection())
             {
                 return cnn.Query<Catalog>(typeof(Catalog).GetSelectSql("CatalogId in (@CatalogIds)"), new { CatalogIds = ids }).ToList();
             }

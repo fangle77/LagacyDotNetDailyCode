@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Company infomation";
+}
+<table class="@ViewBag.TableClass">
+    <caption>Company infomation List (<a href="/Manager/CompanyInfo/Create" class="glyphicon glyphicon-plus-sign">Add</a>)</caption>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Content</th>
+            <th class="width-200">Opration</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var nameValue in @ViewBag.Company)
+        {
+            <tr>
+                <td>@nameValue.Key</td>
+                <td><input type="text" value="@nameValue.Value" name="content" /></td>
+                <td>
+                    <a href="/Manager/CompanyInfo/Save" class="glyphicon glyphicon-save">Save</a>
+                    <a href="/Manager/CategoryItem/Delete/@nameValue.Key" class="glyphicon glyphicon-minus-sign">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

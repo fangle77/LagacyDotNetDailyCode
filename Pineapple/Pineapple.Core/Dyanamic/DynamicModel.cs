@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace Pineapple.Core.Dyanamic
     /// obj.Set("Name2", "Value2");
     /// string s = obj.Name1 + obj.Name2;
     /// </summary>
-    public class DynamicModel : System.Dynamic.DynamicObject
+    public class DynamicModel : System.Dynamic.DynamicObject, IEnumerable<KeyValuePair<string, object>>
     {
         private readonly ConcurrentDictionary<string, object> objMapping = new ConcurrentDictionary<string, object>(StringComparer.OrdinalIgnoreCase);
 
@@ -40,6 +41,16 @@ namespace Pineapple.Core.Dyanamic
                 return true;
             }
             return base.TryInvokeMember(binder, args, out result);
+        }
+
+        public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
+        {
+            return objMapping.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

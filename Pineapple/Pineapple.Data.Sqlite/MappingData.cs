@@ -68,7 +68,7 @@ namespace Pineapple.Data.Sqlite
 
         public Mapping<TKey, TValue> GetMappingByKey<TKey, TValue>(Mapping<TKey, TValue> mapping, TKey key)
         {
-            using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            using (var cnn = SqLiteBaseRepository.DbConnection())
             {
                 var items = cnn.Query<MappingItem<TKey, TValue>>(string.Format("select MappingId,{0} as Key,{1} as Value from {2} where {0}=@Key"
                     , mapping.KeyName, mapping.ValueName, mapping.MappingName), new { Key = key });
@@ -79,7 +79,7 @@ namespace Pineapple.Data.Sqlite
 
         public Mapping<TKey, TValue> GetMappingByValue<TKey, TValue>(Mapping<TKey, TValue> mapping, TValue value)
         {
-            using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            using (var cnn = SqLiteBaseRepository.DbConnection())
             {
                 var items = cnn.Query<MappingItem<TKey, TValue>>(string.Format("select MappingId,{0} as Key,{1} as Value from {2} where {1}=@Value"
                     , mapping.KeyName, mapping.ValueName, mapping.MappingName), new { Value = value });

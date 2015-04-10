@@ -14,6 +14,7 @@ namespace Pineapple.Service
         {
             var list = new List<ManagerNavigation>();
             list.Add(new ManagerNavigation() { Name = "Overview", Link = "/Manager", Text = "Overview" });
+            list.Add(new ManagerNavigation() { Name = "Company", Link = "/Manager/CompanyInfo", Text = "Company" });
             list.Add(new ManagerNavigation() { Name = "Catalog", Link = "/Manager/Catalog", Text = "Catalog" });
             list.Add(new ManagerNavigation() { Name = "Category", Link = "/Manager/Category", Text = "Category" });
             list.Add(new ManagerNavigation() { Name = "CategoryItem", Link = "/Manager/CategoryItem", Text = "CategoryItem" });

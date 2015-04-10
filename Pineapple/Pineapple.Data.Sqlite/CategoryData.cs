@@ -35,7 +35,7 @@ namespace Pineapple.Data.Sqlite
 
         public Category GetCategoryById(int categoryId)
         {
-            using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            using (var cnn = SqLiteBaseRepository.DbConnection())
             {
                 return cnn.Query<Category>(typeof(Category).GetSelectSql("CategoryId=@CategoryId"), new { CategoryId = categoryId }).FirstOrDefault();
             }
@@ -43,7 +43,7 @@ namespace Pineapple.Data.Sqlite
 
         public List<Category> LoaddAllCategories()
         {
-            using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            using (var cnn = SqLiteBaseRepository.DbConnection())
             {
                 return cnn.Query<Category>(@"select c.* from Category as c").ToList();
             }
@@ -51,7 +51,7 @@ namespace Pineapple.Data.Sqlite
 
         public List<Category> LoadCategoriesByCatalogId(int catalogId)
         {
-            using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            using (var cnn = SqLiteBaseRepository.DbConnection())
             {
                 return cnn.Query<Category>(@"select c.* from Category as c inner join CatalogCategoryMapping as cm on c.CategoryId=cm.CategoryId
                 where cm.CatalogId = @CatalogId", new { CatalogId = catalogId }).ToList();
@@ -61,7 +61,7 @@ namespace Pineapple.Data.Sqlite
         public List<Category> LoadCategoriesByCategoryIds(IEnumerable<int> categoryIds)
         {
             string ids = string.Join(",", categoryIds).TrimEnd(',');
-            using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            using (var cnn = SqLiteBaseRepository.DbConnection())
             {
                 return cnn.Query<Category>(typeof(Category).GetSelectSql("CategoryId in(@CategoryIds)"), new { CategoryIds = ids }).ToList();
             }
@@ -94,7 +94,7 @@ namespace Pineapple.Data.Sqlite
 
         public CategoryItem GetCategoryItemById(int categoryItemId)
         {
-            using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            using (var cnn = SqLiteBaseRepository.DbConnection())
             {
                 return cnn.Query<CategoryItem>(typeof(CategoryItem).GetSelectSql("CategoryItemId=@CategoryItemId"), new { CategoryItemId = categoryItemId }).FirstOrDefault();
             }
@@ -102,7 +102,7 @@ namespace Pineapple.Data.Sqlite
 
         public  List<CategoryItem> LoadAllCategoryItems()
         {
-        	using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+        	using (var cnn = SqLiteBaseRepository.DbConnection())
             {
                 return cnn.Query<CategoryItem>(@"select c.* from CategoryItem as c").ToList();
             }
@@ -110,7 +110,7 @@ namespace Pineapple.Data.Sqlite
         
         public List<CategoryItem> LoadCategoryItemsByCategoryId(int categoryId)
         {
-            using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            using (var cnn = SqLiteBaseRepository.DbConnection())
             {
                 return cnn.Query<CategoryItem>(@"select c.* from CategoryItem as c inner join CategoryItemMapping as cm on c.CategoryItemId=cm.CategoryItemId
                 where cm.CategoryId = @CategoryId", new { CategoryId = categoryId }).ToList();

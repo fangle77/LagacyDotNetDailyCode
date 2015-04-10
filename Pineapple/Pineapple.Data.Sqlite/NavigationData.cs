@@ -32,7 +32,7 @@ namespace Pineapple.Data.Sqlite
 
         public Navigation GetNavigationById(int navigationId)
         {
-            using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            using (var cnn = SqLiteBaseRepository.DbConnection())
             {
                 return cnn.Query<Navigation>(typeof(Navigation).GetSelectSql("NavigationId=@NavigationId"), new { NavigationId = navigationId }).FirstOrDefault();
             }
@@ -40,7 +40,7 @@ namespace Pineapple.Data.Sqlite
         
         public List<Navigation> LoadAllNavigations()
         {
-        	using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+        	using (var cnn = SqLiteBaseRepository.DbConnection())
             {
                 return cnn.Query<Navigation>(@"select n.* from Navigation as n ").ToList();
             }
@@ -48,7 +48,7 @@ namespace Pineapple.Data.Sqlite
 
         public List<Navigation> LoadNavigationByCatalogId(int catalogId)
         {
-            using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            using (var cnn = SqLiteBaseRepository.DbConnection())
             {
                 return cnn.Query<Navigation>(@"select n.* from Navigation as n inner join CatalogNavigationMapping as nm
                     on n.NavigationId=nm.NavigationId where nm.CatalogId=@CatalogId", new { CatalogId = catalogId }).ToList();
@@ -58,7 +58,7 @@ namespace Pineapple.Data.Sqlite
         public List<Navigation> LoadNavigationByNavigationIds(IEnumerable<int> navigationIds)
         {
             string ids = string.Join(",", navigationIds).TrimEnd(',');
-            using (var cnn = SqLiteBaseRepository.DbReadOnlyConnection())
+            using (var cnn = SqLiteBaseRepository.DbConnection())
             {
                 return cnn.Query<Navigation>(typeof(Navigation).GetSelectSql("NavigationId in(@NavigationIds)"), new { NavigationIds = ids }).ToList();
             }
