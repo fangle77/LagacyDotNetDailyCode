@@ -25,7 +25,7 @@ namespace Pineapple.WebSite.Controllers.Manager
 		
 		public ActionResult Index()
 		{
-			ViewBag.Campany = CompanyInfoService.LoadCompanyInfo();
+			ViewBag.Company = CompanyInfoService.LoadCompanyInfo();
 			return View("Index");
 		}
 
