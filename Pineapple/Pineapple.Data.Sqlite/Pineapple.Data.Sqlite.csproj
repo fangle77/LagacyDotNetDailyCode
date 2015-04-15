@@ -132,9 +132,6 @@ copy "$(TargetDir)*dapper*" "$(SolutionDir)Pineapple.WebSite\bin"
 
 copy "$(TargetDir)*sqlite*" "$(SolutionDir)UnitTest\Pineapple.UnitTest\$(OutDir)"
 copy "$(TargetDir)*dapper*" "$(SolutionDir)UnitTest\Pineapple.UnitTest\$(OutDir)"
-
-copy "$(TargetDir)*sqlite*" "$(SolutionDir)UnitTest\Pineapple.ConsoleTest\$(OutDir)"
-copy "$(TargetDir)*dapper*" "$(SolutionDir)UnitTest\Pineapple.ConsoleTest\$(OutDir)"
 </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
