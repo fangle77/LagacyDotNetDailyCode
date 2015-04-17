@@ -1,8 +1,8 @@
 ﻿@{
     ViewBag.Title = "Company infomation";
 }
-<table class="@ViewBag.TableClass">
-    <caption>Company infomation List (<a href="/Manager/CompanyInfo/Create" class="glyphicon glyphicon-plus-sign">Add</a>)</caption>
+<table class="@ViewBag.TableClass" id="companyinfo">
+    <caption>Company infomation</caption>
     <thead>
         <tr>
             <th>Name</th>
@@ -14,13 +14,23 @@
         @foreach (var nameValue in @ViewBag.Company)
         {
             <tr>
-                <td>@nameValue.Key</td>
-                <td><input type="text" value="@nameValue.Value" name="content" class="col-sm-10 form-control" /></td>
+                <td class="company-key">@nameValue.Key</td>
+                <td><lable class="company-content-lable">@nameValue.Value</lable>
+                 	<input type="text" value="@nameValue.Value" name="content" class="col-sm-10 form-control company-content" style="display:none;" /></td>
                 <td>
-                    <a href="/Manager/CompanyInfo/Save" class="glyphicon glyphicon-save">Save</a>
-                    <a href="/Manager/CategoryItem/Delete/@nameValue.Key" class="glyphicon glyphicon-minus-sign">Delete</a>
+                    <a href="javascript:void(0);" class="glyphicon glyphicon-save company-save">Save</a>
+                    <a href="javascript:void(0);" class="glyphicon glyphicon-minus-sign company-delete">Delete</a>
                 </td>
             </tr>
         }
+        <tr>
+	        <td><input type="text" value="" class="form-control company-key" /></td>
+	        <td><input type="text" value="" class="col-sm-10 form-control company-content" /></td>
+	        <td>
+	        	<a href="javascript:void(0);" class="glyphicon glyphicon-plus-sign" id="addCompanyInfo">Add</a>
+	        	<input type="hidden" id="companySaveUrl" value="/Manager/CompanyInfo/Save"/>
+	        	<input type="hidden" id="companyDeleteUrl" value="/Manager/CompanyInfo/Delete"/>
+	        </td>
+        </tr>
     </tbody>
 </table>

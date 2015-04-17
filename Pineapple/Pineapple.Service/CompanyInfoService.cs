@@ -19,12 +19,20 @@ namespace Pineapple.Service
 
         public bool SaveCompanyInfo(string key, string value)
         {
-            return CompanyInfoManager.SaveCompanyInfo(key, value);
+            if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(value))
+            {
+                return false;
+            }
+            return CompanyInfoManager.SaveCompanyInfo(key.Trim(), value.Trim());
         }
 
         public bool DeleteCompanyInfo(string key)
         {
-            return CompanyInfoManager.DeleteCompanyInfo(key);
+            if (string.IsNullOrEmpty(key))
+            {
+                return false;
+            }
+            return CompanyInfoManager.DeleteCompanyInfo(key.Trim());
         }
     }
 }

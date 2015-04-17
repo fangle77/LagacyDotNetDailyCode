@@ -28,23 +28,19 @@ namespace Pineapple.WebSite.Controllers.Manager
 			ViewBag.Company = CompanyInfoService.LoadCompanyInfo();
 			return View("Index");
 		}
-
-		[HttpPost]
-		public ActionResult Create(FormCollection values)
-		{
-			return View();
-		}
 		
 		[HttpPost]
-		public ActionResult Edit(FormCollection values)
+		public ActionResult Save(string key, string content)
 		{
-			return View();
+			bool result = CompanyInfoService.SaveCompanyInfo(key,content);
+			return Json(result.ToString().ToLower());
 		}
 		
 		[HttpPost]
 		public ActionResult Delete(string key)
 		{
-			return View();
+			bool result = CompanyInfoService.DeleteCompanyInfo(key);
+			return Json(result.ToString().ToLower());
 		}
 	}
 }

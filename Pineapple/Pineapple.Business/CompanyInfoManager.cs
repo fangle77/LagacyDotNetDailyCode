@@ -34,13 +34,21 @@ namespace Pineapple.Business
         [Cache("CompanyInfo", "CompanyInfo", CacheMode.Local, CacheType.Clear)]
         public bool SaveCompanyInfo(string key, string value)
         {
-            return NoSqlData.Save(key, value);
+            if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(value))
+            {
+                return false;
+            }
+            return NoSqlData.Save(key.Trim(), value.Trim());
         }
 
         [Cache("CompanyInfo", "CompanyInfo", CacheMode.Local, CacheType.Clear)]
         public bool DeleteCompanyInfo(string key)
         {
-            return NoSqlData.Delete(key);
+            if (string.IsNullOrEmpty(key))
+            {
+                return false;
+            }
+            return NoSqlData.Delete(key.Trim());
         }
     }
 }

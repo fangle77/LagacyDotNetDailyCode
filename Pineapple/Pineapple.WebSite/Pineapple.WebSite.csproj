@@ -190,7 +190,6 @@
     <Content Include="Content\css\jquery-ui.1.11.1\jquery-ui.theme.css" />
     <Content Include="Content\css\jquery-ui.1.11.1\jquery-ui.theme.min.css" />
     <Content Include="Content\css\magnific-popup.css" />
-    <Content Include="Content\js\dashboard.js" />
     <Content Include="Content\js\jquery-1.11.1.js" />
     <Content Include="Content\js\jquery-1.11.1.min.js" />
     <Content Include="Content\bootstrap-3.2.0\css\bootstrap-theme.css.map" />
@@ -199,6 +198,7 @@
     <Content Include="Content\bootstrap-3.2.0\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\bootstrap-3.2.0\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Config\log4net.config" />
+    <None Include="Content\js\dashboard\dashboard.js" />
     <None Include="Content\js\jquery-1.11.1.intellisense.js" />
     <Content Include="Content\js\jquery-ui-1.11.1.js" />
     <Content Include="Content\js\jquery-ui-1.11.1.min.js" />
@@ -234,6 +234,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Manager\Visitor\Index.cshtml" />
     <Content Include="Views\Manager\_Layout.cshtml" />
+    <None Include="Content\js\dashboard\companyinfo.js" />
     <None Include="Properties\PublishProfiles\Pineaplle.pubxml" />
     <Content Include="Views\Manager\Catalog\Index.cshtml" />
     <Content Include="Views\Manager\Catalog\Detail.cshtml" />
@@ -269,6 +270,7 @@
     <Folder Include="Content\bundles\bootstrap\css\" />
     <Folder Include="Content\bundles\bootstrap\js\" />
     <Folder Include="Config" />
+    <Folder Include="Content\js\dashboard" />
     <Folder Include="Views\Manager\CompanyInfo" />
   </ItemGroup>
   <ItemGroup>

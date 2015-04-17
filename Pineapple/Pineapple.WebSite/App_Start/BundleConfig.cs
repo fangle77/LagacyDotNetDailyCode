@@ -61,7 +61,7 @@ namespace Pineapple.WebSite.App_Start
 
             bundles.Add(new ScriptBundle("~/Content/dashboard/js")
                 .Include("~/Content/js/jquery-ui-{version}.js")
-                .Include("~/Content/js/dashboard.js"));
+                .Include("~/Content/js/dashboard/*.js"));
         }
     }
 }
