@@ -89,6 +89,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SqliteActionDb.cs" />
     <Compile Include="AttachmentData.cs" />
     <Compile Include="CatalogData.cs" />
     <Compile Include="CategoryData.cs" />
@@ -120,7 +121,9 @@
       <Name>Pineapple.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="SqlScript\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="SqliteDll\sqlite.x64.cmd" />
     <None Include="SqliteDll\sqlite.x86.cmd" />

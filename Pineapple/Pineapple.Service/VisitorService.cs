@@ -18,14 +18,34 @@ namespace Pineapple.Service
             return VisitorManager.AddVisitor(visitor);
         }
 
-        public List<Visitor> LoadLatestNVisitors(int latestN)
+        public string CreateNewVisitorId()
         {
-            return VisitorManager.LoadLatestNVisitors(latestN);
+            return VisitorManager.CreateNewVisitorId();
         }
 
-        public long GetTotalVisitors()
+        public bool IsValidVisitorId(string visitorId)
         {
-            return VisitorManager.GetTotalVisitors();
+            return VisitorManager.IsValidVisitorId(visitorId);
+        }
+
+        public Visitor GetVisitor(string visitorId)
+        {
+            return VisitorManager.GetVisitor(visitorId);
+        }
+
+        public virtual Visitor GetVisitorFromSession(string visitorId)
+        {
+            return VisitorManager.GetVisitorFromSession(visitorId);
+        }
+
+        public VisitLog AddVisitLog(VisitLog visiLog)
+        {
+            return VisitorManager.AddVisitLog(visiLog);
+        }
+
+        public List<Visitor> LoadVisitors()
+        {
+            return VisitorManager.LoadVisitors();
         }
     }
 }

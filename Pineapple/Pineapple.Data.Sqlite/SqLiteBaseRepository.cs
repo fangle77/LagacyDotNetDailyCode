@@ -17,8 +17,6 @@ namespace Pineapple.Data.Sqlite
 
         internal static SQLiteConnection DbConnection()
         {
-            string connectionString = string.Format("Data Source=\"{0}\";Pooling=True;", DbFile);
-            logger.Debug(connectionString);
             var cnn = new SQLiteConnection(string.Format("Data Source=\"{0}\";Pooling=True;", DbFile));
             cnn.Open();
             return cnn;
@@ -35,16 +33,6 @@ namespace Pineapple.Data.Sqlite
 
         private static void CreateDatabase()
         {
-            using (var cnn = DbConnection())
-            {
-                cnn.Execute(
-                    @"Create table if not exists Visitor
-              (
-                 ID                                  integer primary key AUTOINCREMENT,
-                 VisitDate                           varchar(30) not null
-              )");
-            }
-
             SqliteTables st = new SqliteTables();
             st.CreateTables();
         }

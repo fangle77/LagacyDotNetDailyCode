@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Pineapple.WebSite.App_Start;
+using Pineapple.Core.Web;
 
 namespace Pineapple.WebSite
 {
@@ -16,12 +17,14 @@ namespace Pineapple.WebSite
         	log4net.Config.XmlConfigurator.Configure();
         	
             AreaRegistration.RegisterAllAreas();
+            
+            IocConfig.RegisterTypes();
+            WebInitializer.Init();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            IocConfig.RegisterTypes();
         }
     }
 }

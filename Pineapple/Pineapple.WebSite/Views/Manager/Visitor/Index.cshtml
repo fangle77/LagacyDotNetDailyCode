@@ -4,12 +4,27 @@
 @{
     ViewBag.Title = "Visitors";
 }
-<ul>
-    @foreach (Visitor visitor in ViewBag.Visitors)
+<table class="@ViewBag.TableClass">
+    <caption>Visitor List</caption>
+    <thead>
+        <tr>
+            <th>VisitorId</th>
+            <th>FirstVisitTime</th>
+            <th>EnterUrl</th>
+            <th>RefererUrl</th>
+            <th>UserName</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach(var visitor in @ViewBag.Visitors)
     {
-        <li>
-            <span>@visitor.Id</span>&nbsp;&nbsp;
-            <span>@visitor.VisitDate</span>
-        </li>
+        <tr>
+            <td>@visitor.VisitorId</td>
+            <td>@visitor.FirstVisitTime</td>
+            <td>@visitor.EnterUrl</td>
+            <td>@visitor.RefererUrl</td>
+            <td>@visitor.UserName</td>
+        </tr>
     }
-</ul>
+    </tbody>
+</table>

@@ -1,14 +1,30 @@
-﻿namespace Pineapple.Model
+﻿using System;
+
+namespace Pineapple.Model
 {
     public class Visitor
     {
-        public long Id { get; set; }
+        public string VisitorId { get; set; }
 
-        public string VisitDate { get; set; }
+        public DateTime FirstVisitTime { get; set; }
 
-        public override string ToString()
-        {
-            return string.Format("Id={0},VisitDate={1}", Id, VisitDate);
-        }
+        public string EnterUrl { get; set; }
+
+        public string RefererUrl { get; set; }
+
+        public string UserName { get; set; }
+    }
+
+    public class VisitLog
+    {
+        public string VisitorId { get; set; }
+
+        public DateTime VisitTime { get; set; }
+
+        public string ClientIp { get; set; }
+
+        public string UserAgent { get; set; }
+
+        public string SessionId { get; set; }
     }
 }

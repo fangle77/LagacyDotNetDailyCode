@@ -19,8 +19,7 @@ namespace Pineapple.WebSite.Controllers.Manager
 
         public ActionResult Index()
         {
-            VisitorService.AddVisitor(new Visitor() { VisitDate = DateTime.Now.ToString() });
-            ViewBag.Visitors = VisitorService.LoadLatestNVisitors(10);
+        	ViewBag.Visitors = VisitorService.LoadVisitors();
             return View("Index");
         }
 

@@ -13,6 +13,7 @@ namespace Pineapple.UnitTest.Data
     {
         protected override void DoPrepare()
         {
+
         }
 
         [Test]

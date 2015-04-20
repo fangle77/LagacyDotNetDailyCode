@@ -10,30 +10,35 @@ namespace Pineapple.Data.Sqlite
     {
         public Visitor AddVisitor(Visitor visitor)
         {
-            SqLiteBaseRepository.InitDataBase();
-
-            using (var cnn = SqLiteBaseRepository.DbConnection())
+            using (var cnn = SqliteActionDb.DbConnection())
             {
-                visitor.Id = cnn.Query<long>(@"INSERT INTO Visitor(VisitDate) VALUES(@VisitDate);
-                                             SELECT last_insert_rowid()", visitor).FirstOrDefault();
+                cnn.Execute(visitor.GetSqliteInsertSql(null), visitor);
                 return visitor;
             }
         }
 
-        [Cache("Visitor", "LatestN", CacheMode.Local)]
-        public virtual List<Visitor> LoadLatestNVisitors([CacheKey]int latestN)
+        public Visitor GetVisitor(string visitorId)
         {
-            using (var cnn = SqLiteBaseRepository.DbConnection())
+            using (var cnn = SqliteActionDb.DbConnection())
             {
-                return cnn.Query<Visitor>(@"SELECT ID,VisitDate FROM Visitor ORDER BY ID DESC LIMIT " + latestN).ToList();
+                return cnn.Query<Visitor>(typeof(Visitor).GetSelectSql("VisitorId=@VisitorId"), new { VisitorId = visitorId }).FirstOrDefault();
             }
         }
 
-        public long GetTotalVisitors()
+        public VisitLog AddVisitLog(VisitLog visiLog)
         {
-            using (var cnn = SqLiteBaseRepository.DbConnection())
+            using (var cnn = SqliteActionDb.DbConnection())
             {
-                return cnn.Query<long>(@"SELECT COUNT(id) FROM Visitor").FirstOrDefault();
+                visiLog.GetSqliteInsertSql(null);
+                return visiLog;
+            }
+        }
+
+        public List<Visitor> LoadVisitors()
+        {
+            using (var cnn = SqliteActionDb.DbConnection())
+            {
+                return cnn.Query<Visitor>("select * from visitor order by FirstVisitTime desc").ToList();
             }
         }
     }

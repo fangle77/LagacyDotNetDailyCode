@@ -11,8 +11,10 @@ namespace Pineapple.Data
     {
         Visitor AddVisitor(Visitor visitor);
 
-        List<Visitor> LoadLatestNVisitors(int latestN);
+        Visitor GetVisitor(string visitorId);
 
-        long GetTotalVisitors();
+        VisitLog AddVisitLog(VisitLog visiLog);
+
+        List<Visitor> LoadVisitors();
     }
 }

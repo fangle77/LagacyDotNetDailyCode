@@ -11,14 +11,24 @@ namespace Pineapple.Core.Cache
         [Dependency(CacheConstants.LocalCache)]
         public ICache LocalCache { private get; set; }
 
+        [Dependency(CacheConstants.SessionCache)]
+        public ICache SessionCache { private get; set; }
+
+        [Dependency(CacheConstants.RequestCache)]
+        public ICache RequestCache { private get; set; }
+
         public virtual ICache GetCacheHandler(CacheMode cacheMode)
         {
             switch (cacheMode)
             {
                 case CacheMode.Local:
                     return LocalCache;
+                case CacheMode.Session:
+                    return SessionCache;
+                case CacheMode.Request:
+                    return RequestCache;
                 default:
-                    return LocalCache;
+                    throw new NotImplementedException("CacheMode =" + cacheMode);
             }
         }
     }

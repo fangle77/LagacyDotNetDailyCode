@@ -155,6 +155,7 @@
     <Compile Include="Controllers\Manager\OverviewController.cs" />
     <Compile Include="Controllers\Manager\TemplateController.cs" />
     <Compile Include="Controllers\Manager\VisitorController.cs" />
+    <Compile Include="Filters\VisitorInterceptor.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -271,9 +272,14 @@
     <Folder Include="Content\bundles\bootstrap\js\" />
     <Folder Include="Config" />
     <Folder Include="Content\js\dashboard" />
+    <Folder Include="Filters" />
     <Folder Include="Views\Manager\CompanyInfo" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Pineapple.Core.Web\Pineapple.Core.Web.csproj">
+      <Project>{E5125552-1045-4C55-9DA8-8ABD73D22EFC}</Project>
+      <Name>Pineapple.Core.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Pineapple.Core\Pineapple.Core.csproj">
       <Project>{2957a855-c7f3-446f-bef6-6ccf5fc19a3e}</Project>
       <Name>Pineapple.Core</Name>
