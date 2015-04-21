@@ -54,9 +54,9 @@ namespace Pineapple.Business
             return VisitorData.AddVisitLog(visiLog);
         }
 
-        public List<VisitLog> LoadVisitorLogs()
+        public List<VisitLog> LoadVisitorLogs(Pagination page)
         {
-            return VisitorData.LoadVisitorLogs();
+            return VisitorData.LoadVisitorLogs(page);
         }
     }
 }

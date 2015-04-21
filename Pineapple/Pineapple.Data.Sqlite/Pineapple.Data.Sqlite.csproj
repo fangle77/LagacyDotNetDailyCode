@@ -92,6 +92,7 @@
     <Compile Include="ActionDb.cs" />
     <Compile Include="DataDb.cs" />
     <Compile Include="AttachmentData.cs" />
+    <Compile Include="InternalPagenationExtend.cs" />
     <Compile Include="NoSqlData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlExecutor.cs" />

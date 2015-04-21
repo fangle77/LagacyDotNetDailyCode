@@ -5,6 +5,9 @@ using System.Text;
 using System.Web.Mvc;
 using Pineapple.Service;
 using Microsoft.Practices.Unity;
+using Pineapple.Model;
+using Pineapple.View;
+using Pineapple.Core.Util;
 
 namespace Pineapple.WebSite.Controllers.Manager
 {
@@ -64,6 +67,23 @@ namespace Pineapple.WebSite.Controllers.Manager
         private void BuildCommonVariable()
         {
             ViewBag.TableClass = "table table-hover table-bordered";
+        }
+        
+        protected PaginationView GetPage()
+        {
+        	PaginationView pageView = new PaginationView();
+        	int size = HttpContext.Request["size"].ToInt(15);
+        	int page = HttpContext.Request["page"].ToInt(1);
+        	pageView.SizePerPage = size;
+        	pageView.CurrentPage = page;
+        	pageView.RawUrl = HttpContext.Request.Url.LocalPath;
+        	return pageView;
+        }
+        
+        protected void BuildPagination(PaginationView view)
+        {
+        	view.GeneratePages();
+        	ViewBag.Pagination = view;
         }
     }
 }

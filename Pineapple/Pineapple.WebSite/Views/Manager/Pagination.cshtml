@@ -1,0 +1,18 @@
+﻿<nav>
+  <ul class="pagination">
+    <li>
+      <a href="@ViewBag.Pagination.PrevPage.Url" aria-label="Previous" >
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    @foreach(var page in @ViewBag.Pagination.Pages)
+    {
+    	<li @(page.Active? "class=active":string.Empty)><a href="@page.Url">@page.Page</a></li>
+    }
+    <li>
+      <a href="@ViewBag.Pagination.NextPage.Url" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>

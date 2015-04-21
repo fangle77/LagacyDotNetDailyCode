@@ -34,11 +34,11 @@ namespace Pineapple.Data.Sqlite
             }
         }
 
-        public List<VisitLog> LoadVisitorLogs()
+        public List<VisitLog> LoadVisitorLogs(Pagination page)
         {
             using (var cnn = ActionDb.DbConnection())
             {
-                return cnn.Query<VisitLog>("select * from VisitLog order by VisitTimeInMs desc").ToList();
+                return cnn.PageQuery<VisitLog>(page, "select * from VisitLog order by VisitTimeInMs desc").ToList();
             }
         }
     }

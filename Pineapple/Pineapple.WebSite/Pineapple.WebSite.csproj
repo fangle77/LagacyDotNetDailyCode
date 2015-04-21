@@ -241,6 +241,7 @@
     <None Include="Views\Manager\CompanyInfo\Index.cshtml" />
     <None Include="Views\Manager\Index.cshtml" />
     <Content Include="App_Code\Helpers.cshtml" />
+    <None Include="Views\Manager\Pagination.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -19,7 +19,9 @@ namespace Pineapple.WebSite.Controllers.Manager
 
         public ActionResult Index()
         {
-        	ViewBag.Visitors = VisitorService.LoadVisitors();
+        	var page = GetPage();
+        	ViewBag.Visitors = VisitorService.LoadVisitorLogs(page);
+        	BuildPagination(page);
             return View("Index");
         }
 
