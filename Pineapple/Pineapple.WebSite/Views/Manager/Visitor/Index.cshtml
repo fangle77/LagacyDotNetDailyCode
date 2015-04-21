@@ -13,6 +13,8 @@
             <th>EnterUrl</th>
             <th>RefererUrl</th>
             <th>UserName</th>
+            <th>ClientIp</th>
+            <th>UserAgent</th>
         </tr>
     </thead>
     <tbody>
@@ -20,10 +22,12 @@
     {
         <tr>
             <td>@visitor.VisitorId</td>
-            <td>@visitor.FirstVisitTime</td>
+            <td>@visitor.VisitTime</td>
             <td>@visitor.EnterUrl</td>
             <td>@visitor.RefererUrl</td>
             <td>@visitor.UserName</td>
+            <td>@visitor.ClientIp</td>
+            <td>@visitor.UserAgent</td>
         </tr>
     }
     </tbody>

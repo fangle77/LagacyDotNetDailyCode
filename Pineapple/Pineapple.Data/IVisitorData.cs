@@ -15,6 +15,6 @@ namespace Pineapple.Data
 
         VisitLog AddVisitLog(VisitLog visiLog);
 
-        List<Visitor> LoadVisitors();
+        List<VisitLog> LoadVisitorLogs();
     }
 }

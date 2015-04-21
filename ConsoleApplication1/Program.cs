@@ -21,16 +21,10 @@ namespace ConsoleApplication1
 
         static void TestAction()
         {
-            DynamicTestTest.Test();
+           LinkedList<int> l = new LinkedList<int>();
+           l.Remove(1);
+            
         }
-
-        private static string ResolveSignUrlFormat(string sign)
-        {
-            if (string.IsNullOrEmpty(sign)) return sign;
-            if (sign.Contains("%")) sign = HttpUtility.UrlDecode(sign);
-            return sign.Replace(' ', '+');
-        }
-
 
 
         static void Main(string[] args)

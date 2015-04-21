@@ -35,7 +35,7 @@ namespace Pineapple.Data.Sqlite
 
         public bool Save(string key, string value)
         {
-            using (var cnn = SqLiteBaseRepository.DbConnection())
+            using (var cnn = DataDb.DbConnection())
             {
                 int i = cnn.Query<int>(string.Format("select count({1}) from {0} where {1}=@Key", TableName, keyColumn)
                     , new { Key = key }).FirstOrDefault();
@@ -56,7 +56,7 @@ namespace Pineapple.Data.Sqlite
 
         public bool Delete(string key)
         {
-            using (var cnn = SqLiteBaseRepository.DbConnection())
+            using (var cnn = DataDb.DbConnection())
             {
                 int i = cnn.Execute(string.Format("delete from {0} where {1}=@Key", TableName, keyColumn)
                     , new { Key = key });
@@ -66,7 +66,7 @@ namespace Pineapple.Data.Sqlite
 
         public dynamic LoadDynamicModel()
         {
-            using (var cnn = SqLiteBaseRepository.DbConnection())
+            using (var cnn = DataDb.DbConnection())
             {
                 var obj = cnn.Query<dynamic>(string.Format("select {1} as Name, {2} as Content from {0}", TableName, keyColumn, valueColumn)).ToList();
                 dynamic dModel = new DynamicModel();

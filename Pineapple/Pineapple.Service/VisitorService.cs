@@ -43,9 +43,9 @@ namespace Pineapple.Service
             return VisitorManager.AddVisitLog(visiLog);
         }
 
-        public List<Visitor> LoadVisitors()
+        public List<VisitLog> LoadVisitors()
         {
-            return VisitorManager.LoadVisitors();
+            return VisitorManager.LoadVisitorLogs();
         }
     }
 }

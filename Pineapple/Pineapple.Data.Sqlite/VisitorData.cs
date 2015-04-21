@@ -10,7 +10,7 @@ namespace Pineapple.Data.Sqlite
     {
         public Visitor AddVisitor(Visitor visitor)
         {
-            using (var cnn = SqliteActionDb.DbConnection())
+            using (var cnn = ActionDb.DbConnection())
             {
                 cnn.Execute(visitor.GetSqliteInsertSql(null), visitor);
                 return visitor;
@@ -19,7 +19,7 @@ namespace Pineapple.Data.Sqlite
 
         public Visitor GetVisitor(string visitorId)
         {
-            using (var cnn = SqliteActionDb.DbConnection())
+            using (var cnn = ActionDb.DbConnection())
             {
                 return cnn.Query<Visitor>(typeof(Visitor).GetSelectSql("VisitorId=@VisitorId"), new { VisitorId = visitorId }).FirstOrDefault();
             }
@@ -27,18 +27,18 @@ namespace Pineapple.Data.Sqlite
 
         public VisitLog AddVisitLog(VisitLog visiLog)
         {
-            using (var cnn = SqliteActionDb.DbConnection())
+            using (var cnn = ActionDb.DbConnection())
             {
                 visiLog.GetSqliteInsertSql(null);
                 return visiLog;
             }
         }
 
-        public List<Visitor> LoadVisitors()
+        public List<VisitLog> LoadVisitorLogs()
         {
-            using (var cnn = SqliteActionDb.DbConnection())
+            using (var cnn = ActionDb.DbConnection())
             {
-                return cnn.Query<Visitor>("select * from visitor order by FirstVisitTime desc").ToList();
+                return cnn.Query<VisitLog>("select * from VisitLog order by VisitTimeInMs desc").ToList();
             }
         }
     }

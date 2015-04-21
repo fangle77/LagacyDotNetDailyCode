@@ -5,6 +5,7 @@ using Pineapple.Core;
 using Microsoft.Practices.Unity;
 using Pineapple.Model;
 using Pineapple.Service;
+using Pineapple.Core.Util;
 
 namespace Pineapple.WebSite.Filters
 {
@@ -58,9 +59,6 @@ namespace Pineapple.WebSite.Filters
 		{
 			Visitor visitor = new Visitor();
 			visitor.VisitorId = VisitorService.CreateNewVisitorId();
-			visitor.FirstVisitTime = DateTime.Now;
-			visitor.EnterUrl = string.Concat(filterContext.RequestContext.HttpContext.Request.Url);
-			visitor.RefererUrl = string.Concat(filterContext.RequestContext.HttpContext.Request.UrlReferrer);
 			
 			VisitorService.AddVisitor(visitor);
 			
@@ -75,11 +73,12 @@ namespace Pineapple.WebSite.Filters
 		{
 			VisitLog log = new VisitLog();
 			log.VisitorId = vid;
-			log.SessionId = filterContext.RequestContext.HttpContext.Session.SessionID;
 			log.VisitTime = DateTime.Now;
 			log.ClientIp = filterContext.RequestContext.HttpContext.Request.UserHostAddress;
 			log.UserAgent = filterContext.RequestContext.HttpContext.Request.UserAgent;
-			
+			log.EnterUrl = string.Concat(filterContext.RequestContext.HttpContext.Request.Url);
+			log.RefererUrl = string.Concat(filterContext.RequestContext.HttpContext.Request.UrlReferrer);
+			log.VisitTimeInMs = TimeUtility.ToUtcTimeInMillis(log.VisitTime);
 			VisitorService.AddVisitLog(log);
 		}
 	}

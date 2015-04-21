@@ -16,7 +16,7 @@ namespace Pineapple.Data.Sqlite
 
         public Attachment SaveAttachment(Attachment attachment)
         {
-            using (var cnn = SqLiteBaseRepository.DbConnection())
+            using (var cnn = DataDb.DbConnection())
             {
                 if (attachment.AttachmentId == null || attachment.AttachmentId <= 0)
                 {
@@ -33,7 +33,7 @@ namespace Pineapple.Data.Sqlite
 
         public bool DeleteAttachment(int attachmentId)
         {
-            using (var cnn = SqLiteBaseRepository.DbConnection())
+            using (var cnn = DataDb.DbConnection())
             {
                 return cnn.Execute("Delete from Attachment where AttachmentId=@AttachmentId", new { AttachmentId = attachmentId }) > 0;
             }
@@ -41,7 +41,7 @@ namespace Pineapple.Data.Sqlite
 
         public List<Attachment> LoadAllAttachment()
         {
-            using (var cnn = SqLiteBaseRepository.DbConnection())
+            using (var cnn = DataDb.DbConnection())
             {
                 return cnn.Query<Attachment>(typeof(Attachment).GetSelectSql(null, SelectIgnore)).ToList<Attachment>();
             }
@@ -50,7 +50,7 @@ namespace Pineapple.Data.Sqlite
 
         public Attachment GetAttachmentById(int attachmentId)
         {
-            using (var cnn = SqLiteBaseRepository.DbConnection())
+            using (var cnn = DataDb.DbConnection())
             {
                 return cnn.Query<Attachment>(typeof(Attachment).GetSelectSql("AttachmentId=@AttachmentId", SelectIgnore), new { AttachmentId = attachmentId }).FirstOrDefault();
             }
@@ -58,7 +58,7 @@ namespace Pineapple.Data.Sqlite
 
         public Attachment GetAttachmentByName(string originName)
         {
-            using (var cnn = SqLiteBaseRepository.DbConnection())
+            using (var cnn = DataDb.DbConnection())
             {
                 return cnn.Query<Attachment>(typeof(Attachment).GetSelectSql("OriginName=@OriginName", SelectIgnore), new { OriginName = originName }).FirstOrDefault();
             }
