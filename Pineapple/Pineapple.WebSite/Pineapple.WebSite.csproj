@@ -145,15 +145,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Manager\AttachmentController.cs" />
-    <Compile Include="Controllers\Manager\CatalogController.cs" />
-    <Compile Include="Controllers\Manager\CategoryController.cs" />
-    <Compile Include="Controllers\Manager\CategoryItemController.cs" />
     <Compile Include="Controllers\Manager\CompanyInfoController.cs" />
     <Compile Include="Controllers\Manager\ManagerController.cs" />
-    <Compile Include="Controllers\Manager\MappingController.cs" />
-    <Compile Include="Controllers\Manager\NavigationController.cs" />
     <Compile Include="Controllers\Manager\OverviewController.cs" />
-    <Compile Include="Controllers\Manager\TemplateController.cs" />
     <Compile Include="Controllers\Manager\VisitorController.cs" />
     <Compile Include="Filters\VisitorInterceptor.cs" />
     <Compile Include="Global.asax.cs">
@@ -244,26 +238,8 @@
     <Content Include="Views\Manager\BreadCrumb.cshtml" />
     <Content Include="Views\Manager\Attachment\Index.cshtml" />
     <None Include="Views\Manager\Attachment\Upload.cshtml" />
-    <None Include="Views\Manager\CategoryItem\Detail.cshtml" />
-    <None Include="Views\Manager\CategoryItem\Edit.cshtml" />
-    <None Include="Views\Manager\CategoryItem\Index.cshtml" />
-    <None Include="Views\Manager\Category\Detail.cshtml" />
-    <None Include="Views\Manager\Category\Edit.cshtml" />
-    <None Include="Views\Manager\Category\Index.cshtml" />
     <None Include="Views\Manager\CompanyInfo\Index.cshtml" />
     <None Include="Views\Manager\Index.cshtml" />
-    <None Include="Views\Manager\Mapping\Catalog-Category.cshtml" />
-    <None Include="Views\Manager\Mapping\Catalog-Navigation.cshtml" />
-    <None Include="Views\Manager\Mapping\Category-CategoryItem.cshtml" />
-    <None Include="Views\Manager\Mapping\Category-Navigation.cshtml" />
-    <None Include="Views\Manager\Mapping\Category-Template.cshtml" />
-    <None Include="Views\Manager\Mapping\Index.cshtml" />
-    <None Include="Views\Manager\Navigation\Detail.cshtml" />
-    <None Include="Views\Manager\Navigation\Edit.cshtml" />
-    <None Include="Views\Manager\Navigation\Index.cshtml" />
-    <None Include="Views\Manager\Template\Detail.cshtml" />
-    <None Include="Views\Manager\Template\Edit.cshtml" />
-    <None Include="Views\Manager\Template\Index.cshtml" />
     <Content Include="App_Code\Helpers.cshtml" />
   </ItemGroup>
   <ItemGroup>

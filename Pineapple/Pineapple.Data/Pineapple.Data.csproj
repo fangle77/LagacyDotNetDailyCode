@@ -79,12 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IAttachmentData.cs" />
-    <Compile Include="ICatalogData.cs" />
-    <Compile Include="ICategoryData.cs" />
-    <Compile Include="IMappingData.cs" />
-    <Compile Include="INavigationData.cs" />
     <Compile Include="INoSqlData.cs" />
-    <Compile Include="ITemplateData.cs" />
     <Compile Include="IVisitorData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
