@@ -76,6 +76,8 @@
   <ItemGroup>
     <Compile Include="BaseTest.cs" />
     <Compile Include="Data\NoSqlTest.cs" />
+    <Compile Include="Data\TableCreator.cs" />
+    <Compile Include="Data\VisitorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

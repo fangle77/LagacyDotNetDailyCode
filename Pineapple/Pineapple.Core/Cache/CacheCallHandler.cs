@@ -65,21 +65,28 @@ namespace Pineapple.Core.Cache
                 var keyAttrs = Attribute.GetCustomAttribute(parameterInfo, typeof(CacheKeyAttribute));
                 if (keyAttrs == null) continue;
 
-                PropertyInfo[] propertyInfos =
-                    parameterInfo.ParameterType.GetProperties(BindingFlags.Public | BindingFlags.Instance |
-                                                      BindingFlags.GetProperty);
-
-                if (propertyInfos.Length == 0)
+                if (parameterInfo.ParameterType.IsPrimitive || parameterInfo.ParameterType == typeof(Type))
                 {
                     sb.AppendFormat(";{0}={1}", parameterInfo.Name, input.Arguments[index]);
                 }
-                else if (propertyInfos.Length > 0)
+                else
                 {
-                    foreach (PropertyInfo property in propertyInfos)
+                    PropertyInfo[] propertyInfos =
+                        parameterInfo.ParameterType.GetProperties(BindingFlags.Public | BindingFlags.Instance |
+                                                          BindingFlags.GetProperty);
+
+                    if (propertyInfos.Length == 0)
                     {
-                        if (property.GetCustomAttributes(typeof(CacheKeyAttribute), false).Length > 0)
+                        sb.AppendFormat(";{0}={1}", parameterInfo.Name, input.Arguments[index]);
+                    }
+                    else if (propertyInfos.Length > 0)
+                    {
+                        foreach (PropertyInfo property in propertyInfos)
                         {
-                            sb.AppendFormat(";{0}={1}", property.Name, property.GetValue(input.Arguments[index], null));
+                            if (property.GetCustomAttributes(typeof(CacheKeyAttribute), false).Length > 0)
+                            {
+                                sb.AppendFormat(";{0}={1}", property.Name, property.GetValue(input.Arguments[index], null));
+                            }
                         }
                     }
                 }

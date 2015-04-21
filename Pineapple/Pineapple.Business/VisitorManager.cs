@@ -50,7 +50,7 @@ namespace Pineapple.Business
 
         public virtual VisitLog AddVisitLog(VisitLog visiLog)
         {
-            ClearVisitorCache(visiLog.VisitorId);
+            if (GetVisitorFromSession(visiLog.VisitorId) == null) ClearVisitorCache(visiLog.VisitorId);
             return VisitorData.AddVisitLog(visiLog);
         }
 

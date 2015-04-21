@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="IAttachmentData.cs" />
     <Compile Include="INoSqlData.cs" />
+    <Compile Include="ISqlExecutor.cs" />
     <Compile Include="IVisitorData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

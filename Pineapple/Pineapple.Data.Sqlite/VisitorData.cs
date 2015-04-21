@@ -29,7 +29,7 @@ namespace Pineapple.Data.Sqlite
         {
             using (var cnn = ActionDb.DbConnection())
             {
-                visiLog.GetSqliteInsertSql(null);
+                cnn.Execute(visiLog.GetSqliteInsertSql(null), visiLog);
                 return visiLog;
             }
         }
