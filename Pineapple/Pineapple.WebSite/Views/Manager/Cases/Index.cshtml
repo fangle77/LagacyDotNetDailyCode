@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Cases";
+}
+
+<table class="@ViewBag.TableClass">
+    <caption>Cases List (<a href="/Manager/Cases/Create" class="glyphicon glyphicon-plus-sign">Add</a>)</caption>
+    <thead>
+        <tr>
+            <th>CaseId</th>
+            <th>Title</th>
+            <th>SubTile</th>
+            <th>CreateDate</th>
+            <th>Description</th>
+            <th>DisplayOrder</th>
+            <th class="width-200">Opration</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cases in @ViewBag.Cases)
+        {
+            <tr>
+                <td>@cases.CaseId</td>
+                <td>@Helpers.TdWrap(@cases.Title)</td>
+                <td>@Helpers.TdWrap(@cases.SubTitle)</td>
+                <td>@cases.CreateDate</td>
+                <td>@Helpers.TdWrap(@cases.Description)</td>
+                <td>@cases.DisplayOrder</td>
+                <td>
+                    <a href="/Manager/Cases/Edit/@cases.CaseId" class="glyphicon glyphicon-edit">Edit</a>
+                    <a href="/Manager/Cases/Delete/@cases.CaseId" class="glyphicon glyphicon-minus-sign">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

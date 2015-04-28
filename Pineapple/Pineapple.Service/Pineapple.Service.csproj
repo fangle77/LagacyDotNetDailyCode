@@ -88,6 +88,7 @@
   <ItemGroup>
     <Compile Include="ApplicationInitialService.cs" />
     <Compile Include="AttachmentService.cs" />
+    <Compile Include="CasesService.cs" />
     <Compile Include="CompanyInfoService.cs" />
     <Compile Include="ManagerNavigationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

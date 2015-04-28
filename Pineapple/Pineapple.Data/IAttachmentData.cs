@@ -13,5 +13,6 @@ namespace Pineapple.Data
         Attachment GetAttachmentByName(string originName);
         bool DeleteAttachment(int attachmentId);
         List<Attachment> LoadAllAttachment();
+        List<Attachment> LoadAttachmentByIds(List<int> attachmentIds);
     }
 }

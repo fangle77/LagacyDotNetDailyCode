@@ -6,7 +6,7 @@ Create table if not exists Attachment
     Path            TEXT,
     ContentType     TEXT,
     Type            TEXT,
-    Size            INT,
+    Size            INTEGER,
     Alt             TEXT,
-    Version         INT
+    Version         INTEGER
 )

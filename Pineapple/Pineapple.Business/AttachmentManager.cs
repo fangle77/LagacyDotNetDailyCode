@@ -85,6 +85,17 @@ namespace Pineapple.Business
             return list;
         }
 
+        public List<Attachment> LoadAttachmentByIds(List<int> attachmentIds)
+        {
+            if (attachmentIds == null || attachmentIds.Count == 0) return new List<Attachment>(0);
+            var list = AttachmentData.LoadAttachmentByIds(attachmentIds);
+            if (list != null && list.Count > 0)
+            {
+                list.ForEach(a => a.IsImage = IsImage(a.Type));
+            }
+            return list;
+        }
+
         public Attachment GetAttachmentById(int attachmentId)
         {
             return AttachmentData.GetAttachmentById(attachmentId);

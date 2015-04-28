@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionDb.cs" />
+    <Compile Include="CasesData.cs" />
     <Compile Include="DataDb.cs" />
     <Compile Include="AttachmentData.cs" />
     <Compile Include="InternalPagenationExtend.cs" />

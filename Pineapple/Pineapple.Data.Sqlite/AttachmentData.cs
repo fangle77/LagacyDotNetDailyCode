@@ -63,5 +63,15 @@ namespace Pineapple.Data.Sqlite
                 return cnn.Query<Attachment>(typeof(Attachment).GetSelectSql("OriginName=@OriginName", SelectIgnore), new { OriginName = originName }).FirstOrDefault();
             }
         }
+
+
+        public List<Attachment> LoadAttachmentByIds(List<int> attachmentIds)
+        {
+            using (var cnn = DataDb.DbConnection())
+            {
+                return cnn.Query<Attachment>(typeof(Attachment).GetSelectSql("AttachmentId in @ids", SelectIgnore)
+                    , new { ids = attachmentIds.ToArray() }).ToList<Attachment>();
+            }
+        }
     }
 }

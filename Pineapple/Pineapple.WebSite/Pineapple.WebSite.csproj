@@ -144,7 +144,10 @@
     <Compile Include="App_Start\IocConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AbountUs.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\Manager\AttachmentController.cs" />
+    <Compile Include="Controllers\Manager\CasesController.cs" />
     <Compile Include="Controllers\Manager\CompanyInfoController.cs" />
     <Compile Include="Controllers\Manager\ManagerController.cs" />
     <Compile Include="Controllers\Manager\OverviewController.cs" />
@@ -238,6 +241,8 @@
     <Content Include="Views\Manager\BreadCrumb.cshtml" />
     <Content Include="Views\Manager\Attachment\Index.cshtml" />
     <None Include="Views\Manager\Attachment\Upload.cshtml" />
+    <None Include="Views\Manager\Cases\Edit.cshtml" />
+    <None Include="Views\Manager\Cases\Index.cshtml" />
     <None Include="Views\Manager\CompanyInfo\Index.cshtml" />
     <None Include="Views\Manager\Index.cshtml" />
     <Content Include="App_Code\Helpers.cshtml" />
@@ -251,6 +256,7 @@
     <Folder Include="Content\js\dashboard" />
     <Folder Include="Filters" />
     <Folder Include="Views\Manager\CompanyInfo" />
+    <Folder Include="Views\Manager\Cases" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Pineapple.Core.Web\Pineapple.Core.Web.csproj">

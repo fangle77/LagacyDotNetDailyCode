@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IAttachmentData.cs" />
+    <Compile Include="ICasesData.cs" />
     <Compile Include="INoSqlData.cs" />
     <Compile Include="ISqlExecutor.cs" />
     <Compile Include="IVisitorData.cs" />
