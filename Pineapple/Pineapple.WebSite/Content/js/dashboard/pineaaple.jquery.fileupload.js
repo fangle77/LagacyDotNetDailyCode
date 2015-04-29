@@ -1,4 +1,6 @@
 $(function () {
+	if($('#attachmentContainer').length==0) return;
+	
     $('#addInput').click(function () {
         var maxRow = Number($('#fileInputContain').attr('maxRows')) || 10;
         if ($('#fileInputContain').find('tr').length >= maxRow) return;

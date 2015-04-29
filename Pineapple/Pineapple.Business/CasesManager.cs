@@ -41,12 +41,20 @@ namespace Pineapple.Business
             return cases ?? new List<Cases>(0);
         }
 
+        public List<Cases> LoadSimpleCases(Pagination pagination)
+        {
+            var cases = CasesData.LoadCases(pagination);
+            return cases ?? new List<Cases>(0);
+        }
+
         public Cases SaveCase(Cases cases)
         {
+            SetDefaultTime(cases);
             cases = CasesData.SaveCase(cases);
 
             if (cases.CaseItems != null && cases.CaseItems.Count > 0)
             {
+                cases.CaseItems.ForEach(SetDefaultTime);
                 cases.CaseItems = CasesData.SaveCaseItems(cases.CaseItems);
             }
 
@@ -91,7 +99,7 @@ namespace Pineapple.Business
                                   else caseIdItems.Add(item.CaseId, new List<CaseItem>() { item });
                               });
 
-            var itemComparer = new CaseItemDisplayOrderComparer();
+            var itemComparer = CaseItemDisplayOrderComparer.Instance;
             foreach (var c in caseses)
             {
                 if (caseIdItems.ContainsKey(c.CaseId))
@@ -100,6 +108,36 @@ namespace Pineapple.Business
                     c.CaseItems.Sort(itemComparer);
                 }
             }
+        }
+
+        public List<CaseItem> LoadCaseItemsByCaseId(int caseId)
+        {
+            var items = CasesData.LoadCaseItemsByCaseId(caseId);
+            items.Sort(CaseItemDisplayOrderComparer.Instance);
+            LoadCaseItemAttachment(items);
+            return items;
+        }
+
+        public CaseItem SaveCaseItem(CaseItem item)
+        {
+            if (item == null) return item;
+            if (item.CaseId <= 0) return item;
+            SetDefaultTime(item);
+            return CasesData.SaveCaseItems(new List<CaseItem>() { item }).First();
+        }
+
+        public bool DeleteCaseItem(int caseItemId)
+        {
+            return CasesData.DeleteCaseItem(caseItemId);
+        }
+
+        private void SetDefaultTime(CaseItem item)
+        {
+            if (item != null && item.CreateDate == DateTime.MinValue) item.CreateDate = DateTime.Now;
+        }
+        private void SetDefaultTime(Cases cases)
+        {
+            if (cases != null && cases.CreateDate == DateTime.MinValue) cases.CreateDate = DateTime.Now;
         }
     }
 }

@@ -196,7 +196,9 @@
     <Content Include="Content\bootstrap-3.2.0\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\bootstrap-3.2.0\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Config\log4net.config" />
+    <None Include="Content\js\dashboard\cases.js" />
     <None Include="Content\js\dashboard\dashboard.js" />
+    <None Include="Content\js\dashboard\pineaaple.jquery.fileupload.js" />
     <None Include="Content\js\jquery-1.11.1.intellisense.js" />
     <Content Include="Content\js\jquery-ui-1.11.1.js" />
     <Content Include="Content\js\jquery-ui-1.11.1.min.js" />
@@ -214,7 +216,6 @@
     <Content Include="Content\js\knockout-2.1.0.debug.js" />
     <Content Include="Content\js\knockout-2.1.0.js" />
     <Content Include="Content\js\modernizr-2.5.3.js" />
-    <Content Include="Content\js\pineaaple.jquery.fileupload.js" />
     <Content Include="Content\js\_references.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
@@ -240,9 +241,12 @@
     <Content Include="Views\Manager\LeftNavigation.cshtml" />
     <Content Include="Views\Manager\BreadCrumb.cshtml" />
     <Content Include="Views\Manager\Attachment\Index.cshtml" />
+    <None Include="Views\Manager\Attachment\Detail.cshtml" />
     <None Include="Views\Manager\Attachment\Upload.cshtml" />
     <None Include="Views\Manager\Cases\Edit.cshtml" />
+    <None Include="Views\Manager\Cases\EditItems.cshtml" />
     <None Include="Views\Manager\Cases\Index.cshtml" />
+    <None Include="Views\Manager\Cases\ItemPartial.cshtml" />
     <None Include="Views\Manager\CompanyInfo\Index.cshtml" />
     <None Include="Views\Manager\Index.cshtml" />
     <Content Include="App_Code\Helpers.cshtml" />

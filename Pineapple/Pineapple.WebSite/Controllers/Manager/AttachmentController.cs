@@ -55,5 +55,11 @@ namespace Pineapple.WebSite.Controllers.Manager
 	        AttachmentService.DeleteAttachment(id);
 	        return RedirectToAction("Index");
 	    }
+	    
+	    public ActionResult Detail(int id)
+	    {
+	    	ViewBag.Attachment = AttachmentService.GetAttachmentById(id);
+	    	return View("Detail");
+	    }
 	}
 }

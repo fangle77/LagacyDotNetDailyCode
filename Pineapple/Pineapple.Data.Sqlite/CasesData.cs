@@ -17,8 +17,12 @@ namespace Pineapple.Data.Sqlite
 
         private readonly string[] casesIngnoreFields = new string[] { "CaseItems" };
         private readonly string[] casesItemIngnoreFields = new string[] { "Attachment" };
+
         private readonly string caseKeyField = "CaseId";
         private readonly string caseItemKeyField = "CaseItemId";
+
+        private readonly string[] insertUpdateIgnoreFileds = new string[] { "CaseId", "CaseItems" };
+        private readonly string[] insertUpdateIgnoreItemFileds = new string[] { "CaseItemId", "Attachment" };
 
         public Cases GetCase(int caseId)
         {
@@ -40,7 +44,7 @@ namespace Pineapple.Data.Sqlite
         {
             using (var db = Db)
             {
-                return db.Query<CaseItem>(typeof(CaseItem).GetSelectSql("CaseId=" + caseId), casesItemIngnoreFields).ToList();
+                return db.Query<CaseItem>(typeof(CaseItem).GetSelectSql("CaseId=" + caseId, casesItemIngnoreFields)).ToList();
             }
         }
 
@@ -50,12 +54,12 @@ namespace Pineapple.Data.Sqlite
             {
                 if (cases.CaseId > 0)
                 {
-                    db.Execute(typeof(Cases).GetUpdateSql(caseKeyField, caseKeyField), cases);
+                    db.Execute(cases.GetUpdateSql(caseKeyField, insertUpdateIgnoreFileds), cases);
                     return cases;
                 }
                 else
                 {
-                    cases.CaseId = db.Query<int>(typeof(Cases).GetSqliteInsertSql(casesIngnoreFields), cases).FirstOrDefault();
+                    cases.CaseId = db.Query<int>(cases.GetSqliteInsertSql(insertUpdateIgnoreFileds), cases).FirstOrDefault();
                     return cases;
                 }
             }
@@ -69,11 +73,11 @@ namespace Pineapple.Data.Sqlite
                 {
                     if (caseItem.CaseItemId > 0)
                     {
-                        db.Execute(typeof(CaseItem).GetUpdateSql(caseItemKeyField, casesItemIngnoreFields), caseItem);
+                        db.Execute(caseItem.GetUpdateSql(caseItemKeyField, insertUpdateIgnoreItemFileds), caseItem);
                     }
                     else
                     {
-                        caseItem.CaseItemId = db.Query<int>(typeof(CaseItem).GetSqliteInsertSql(casesItemIngnoreFields), caseItem).FirstOrDefault();
+                        caseItem.CaseItemId = db.Query<int>(caseItem.GetSqliteInsertSql(insertUpdateIgnoreItemFileds), caseItem).FirstOrDefault();
                     }
                 }
             }
@@ -89,13 +93,21 @@ namespace Pineapple.Data.Sqlite
                 return i > 0;
             }
         }
-        
+
         public List<CaseItem> LoadCaseItemsByCaseIds(List<int> caseIds)
         {
             using (var db = Db)
             {
                 return db.Query<CaseItem>(typeof(CaseItem).GetSelectSql("CaseId in @ids", casesItemIngnoreFields)
                     , new { ids = caseIds.ToArray() }).ToList();
+            }
+        }
+
+        public bool DeleteCaseItem(int caseItemId)
+        {
+            using (var db = Db)
+            {
+                return db.Execute("delete from CaseItem where CaseItemId=" + caseItemId) > 0;
             }
         }
     }

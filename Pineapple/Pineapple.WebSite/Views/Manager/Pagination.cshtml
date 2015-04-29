@@ -1,4 +1,6 @@
-﻿<nav>
+﻿@if(ViewBag.Pagination != null && ViewBag.Pagination.Pages != null && ViewBag.Pagination.Pages.Count > 0)
+{
+<nav>
   <ul class="pagination">
     <li>
       <a href="@ViewBag.Pagination.PrevPage.Url" aria-label="Previous" >
@@ -16,3 +18,4 @@
     </li>
   </ul>
 </nav>
+}

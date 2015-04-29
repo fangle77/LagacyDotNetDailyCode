@@ -1,19 +1,16 @@
 ﻿@{
     ViewBag.Title = "Attachment";
 }
-@Scripts.Render("~/Content/jqueryfileupload/js")
-
-@using Pineapple.Model
 
 @RenderPage("Upload.cshtml");
 
 <div id="attachmentContainer">
-    @foreach (Attachment attachment in @ViewBag.Attachments)
+    @foreach (var attachment in @ViewBag.Attachments)
     {
         if (attachment.IsImage)
         {
         <a href="@attachment.UrlPath" title="@attachment.OriginName" class="img-gallry">
-            <img data-original="@attachment.UrlPath" alt="@attachment.Alt" src="" style="width:160px;" class="img-rounded"/>
+            <img data-original="@attachment.UrlPath" alt="@attachment.Alt" src="" style="width:160px;" class="img-rounded" attachmentId="@attachment.AttachmentId"/>
         </a>
         <div class="hide img-operation">
             <a href="javascript:void(0);">Copy Element</a>
@@ -24,7 +21,9 @@
         else
         {
         <span class="col-md-2">
-            <a href="@attachment.UrlPath">@attachment.OriginName  (@attachment.Size)</a>
+            <a attachmentId="@attachment.AttachmentId" href="@attachment.UrlPath">@attachment.OriginName  (@attachment.Size)</a>
+            <br/>
+            <a href="/Manager/Attachment/Delete/@attachment.AttachmentId" class="glyphicon glyphicon-minus-sign">Delete</a>
         </span>
         }
     }

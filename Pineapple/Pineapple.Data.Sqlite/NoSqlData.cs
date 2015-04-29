@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Collections.Generic;
 using Dapper;
 using Pineapple.Core.Cache;
 using Pineapple.Core.Dyanamic;
 using Pineapple.Model;
-using System.Linq;
 using log4net;
 
 namespace Pineapple.Data.Sqlite

@@ -27,3 +27,20 @@ function ExceptionMessage(ex){
    		console.error(ex);
    }
 }
+
+var FormHelper = {
+	getParams:function(control){
+		if(typeof control === "undefined") control = "body";
+		
+		var inputs = $(control).find('input[name]');
+		if(inputs.length == 0 ) return {};
+		
+		var param = {};
+		$.each(inputs,function(i,e){
+			var $e = $(e);
+			param[$e.attr('name')] = $e.val();
+		});
+		console.log(param);
+		return param;
+	}
+};

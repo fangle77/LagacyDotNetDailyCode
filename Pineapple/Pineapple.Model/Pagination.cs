@@ -14,7 +14,7 @@ namespace Pineapple.Model
             set { currentPage = value; }
         }
 
-        private int sizePerPage = 15;
+        private int sizePerPage = 10;
         public int SizePerPage
         {
             get { return sizePerPage; }

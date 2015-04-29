@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Web.Mvc;
+using System.Web.Routing;
 using Microsoft.Practices.Unity;
 using Pineapple.Model;
 using Pineapple.Service;
+using Pineapple.Core.Util;
 
 namespace Pineapple.WebSite.Controllers.Manager
 {
@@ -14,10 +16,15 @@ namespace Pineapple.WebSite.Controllers.Manager
 		[Dependency]
 		public CasesService CasesService{protected get;set;}
 		
+		protected override string ManagerName
+		{
+			get { return "Cases"; }
+		}
+		
 		public ActionResult Index()
 		{
 			var pagination = base.GetPage();
-			ViewBag.Cases = CasesService.LoadCases(pagination.Pagination);
+			ViewBag.Cases = CasesService.LoadSimpleCases(pagination.Pagination);
 			BuildPagination(pagination);
 			return View("Index");
 		}
@@ -28,9 +35,51 @@ namespace Pineapple.WebSite.Controllers.Manager
 			return View("Edit");
 		}
 		
-		protected override string ManagerName
+		[HttpPost]
+		public ActionResult Save(Cases cases)
 		{
-			get { return "Cases"; }
+			cases = CasesService.SaveCase(cases);
+			return RedirectToAction("Edit", new RouteValueDictionary(new{id = cases.CaseId}));
+		}
+		
+		public ActionResult Edit(int id)
+		{
+			ViewBag.Cases = CasesService.GetCase(id);
+			return View("Edit");
+		}
+		
+		public ActionResult Delete(int id)
+		{
+			CasesService.DeleteCase(id);
+			return RedirectToAction("Index");
+		}
+
+		public ActionResult EditItems()
+		{
+			int caseid = Request.QueryString["caseid"].ToInt();
+			if(caseid<=0)
+			{
+				return RedirectToAction("Index");
+			}
+			else
+			{
+				ViewBag.Cases = CasesService.GetCase(caseid);
+				return View("EditItems");
+			}
+		}
+		
+		[HttpPost]
+		public ActionResult SaveItem(CaseItem item)
+		{
+			bool result = CasesService.SaveCaseItem(item) != null;
+			return Json(result.ToString().ToLower());
+		}
+		
+		[HttpPost]
+		public ActionResult DeleteItem(int id)
+		{
+			bool result = CasesService.DeleteCaseItem(id);
+			return Json(result.ToString().ToLower());
 		}
 	}
 }

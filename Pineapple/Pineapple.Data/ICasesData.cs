@@ -21,5 +21,7 @@ namespace Pineapple.Data
         List<CaseItem> SaveCaseItems(List<CaseItem> caseItems);
 
         bool DeleteCase(int caseId);
+
+        bool DeleteCaseItem(int caseItemId);
     }
 }

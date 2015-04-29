@@ -23,6 +23,11 @@ namespace Pineapple.Service
             return CasesManager.LoadCases(pagination);
         }
 
+        public List<Cases> LoadSimpleCases(Pagination pagination)
+        {
+            return CasesManager.LoadSimpleCases(pagination);
+        }
+
         public Cases SaveCase(Cases cases)
         {
             return CasesManager.SaveCase(cases);
@@ -31,6 +36,21 @@ namespace Pineapple.Service
         public bool DeleteCase(int caseId)
         {
             return CasesManager.DeleteCase(caseId);
+        }
+
+        public List<CaseItem> LoadCaseItemsByCaseId(int caseId)
+        {
+            return CasesManager.LoadCaseItemsByCaseId(caseId);
+        }
+
+        public CaseItem SaveCaseItem(CaseItem item)
+        {
+            return CasesManager.SaveCaseItem(item);
+        }
+
+        public bool DeleteCaseItem(int caseItemId)
+        {
+            return CasesManager.DeleteCaseItem(caseItemId);
         }
     }
 }

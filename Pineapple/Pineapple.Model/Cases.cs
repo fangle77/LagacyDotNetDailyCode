@@ -32,6 +32,14 @@ namespace Pineapple.Model
 
     public class CaseItemDisplayOrderComparer : IComparer<CaseItem>
     {
+        private static CaseItemDisplayOrderComparer _instance;
+        public static CaseItemDisplayOrderComparer Instance
+        {
+            get { return (_instance = _instance ?? new CaseItemDisplayOrderComparer()); }
+        }
+
+        private CaseItemDisplayOrderComparer() { }
+
         public int Compare(CaseItem x, CaseItem y)
         {
             return x.DisplayOrder - y.DisplayOrder;
