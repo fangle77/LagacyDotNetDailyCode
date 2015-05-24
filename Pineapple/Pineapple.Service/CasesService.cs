@@ -18,14 +18,14 @@ namespace Pineapple.Service
             return CasesManager.GetCase(caseId);
         }
 
-        public List<Cases> LoadCases(Pagination pagination)
+        public List<Cases> LoadCases(Pagination pagination, CaseType caseType)
         {
-            return CasesManager.LoadCases(pagination);
+            return CasesManager.LoadCases(pagination, caseType);
         }
 
-        public List<Cases> LoadSimpleCases(Pagination pagination)
+        public List<Cases> LoadSimpleCases(Pagination pagination, CaseType caseType)
         {
-            return CasesManager.LoadSimpleCases(pagination);
+            return CasesManager.LoadSimpleCases(pagination, caseType);
         }
 
         public Cases SaveCase(Cases cases)

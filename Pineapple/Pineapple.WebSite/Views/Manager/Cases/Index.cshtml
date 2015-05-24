@@ -1,9 +1,5 @@
-﻿@{
-    ViewBag.Title = "Cases";
-}
-
-<table class="@ViewBag.TableClass">
-    <caption>Cases List (<a href="/Manager/Cases/Create" class="glyphicon glyphicon-plus-sign">Add</a>)</caption>
+﻿<table class="@ViewBag.TableClass">
+    <caption>Cases List (<a href="/Manager/@ViewBag.NavigationName/Create" class="glyphicon glyphicon-plus-sign">Add</a>)</caption>
     <thead>
         <tr>
             <th>CaseId</th>
@@ -26,8 +22,8 @@
                 <td>@Helpers.TdWrap(@cases.Description)</td>
                 <td>@cases.DisplayOrder</td>
                 <td>
-                    <a href="/Manager/Cases/Edit/@cases.CaseId" class="glyphicon glyphicon-edit">Edit</a>
-                    <a href="/Manager/Cases/Delete/@cases.CaseId" class="glyphicon glyphicon-minus-sign">Delete</a>
+                    <a href="/Manager/@ViewBag.NavigationName/Edit/@cases.CaseId" class="glyphicon glyphicon-edit">Edit</a>
+                    <a href="/Manager/@ViewBag.NavigationName/Delete/@cases.CaseId" class="glyphicon glyphicon-minus-sign">Delete</a>
                 </td>
             </tr>
         }

@@ -147,10 +147,12 @@
     <Compile Include="Controllers\AbountUs.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\Manager\AttachmentController.cs" />
+    <Compile Include="Controllers\Manager\BaseCasesController.cs" />
     <Compile Include="Controllers\Manager\CasesController.cs" />
     <Compile Include="Controllers\Manager\CompanyInfoController.cs" />
     <Compile Include="Controllers\Manager\ManagerController.cs" />
     <Compile Include="Controllers\Manager\OverviewController.cs" />
+    <Compile Include="Controllers\Manager\ServiceController.cs" />
     <Compile Include="Controllers\Manager\VisitorController.cs" />
     <Compile Include="Filters\VisitorInterceptor.cs" />
     <Compile Include="Global.asax.cs">
@@ -256,11 +258,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\bundles\bootstrap\css\" />
     <Folder Include="Content\bundles\bootstrap\js\" />
-    <Folder Include="Config" />
-    <Folder Include="Content\js\dashboard" />
-    <Folder Include="Filters" />
-    <Folder Include="Views\Manager\CompanyInfo" />
-    <Folder Include="Views\Manager\Cases" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Pineapple.Core.Web\Pineapple.Core.Web.csproj">

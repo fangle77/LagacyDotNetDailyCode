@@ -1,7 +1,7 @@
 ﻿@{
     var cases = @ViewBag.Cases;
     var caseId = cases.CaseId;
-    var action = "/Manager/Cases/Save";
+    var action = "/Manager/@ViewBag.NavigationName/Save";
     var itemCount = cases.CaseItems==null? 0 : cases.CaseItems.Count;
 }
 <form id="form1" class="form-horizontal" role="form"  action="@action" method="post">
@@ -48,7 +48,7 @@
 	    <label class="col-sm-2 control-label">Items:</label>
 	    <div class="col-sm-10">
 	    @itemCount items.
-	    	<a href="/Manager/Cases/EditItems?caseid=@caseId" alt="">Edit items</a>	
+	    	<a href="/Manager/@ViewBag.NavigationName/EditItems?caseid=@caseId" alt="">Edit items</a>	
 	    </div>
     </div>
     }

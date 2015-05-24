@@ -32,11 +32,11 @@ namespace Pineapple.Data.Sqlite
             }
         }
 
-        public List<Cases> LoadCases(Model.Pagination pagination)
+        public List<Cases> LoadCases(Model.Pagination pagination, CaseType caseType)
         {
             using (var db = Db)
             {
-                return db.PageQuery<Cases>(pagination, typeof(Cases).GetSelectSql("", casesIngnoreFields) + " order by DisplayOrder desc, TimeInMs desc");
+                return db.PageQuery<Cases>(pagination, typeof(Cases).GetSelectSql("casetype=" + (int)caseType, casesIngnoreFields) + " order by DisplayOrder desc, TimeInMs desc");
             }
         }
 

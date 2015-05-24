@@ -28,9 +28,9 @@ namespace Pineapple.Business
             return cases;
         }
 
-        public List<Cases> LoadCases(Pagination pagination)
+        public List<Cases> LoadCases(Pagination pagination, CaseType caseType)
         {
-            var cases = CasesData.LoadCases(pagination);
+            var cases = CasesData.LoadCases(pagination, caseType);
             LoadCaseItems(cases);
             if (cases != null && cases.Count > 0)
             {
@@ -41,9 +41,9 @@ namespace Pineapple.Business
             return cases ?? new List<Cases>(0);
         }
 
-        public List<Cases> LoadSimpleCases(Pagination pagination)
+        public List<Cases> LoadSimpleCases(Pagination pagination, CaseType caseType)
         {
-            var cases = CasesData.LoadCases(pagination);
+            var cases = CasesData.LoadCases(pagination, caseType);
             return cases ?? new List<Cases>(0);
         }
 

@@ -7,11 +7,17 @@ using Pineapple.Model;
 
 namespace Pineapple.WebSite.Controllers.Manager
 {
-    public class CasesController : BaseCasesController
+    public class ServiceController : BaseCasesController
     {
+
         protected override CaseType CaseType
         {
-            get { return CaseType.Case; }
+            get { return CaseType.Service; }
+        }
+
+        protected override string NavigationName
+        {
+            get { return "Service"; }
         }
     }
 }

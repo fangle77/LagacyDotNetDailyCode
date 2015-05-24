@@ -24,6 +24,11 @@ namespace Pineapple.WebSite.Controllers.Manager
             get;
         }
 
+        protected virtual string NavigationName
+        {
+            get { return ManagerName; }
+        }
+
         protected string AddManageBase(string viewName)
         {
             return string.Format("~/Views/Manager/{0}{1}{2}.cshtml", ManagerName, string.IsNullOrEmpty(ManagerName) ? string.Empty : "/", viewName);
@@ -31,6 +36,7 @@ namespace Pineapple.WebSite.Controllers.Manager
      
         protected new ActionResult View(string viewName)
         {
+            BuildViewBag();
             BuildCommonVariable();
             BuildBreadCrumb();
             if (IsAjaxRequest())
@@ -46,7 +52,7 @@ namespace Pineapple.WebSite.Controllers.Manager
 
         protected void BuildLeftNavigation()
         {
-            ViewBag.LeftNavigations = ManagerNavigationService.LoadManagerNavigatoin(ManagerName);
+            ViewBag.LeftNavigations = ManagerNavigationService.LoadManagerNavigatoin(NavigationName);
         }
 
         protected void BuildBreadCrumb()
@@ -54,6 +60,12 @@ namespace Pineapple.WebSite.Controllers.Manager
             string controller = (string)RouteData.Values["controller"];
             string action = (string)RouteData.Values["action"];
             ViewBag.BreadCrumbs = ManagerNavigationService.BuildBreadCrumbs(controller, action);
+        }
+
+        protected void BuildViewBag()
+        {
+            ViewBag.ManagerName = ManagerName;
+            ViewBag.NavigationName = NavigationName;
         }
 
         protected bool IsAjaxRequest()

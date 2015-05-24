@@ -5,6 +5,7 @@ Create table if not exists Cases
     SubTitle        TEXT,
     CreateDate      TEXT,
     Description     TEXT,
+	CaseType        INTEGER,
     TimeInMs        INTEGER,
 	DisplayOrder	INTEGER
 )

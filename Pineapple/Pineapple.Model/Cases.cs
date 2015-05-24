@@ -12,6 +12,10 @@ namespace Pineapple.Model
         public string SubTitle { get; set; }
         public DateTime CreateDate { get; set; }
         public string Description { get; set; }
+        /// <summary>
+        /// 0: case , 1: service, 2:....unused.
+        /// </summary>
+        public int CaseType { get; set; }
         public long TimeInMs { get; set; }
         public int DisplayOrder { get; set; }
 
@@ -44,5 +48,11 @@ namespace Pineapple.Model
         {
             return x.DisplayOrder - y.DisplayOrder;
         }
+    }
+
+    public enum CaseType
+    {
+        Case  = 0,
+        Service = 1
     }
 }

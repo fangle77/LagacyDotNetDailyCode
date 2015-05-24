@@ -10,7 +10,7 @@ namespace Pineapple.Data
     {
         Cases GetCase(int caseId);
 
-        List<Cases> LoadCases(Pagination pagination);
+        List<Cases> LoadCases(Pagination pagination, CaseType caseType);
 
         List<CaseItem> LoadCaseItemsByCaseId(int caseId);
 

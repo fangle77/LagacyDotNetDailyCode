@@ -1,12 +1,12 @@
 ﻿@{
-    ViewBag.Title = "Edit case items";
+    ViewBag.Title = "Edit @ViewBag.NavigationName items";
 }
 <a href="/Manager/Cases/Edit/@ViewBag.Cases.CaseId">Case:  @ViewBag.Cases.Title</a>
 <br/>
 <br/>
 <div id = "caseItemContainer">
-<input type="hidden" value="/Manager/Cases/SaveItem" id="caseItemSaveUrl"/>
-<input type="hidden" value="/Manager/Cases/DeleteItem" id="caseItemDeleteUrl"/>
+<input type="hidden" value="/Manager/@ViewBag.NavigationName/SaveItem" id="caseItemSaveUrl"/>
+<input type="hidden" value="/Manager/@ViewBag.NavigationName/DeleteItem" id="caseItemDeleteUrl"/>
 @foreach(var caseItem in @ViewBag.Cases.CaseItems)
 {
 	<div class="panel panel-default">
