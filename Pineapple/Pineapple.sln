@@ -1,7 +1,10 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+# SharpDevelop 4.4
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{A24FCB0B-198A-4BFE-991F-2A14B909F809}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pineapple.UnitTest", "UnitTest\Pineapple.UnitTest\Pineapple.UnitTest.csproj", "{D4A0267C-6E17-42A6-A677-A7B6FF0BD9C4}"
 EndProject

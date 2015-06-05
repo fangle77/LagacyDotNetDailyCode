@@ -232,7 +232,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Manager\Visitor\Index.cshtml" />
     <Content Include="Views\Manager\_Layout.cshtml" />
     <None Include="Content\js\dashboard\companyinfo.js" />
@@ -243,6 +242,7 @@
     <Content Include="Views\Manager\LeftNavigation.cshtml" />
     <Content Include="Views\Manager\BreadCrumb.cshtml" />
     <Content Include="Views\Manager\Attachment\Index.cshtml" />
+    <None Include="Views\Default\_Layout.cshtml" />
     <None Include="Views\Manager\Attachment\Detail.cshtml" />
     <None Include="Views\Manager\Attachment\Upload.cshtml" />
     <None Include="Views\Manager\Cases\Edit.cshtml" />
@@ -258,6 +258,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\bundles\bootstrap\css\" />
     <Folder Include="Content\bundles\bootstrap\js\" />
+    <Folder Include="Views\Default" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Pineapple.Core.Web\Pineapple.Core.Web.csproj">
