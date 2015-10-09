@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>yltl.Tools</RootNamespace>
     <AssemblyName>小工具</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>toos.ico</ApplicationIcon>
     <FileUpgradeFlags>
@@ -32,7 +32,6 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,7 +42,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -53,7 +51,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -85,17 +82,29 @@
     <Compile Include="FrmAccessDept.Designer.cs">
       <DependentUpon>FrmAccessDept.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmCodeGenerator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCodeGenerator.Designer.cs">
+      <DependentUpon>FrmCodeGenerator.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmDwdyStatistical.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmDwdyStatistical.Designer.cs">
       <DependentUpon>FrmDwdyStatistical.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmInstallEdit.cs">
+    <Compile Include="FrmJavaCodeGenerator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmInstallEdit.Designer.cs">
-      <DependentUpon>FrmInstallEdit.cs</DependentUpon>
+    <Compile Include="FrmJavaCodeGenerator.Designer.cs">
+      <DependentUpon>FrmJavaCodeGenerator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmStringUtil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmStringUtil.Designer.cs">
+      <DependentUpon>FrmStringUtil.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
@@ -121,6 +130,8 @@
     <Compile Include="FrmTableTransport.Designer.cs">
       <DependentUpon>FrmTableTransport.cs</DependentUpon>
     </Compile>
+    <Compile Include="JavaCodeGenerator\GenerateRequest.cs" />
+    <Compile Include="JavaCodeGenerator\Helper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormClear.resx">
@@ -129,11 +140,17 @@
     <EmbeddedResource Include="FrmAccessDept.resx">
       <DependentUpon>FrmAccessDept.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmCodeGenerator.resx">
+      <DependentUpon>FrmCodeGenerator.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmDwdyStatistical.resx">
       <DependentUpon>FrmDwdyStatistical.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmInstallEdit.resx">
-      <DependentUpon>FrmInstallEdit.cs</DependentUpon>
+    <EmbeddedResource Include="FrmJavaCodeGenerator.resx">
+      <DependentUpon>FrmJavaCodeGenerator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmStringUtil.resx">
+      <DependentUpon>FrmStringUtil.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
@@ -157,7 +174,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -202,6 +218,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CodeGenerator\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

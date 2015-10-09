@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("yltl.Tools")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("亿力天龙科技")]
+[assembly: AssemblyCompany("bowen.zhang")]
 [assembly: AssemblyProduct("yltl.Tools")]
-[assembly: AssemblyCopyright("Copyright © YLTL 2012")]
+[assembly: AssemblyCopyright("Copyright © Bowen 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

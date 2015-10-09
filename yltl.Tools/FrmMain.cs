@@ -22,10 +22,11 @@ namespace yltl.Tools
                 //{"电网电压统计", new FrmDwdyStatistical()},
                 //{"TNSName", new FrmOraTnsname()},
                 {"正则表达式", new FrmReg()},
-                //{"字符串处理", new FrmStringUtil()},
+                {"字符串处理", new FrmStringUtil()},
                 //{"生成单位数据库", new FrmAccessDept()},
                 //{"数据表迁移", new FrmTableTransport()},
-                {"文件清理", new FormClear()}
+                {"文件清理", new FormClear()},
+                {"代码生成",new FrmCodeGenerator()}
             };
 
         private void FrmMain_Load(object sender, EventArgs e)

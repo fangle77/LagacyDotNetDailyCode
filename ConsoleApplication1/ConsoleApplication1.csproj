@@ -70,6 +70,7 @@
     <Compile Include="CacheTimeStatistics.cs" />
     <Compile Include="DynamicTest.cs" />
     <Compile Include="ObjectExternal.cs" />
+    <Compile Include="ProductCenterKeyword.cs" />
     <Compile Include="SelectUnionBuilder.cs" />
     <Compile Include="EncryptDeEncrypt.cs" />
     <Compile Include="FileCounter.cs" />

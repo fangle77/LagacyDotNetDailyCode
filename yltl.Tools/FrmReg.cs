@@ -35,7 +35,7 @@ namespace yltl.Tools
             }
             try
             {
-                var reg = new Regex(regular, RegexOptions.IgnoreCase);
+                var reg = new Regex(regular,RegexOptions.IgnoreCase);
 
                 var matchs = reg.Matches(input);
                 if (matchs == null || matchs.Count == 0)

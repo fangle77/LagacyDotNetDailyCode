@@ -38,6 +38,25 @@ namespace Pineapple.UnitTest.Data
         }
 
         [Test]
+        public void CreateDbTables()
+        {
+            logger.Info("meeting-room");
+            string dbfile = "App_Data/meeting-room.db";
+            FileInfo fi = new FileInfo(dbfile);
+            logger.Info(fi.FullName);
+            DirectoryInfo di = new DirectoryInfo("../../../../Pineapple.Data.Sqlite/SqlScript/meeting-room.sqlite");
+            logger.Info(di.Exists);
+
+            var fs = di.GetFiles();
+            foreach (var f in fs)
+            {
+                logger.Info(f.Name);
+                executor.Execute(GetConnectionString(fi.FullName), File.ReadAllText(f.FullName));
+            }
+            logger.Info("finished");
+        }
+
+        [Test]
         public void CreateActionDbTables()
         {
             logger.Info("ActionDb");

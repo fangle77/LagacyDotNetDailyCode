@@ -21,8 +21,7 @@ namespace ConsoleApplication1
 
         static void TestAction()
         {
-           LinkedList<int> l = new LinkedList<int>();
-           l.Remove(1);
+           ProductCenterKeyword.Start();
             
         }
 
