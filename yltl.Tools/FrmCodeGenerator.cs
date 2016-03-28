@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,13 +21,20 @@ namespace yltl.Tools
             AllGenerators.Add("DomainGenerator", new DomainGenerator());
             AllGenerators.Add("DomainToViewProperty", new DomainToViewProperty());
             AllGenerators.Add("ObjectCopyProperty", new ObjectCopyProperty());
+            AllGenerators.Add("ObjectCopyPropertyIfNotNull", new ObjectCopyPropertyIfNotNull());
             AllGenerators.Add("RepositoryGenerator", new RepositoryGenerator());
             AllGenerators.Add("ServiceGenerator", new ServiceGenerator());
             AllGenerators.Add("DbUnitXmlGenerator", new DbUnitXmlGenerator());
             AllGenerators.Add("ApiParameterGenerator", new ApiParameterGenerator());
             AllGenerators.Add("XmlElementAnotationGenerator", new XmlElementAnotationGenerator());
             AllGenerators.Add("JdbcRowMapperGenerator", new JdbcRowMapperGenerator());
-            
+            AllGenerators.Add("AssertObjEqureGenerator", new AssertObjEqureGenerator());
+            AllGenerators.Add("MongoUpdateIfNotNull", new MongoUpdateIfNotNull());
+            AllGenerators.Add("MongoUpdateInnerArrayIfNotNull", new MongoUpdateInnerArrayIfNotNull());
+            AllGenerators.Add("ESMapping", new ESMapping());
+            AllGenerators.Add("ESIndexData", new ESIndexData());
+            AllGenerators.Add("ESSearchBuilder", new ESSearchBuilder());
+
             //AllGenerators.Add("ProductServiceEntityDomainConvert", new ProductServiceEntityDomainConvert());
             //AllGenerators.Add("ProductServiceRepository", new ProductServiceRepository());
             //AllGenerators.Add("ProductServiceService", new ProductServiceService());
@@ -464,7 +472,7 @@ OrderGmtCreate	Varchar(20)	";
 
     class ObjectCopyProperty : ICodeGenerator
     {
-        public static readonly Regex PropertyReg = new Regex(@"(private|public|package|protected)?\s+\w+\s+(\w+);");
+        public static readonly Regex PropertyReg = new Regex(@"(private|public|package|protected)?(\s+)?[\w<>]+\s+(\w+);");
 
         public string ExampleInput
         {
@@ -499,7 +507,7 @@ OrderGmtCreate	Varchar(20)	";
                 var match = PropertyReg.Match(line);
                 if (match.Success)
                 {
-                    properties.Add(match.Groups[2].Value);
+                    properties.Add(match.Groups[3].Value);
                 }
             }
 
@@ -507,6 +515,175 @@ OrderGmtCreate	Varchar(20)	";
             foreach (var property in properties)
             {
                 sb.AppendFormat("{0}.set{1}({2}.get{1}());", newObj, UpperFirstChar(property), oldObj);
+                sb.AppendLine();
+            }
+            return sb.ToString();
+        }
+
+        private string UpperFirstChar(string input)
+        {
+            return input[0].ToString().ToUpper() + input.Substring(1);
+        }
+    }
+
+    class ObjectCopyPropertyIfNotNull : ICodeGenerator
+    {
+        public static readonly Regex PropertyReg = new Regex(@"(private|public|package|protected)?(\s+)?[\w<>]+\s+(\w+);");
+
+        public string ExampleInput
+        {
+            get
+            {
+                return @"oldPackage
+    newPackage
+    private int productId;
+
+    private String name;
+
+    private String roomName;
+
+    private String type;
+";
+            }
+        }
+
+        public string Generate(string[] inputs)
+        {
+            if (inputs.Length <= 3) return "incorrect format";
+
+
+            string newObj = inputs[1].Trim();
+            string oldObj = inputs[0].Trim();
+            List<string> properties = new List<string>();
+            for (int i = 2; i < inputs.Length; i++)
+            {
+                string line = inputs[i].Trim();
+                if (string.IsNullOrEmpty(line)) continue;
+
+                var match = PropertyReg.Match(line);
+                if (match.Success)
+                {
+                    properties.Add(match.Groups[3].Value);
+                }
+            }
+
+            StringBuilder sb = new StringBuilder();
+            foreach (var property in properties)
+            {
+                sb.AppendFormat("if ({2}.get{1}() != null) {0}.set{1}({2}.get{1}());", newObj, UpperFirstChar(property), oldObj);
+                sb.AppendLine();
+            }
+            return sb.ToString();
+        }
+
+        private string UpperFirstChar(string input)
+        {
+            return input[0].ToString().ToUpper() + input.Substring(1);
+        }
+    }
+
+    class MongoUpdateIfNotNull : ICodeGenerator
+    {
+        public static readonly Regex PropertyReg = new Regex(@"(private|public|package|protected)?(\s+)?[\w<>]+\s+(\w+);");
+
+        public string ExampleInput
+        {
+            get
+            {
+                return @"oldPackage
+    newPackage
+    private int productId;
+
+    private String name;
+
+    private String roomName;
+
+    private String type;
+";
+            }
+        }
+
+        public string Generate(string[] inputs)
+        {
+            if (inputs.Length <= 3) return "incorrect format";
+
+
+            string newObj = inputs[1].Trim();
+            string oldObj = inputs[0].Trim();
+            List<string> properties = new List<string>();
+            for (int i = 2; i < inputs.Length; i++)
+            {
+                string line = inputs[i].Trim();
+                if (string.IsNullOrEmpty(line)) continue;
+
+                var match = PropertyReg.Match(line);
+                if (match.Success)
+                {
+                    properties.Add(match.Groups[3].Value);
+                }
+            }
+
+            StringBuilder sb = new StringBuilder();
+            newObj = string.IsNullOrEmpty(newObj) ? "" : newObj + ".";
+            foreach (var property in properties)
+            {
+                sb.AppendFormat("if ({0}.get{1}() != null) update.set(\"{3}{2}\", {0}.get{1}());", oldObj, UpperFirstChar(property), property, newObj);
+                sb.AppendLine();
+            }
+            return sb.ToString();
+        }
+
+        private string UpperFirstChar(string input)
+        {
+            return input[0].ToString().ToUpper() + input.Substring(1);
+        }
+    }
+
+    class MongoUpdateInnerArrayIfNotNull : ICodeGenerator
+    {
+        public static readonly Regex PropertyReg = new Regex(@"(private|public|package|protected)?(\s+)?[\w<>]+\s+(\w+);");
+
+        public string ExampleInput
+        {
+            get
+            {
+                return @"item
+    items
+    private int productId;
+
+    private String name;
+
+    private String roomName;
+
+    private String type;
+";
+            }
+        }
+
+        public string Generate(string[] inputs)
+        {
+            if (inputs.Length <= 3) return "incorrect format";
+
+
+            string newObj = inputs[1].Trim();
+            string oldObj = inputs[0].Trim();
+            List<string> properties = new List<string>();
+            for (int i = 2; i < inputs.Length; i++)
+            {
+                string line = inputs[i].Trim();
+                if (string.IsNullOrEmpty(line)) continue;
+
+                var match = PropertyReg.Match(line);
+                if (match.Success)
+                {
+                    properties.Add(match.Groups[3].Value);
+                }
+            }
+
+            StringBuilder sb = new StringBuilder();
+            foreach (var property in properties)
+            {
+                sb.AppendFormat("if ({0}.get{1}() != null) basicDBObject.append(\"$set\", new BasicDBObject(\"{3}.$.{2}\", {0}.get{1}()));", oldObj, UpperFirstChar(property), property, newObj);
                 sb.AppendLine();
             }
             return sb.ToString();
@@ -1051,6 +1228,11 @@ public class {0}Service {{
                 var arr = input.Trim().TrimEnd(';').Trim().Split(' ');
                 if (arr.Length < 1) continue;
                 var name = arr[arr.Length - 1];
+                if (input.IndexOf("List") >= 0)
+                {
+                    builder.AppendFormat("@XmlElementWrapper(name = \"{0}\")", name);
+                    builder.AppendLine();
+                }
                 builder.AppendFormat("@XmlElement(name = \"{0}\")", name);
                 builder.AppendLine();
                 builder.AppendLine(input.Trim());
@@ -1112,8 +1294,8 @@ public class {0}Service {{
 
                 if (!string.IsNullOrEmpty(columnName) && !string.IsNullOrEmpty(filedName))
                 {
-                    builder.AppendFormat("{0}.set{1}({2}.{3}(\"{4}\"));",entityName,CodeHelper.UpperFirstChar(filedName)
-                        ,resultSet,type,columnName);
+                    builder.AppendFormat("{0}.set{1}({2}.{3}(\"{4}\"));", entityName, CodeHelper.UpperFirstChar(filedName)
+                        , resultSet, type, columnName);
                     builder.AppendLine();
                     columnName = null;
                     filedName = null;
@@ -1137,5 +1319,214 @@ public class {0}Service {{
         }
     }
 
+
+    class AssertObjEqureGenerator : ICodeGenerator
+    {
+        public static readonly Regex PropertyReg = new Regex(@"(private|public|package|protected)?(\s+)?[\w<>]+\s+(\w+);");
+
+        public string ExampleInput
+        {
+            get
+            {
+                return @"oldPackage
+    newPackage
+    private int productId;
+
+    private String name;
+
+    private String roomName;
+
+    private String type;
+";
+            }
+        }
+
+        public string Generate(string[] inputs)
+        {
+            if (inputs.Length <= 3) return "incorrect format";
+
+
+            string newObj = inputs[1].Trim();
+            string oldObj = inputs[0].Trim();
+            List<string> properties = new List<string>();
+            for (int i = 2; i < inputs.Length; i++)
+            {
+                string line = inputs[i].Trim();
+                if (string.IsNullOrEmpty(line)) continue;
+
+                var match = PropertyReg.Match(line);
+                if (match.Success)
+                {
+                    properties.Add(match.Groups[3].Value);
+                }
+            }
+
+            StringBuilder sb = new StringBuilder();
+            foreach (var property in properties)
+            {
+                sb.AppendFormat("Assert.assertEquals({2}.get{1}(), {0}.get{1}());", newObj, UpperFirstChar(property), oldObj);
+                sb.AppendLine();
+            }
+            return sb.ToString();
+        }
+
+        private string UpperFirstChar(string input)
+        {
+            return input[0].ToString().ToUpper() + input.Substring(1);
+        }
+    }
+
+    class ESMapping : ICodeGenerator
+    {
+        public static readonly Regex PropertyReg = new Regex(@"(private|public|package|protected)?(\s+)?[\w<>]+\s+(\w+);");
+
+        public string ExampleInput
+        {
+            get
+            {
+                return @"
+    private int productId;
+
+    private String name;
+
+    private String roomName;
+
+    private String type;
+";
+            }
+        }
+
+        public string Generate(string[] inputs)
+        {
+            if (inputs.Length <= 2) return "incorrect format";
+
+            string collection = inputs[0];
+
+            List<string> properties = new List<string>();
+            for (int i = 1; i < inputs.Length; i++)
+            {
+                string line = inputs[i].Trim();
+                if (string.IsNullOrEmpty(line)) continue;
+
+                var match = PropertyReg.Match(line);
+                if (match.Success)
+                {
+                    properties.Add(match.Groups[3].Value);
+                }
+            }
+
+            StringBuilder sb = new StringBuilder();
+            foreach (var property in properties)
+            {
+                sb.AppendFormat("{1}.add(new Field().name(\"{0}\").type(FieldType.String).index(FieldIndex.analyzed));", property, collection);
+                sb.AppendLine();
+            }
+            return sb.ToString();
+        }
+    }
+
+    class ESIndexData : ICodeGenerator
+    {
+        public static readonly Regex PropertyReg = new Regex(@"(private|public|package|protected)?(\s+)?[\w<>]+\s+(\w+);");
+
+        public string ExampleInput
+        {
+            get
+            {
+                return @"indexObject.getFields()
+    item
+    private int productId;
+
+    private String name;
+
+    private String roomName;
+
+    private String type;
+";
+            }
+        }
+
+        public string Generate(string[] inputs)
+        {
+            if (inputs.Length <= 3) return "incorrect format";
+
+            string collection = inputs[0].Trim();
+            string dataObj = inputs[1].Trim();
+
+            List<string> properties = new List<string>();
+            for (int i = 1; i < inputs.Length; i++)
+            {
+                string line = inputs[i].Trim();
+                if (string.IsNullOrEmpty(line)) continue;
+
+                var match = PropertyReg.Match(line);
+                if (match.Success)
+                {
+                    properties.Add(match.Groups[3].Value);
+                }
+            }
+
+            StringBuilder sb = new StringBuilder();
+            foreach (var property in properties)
+            {
+                sb.AppendFormat("{0}.add(new IndexField(\"{1}\", {2}.get{3}()));", collection, property, dataObj, UpperFirstChar(property));
+                sb.AppendLine();
+            }
+            return sb.ToString();
+        }
+
+        private string UpperFirstChar(string input)
+        {
+            return input[0].ToString().ToUpper() + input.Substring(1);
+        }
+    }
+
+    class ESSearchBuilder : ICodeGenerator
+    {
+        public string ExampleInput
+        {
+            get
+            {
+                return @"private List<Integer> Ids;
+
+    private String nameInApp;
+
+    private Integer itemType;";
+            }
+        }
+        public string Generate(string[] inputs)
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (var input in inputs)
+            {
+                if (String.IsNullOrEmpty(input.Trim())) continue;
+                if (!ESIndexData.PropertyReg.IsMatch(input)) continue;
+
+                var arr = input.Trim().TrimEnd(';').Trim().Split(' ');
+                if (arr.Length < 1) continue;
+                var name = arr[arr.Length - 1];
+                if (input.IndexOf("List") >= 0)
+                {
+                    builder.AppendFormat(@"if (!CollectionUtils.isEmpty(request.get{0}())) {{
+            boolQueryBuilder.must(termsQuery(""{1}"", request.get{0}()));
+}}", CodeHelper.UpperFirstChar(name), name);
+                }
+                else if (input.IndexOf("String") >= 0)
+                {
+                    builder.AppendFormat(@"if (StringUtils.hasText(request.get{0}())) {{
+            boolQueryBuilder.must(wildcardQuery(""{1}"", wrapperAsterisk(request.get{0}())));
+}}", CodeHelper.UpperFirstChar(name), name);
+                }
+                else
+                {
+                    builder.AppendFormat(@"if (request.get{0}() != null) {{
+            boolQueryBuilder.must(termQuery(""{1}"", request.get{0}()));
+}}", CodeHelper.UpperFirstChar(name), name);
+                }
+                builder.AppendLine();
+            }
+            return builder.ToString();
+        }
+    }
     #endregion
 }
