@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>yltl.Tools</RootNamespace>
     <AssemblyName>小工具</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>toos.ico</ApplicationIcon>
     <FileUpgradeFlags>
@@ -32,6 +32,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -174,6 +175,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -183,20 +185,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\yltl.Common\yltl.Common.csproj">
-      <Project>{51D7BB6C-AF73-4C2B-8032-FDB881B583DE}</Project>
-      <Name>yltl.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\yltl.DBUtility\yltl.DBUtility.csproj">
-      <Project>{F73F29B7-4F09-45E0-8D94-7AF18C278D17}</Project>
-      <Name>yltl.DBUtility</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\yltl.Excel\yltl.ExcelHelper.csproj">
-      <Project>{0FA70504-9E1B-4B11-8FD0-59D351204D19}</Project>
-      <Name>yltl.ExcelHelper</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="tnsName匹配结果.txt" />
@@ -221,6 +209,20 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CodeGenerator\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\yltl.Common\yltl.Common.csproj">
+      <Project>{51d7bb6c-af73-4c2b-8032-fdb881b583de}</Project>
+      <Name>yltl.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\yltl.DBUtility\yltl.DBUtility.csproj">
+      <Project>{f73f29b7-4f09-45e0-8d94-7af18c278d17}</Project>
+      <Name>yltl.DBUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\yltl.Excel\yltl.ExcelHelper.csproj">
+      <Project>{0fa70504-9e1b-4b11-8fd0-59d351204d19}</Project>
+      <Name>yltl.ExcelHelper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
